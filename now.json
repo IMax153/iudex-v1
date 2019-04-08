@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "name": "iudex",
+  "builds": [
+    { "src": "web/next.config.js", "use": "@now/next" },
+    {
+      "src": "api/dist/index.js",
+      "use": "@now/node-server"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/graphql",
+      "dest": "/api/dist/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/web/$1"
+    }
+  ]
+}

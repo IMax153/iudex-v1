@@ -89,11 +89,11 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'import/no-cycle': 'off',
     // GraphQL
-    "graphql/template-strings": ['error', {
-      // Import default settings for your GraphQL client. Supported values:
-      // 'apollo', 'relay', 'lokka', 'fraql', 'literal'
-      env: 'apollo',
-      schemaJson: require('./schema.json')
-    }]
+    // "graphql/template-strings": ['error', {
+    //   // Import default settings for your GraphQL client. Supported values:
+    //   // 'apollo', 'relay', 'lokka', 'fraql', 'literal'
+    //   env: 'apollo',
+    //   schemaJson: require('./schema.json')
+    // }]
   },
 };

@@ -13,7 +13,6 @@
     "gql": "graphql-codegen init"
   },
   "dependencies": {
-    "@types/styled-jsx": "^2.2.8",
     "@zeit/next-typescript": "^1.1.1",
     "apollo-cache-inmemory": "^1.5.1",
     "apollo-client": "^2.5.1",
@@ -55,6 +54,7 @@
     "@types/react": "^16.4.16",
     "@types/react-dom": "16.0.11",
     "@types/styled-components": "^4.1.12",
+    "@types/styled-jsx": "^2.2.8",
     "@types/yup": "^0.26.12",
     "@typescript-eslint/eslint-plugin": "^1.5.0",
     "@typescript-eslint/parser": "^1.5.0",

@@ -1,0 +1,25 @@
+# http endpoint of the prisma api
+endpoint: ${env:PRISMA_ENDPOINT}
+
+# model definitions, each of which is mapped to a database table
+datamodel: datamodel.graphql
+
+# secret to lock down the prisma endpoint
+secret: ${env:PRISMA_MANAGEMENT_API_SECRET}
+
+# specifies language and directory for the generated prisma graphql schema
+generate:
+  # generate the TypeScript interface for the prisma service
+  - generator: typescript-client
+    output: ../generated/prisma-client/
+
+hooks:
+  post-deploy:
+    # regenerate prisma client / schema after datamodel changes when deploying to prisma
+    - prisma generate
+    # Runs the codegen tool from nexus-prisma
+    - npx nexus-prisma-generate --client ./generated/prisma-client --output ./generated/nexus-prisma
+
+# seeds data into the database
+seed:
+  run: ts-node seed.ts

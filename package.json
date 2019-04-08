@@ -1,0 +1,31 @@
+{
+  "name": "iudex",
+  "version": "1.0.0",
+  "description": "monorepository for iudex",
+  "main": "index.js",
+  "author": "Maxwell Brown <maxwellbrown1990@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "api",
+    "web"
+  ],
+  "scripts": {
+    "api": "yarn workspace api",
+    "web": "yarn workspace web"
+  },
+  "devDependencies": {
+    "eslint": "^5.15.3",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-import-resolver-node": "^0.3.2",
+    "eslint-plugin-graphql": "^3.0.3",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^1.5.1",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.16.4",
+    "typescript": "^3.3.4000"
+  }
+}

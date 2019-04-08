@@ -1,0 +1,17 @@
+# hidden files
+.DS_Store
+
+# dependencies
+node_modules
+
+# environment
+.env*
+
+# generated
+.next
+dist
+/generated/graphql.tsx
+/generated/nexus-prisma
+/generated/nexus.ts
+/generated/schema.graphql
+schema.json

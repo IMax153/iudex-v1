@@ -2,7 +2,6 @@
   "name": "iudex",
   "version": "1.0.0",
   "description": "monorepository for iudex",
-  "main": "index.js",
   "author": "Maxwell Brown <maxwellbrown1990@gmail.com>",
   "license": "MIT",
   "private": true,

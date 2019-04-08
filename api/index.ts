@@ -31,11 +31,7 @@ app.use(middlewares);
 
 const apolloServer = new ApolloServer({
   schema,
-  context: ({ req, res, connection }: Context) => {
-    if (connection) {
-      return { ...(connection.context || {}) };
-    }
-
+  context: ({ req, res }: Context) => {
     return { req, res, prisma };
   },
 });

@@ -1,11 +1,9 @@
 import ApolloClient from 'apollo-client';
 import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
-import { ApolloLink, split } from 'apollo-link';
+import { ApolloLink } from 'apollo-link';
 import { setContext } from 'apollo-link-context';
 import { onError } from 'apollo-link-error';
 import { HttpLink } from 'apollo-link-http';
-import { WebSocketLink } from 'apollo-link-ws';
-import { getMainDefinition } from 'apollo-utilities';
 import fetch from 'isomorphic-unfetch';
 
 import { isBrowser } from '../browser/isBrowser';
@@ -65,35 +63,8 @@ function getApolloClient(
     credentials: 'include',
   });
 
-  function createLink() {
-    if (isBrowser) {
-      const wsLink = new WebSocketLink({
-        uri: PRODUCTION
-          ? 'wss://iudex-graphql.herokuapp.com/graphql'
-          : 'ws://localhost:4000/graphql',
-        options: {
-          reconnect: true,
-        },
-      });
-
-      // send data to link depending on what kind of operation is being sent
-      const serverLink = split(
-        ({ query }) => {
-          // @ts-ignore
-          const { kind, operation } = getMainDefinition(query);
-          return kind === 'OperationDefinition' && operation === 'subscription';
-        },
-        wsLink,
-        httpLink,
-      );
-
-      return ApolloLink.from([errorLink, authLink, serverLink]);
-    }
-    return ApolloLink.from([errorLink, authLink, httpLink]);
-  }
-
   const client = new ApolloClient<NormalizedCacheObject>({
-    link: createLink(),
+    link: ApolloLink.from([errorLink, authLink, httpLink]),
     cache,
     ssrMode: !isBrowser, // disables forceFetch on the server (so queries are only run once)
     connectToDevTools: isBrowser,

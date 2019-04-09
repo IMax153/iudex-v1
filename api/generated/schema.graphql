@@ -680,10 +680,6 @@ type Query {
   usersConnection(after: String, before: String, first: Int, last: Int, orderBy: UserOrderByInput, skip: Int, where: UserWhereInput): UserConnection!
 }
 
-type Subscription {
-  user: User
-}
-
 type User {
   assignedJournalClubs(after: String, before: String, first: Int, last: Int, orderBy: JournalClubOrderByInput, skip: Int, where: JournalClubWhereInput): [JournalClub!]
   createdAt: DateTime!

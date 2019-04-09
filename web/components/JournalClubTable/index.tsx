@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Query } from 'react-apollo';
-import { Dimmer, Loader, Pagination } from 'semantic-ui-react';
+import { Dimmer, Loader, Pagination, Message } from 'semantic-ui-react';
 
 import {
   JournalClubsDocument,
@@ -31,11 +31,21 @@ export const JournalClubTable: React.FC<JournalClubsProps> = ({ user }) => {
     >
       {({ data, loading, error }) => {
         if (error) return <div>Error! {error.message}</div>;
-        if (loading || !data || !data.journalClubsCount) {
+        if (loading || !data) {
           return (
             <Dimmer active inverted>
               <Loader inverted content="Loading" />
             </Dimmer>
+          );
+        }
+
+        if (data.journalClubsCount === 0) {
+          return (
+            <Message
+              icon="exclamation circle"
+              header="You have no evaluations"
+              content="Head over to the forms page to start creating evaluations!"
+            />
           );
         }
 

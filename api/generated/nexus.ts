@@ -775,7 +775,6 @@ export interface NexusGenRootTypes {
     startCursor?: string | null; // String
   }
   Query: {};
-  Subscription: {};
   User: { // root type
     createdAt: any; // DateTime!
     email: string; // String!
@@ -1007,9 +1006,6 @@ export interface NexusGenFieldTypes {
     user: NexusGenRootTypes['User'] | null; // User
     users: NexusGenRootTypes['User'][]; // [User!]!
     usersConnection: NexusGenRootTypes['UserConnection']; // UserConnection!
-  }
-  Subscription: { // field return type
-    user: NexusGenRootTypes['User'] | null; // User
   }
   User: { // field return type
     assignedJournalClubs: NexusGenRootTypes['JournalClub'][] | null; // [JournalClub!]
@@ -1258,7 +1254,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "AggregateCoreCompetency" | "AggregateJournalClub" | "AggregateOverallCompetency" | "AggregateUser" | "AuthPayload" | "BatchPayload" | "CoreCompetency" | "CoreCompetencyConnection" | "CoreCompetencyEdge" | "JournalClub" | "JournalClubConnection" | "JournalClubEdge" | "Mutation" | "OverallCompetency" | "OverallCompetencyConnection" | "OverallCompetencyEdge" | "PageInfo" | "Query" | "Subscription" | "User" | "UserConnection" | "UserEdge";
+export type NexusGenObjectNames = "AggregateCoreCompetency" | "AggregateJournalClub" | "AggregateOverallCompetency" | "AggregateUser" | "AuthPayload" | "BatchPayload" | "CoreCompetency" | "CoreCompetencyConnection" | "CoreCompetencyEdge" | "JournalClub" | "JournalClubConnection" | "JournalClubEdge" | "Mutation" | "OverallCompetency" | "OverallCompetencyConnection" | "OverallCompetencyEdge" | "PageInfo" | "Query" | "User" | "UserConnection" | "UserEdge";
 
 export type NexusGenInputNames = "CoreCompetencyCreateInput" | "CoreCompetencyCreateOneInput" | "CoreCompetencyUpdateDataInput" | "CoreCompetencyUpdateInput" | "CoreCompetencyUpdateManyMutationInput" | "CoreCompetencyUpdateOneRequiredInput" | "CoreCompetencyUpsertNestedInput" | "CoreCompetencyWhereInput" | "CoreCompetencyWhereUniqueInput" | "JournalClubCreateInput" | "JournalClubCreateManyWithoutEvaluatorInput" | "JournalClubCreateManyWithoutPreceptorInput" | "JournalClubCreateWithoutEvaluatorInput" | "JournalClubCreateWithoutPreceptorInput" | "JournalClubScalarWhereInput" | "JournalClubUpdateInput" | "JournalClubUpdateManyDataInput" | "JournalClubUpdateManyMutationInput" | "JournalClubUpdateManyWithWhereNestedInput" | "JournalClubUpdateManyWithoutEvaluatorInput" | "JournalClubUpdateManyWithoutPreceptorInput" | "JournalClubUpdateWithWhereUniqueWithoutEvaluatorInput" | "JournalClubUpdateWithWhereUniqueWithoutPreceptorInput" | "JournalClubUpdateWithoutEvaluatorDataInput" | "JournalClubUpdateWithoutPreceptorDataInput" | "JournalClubUpsertWithWhereUniqueWithoutEvaluatorInput" | "JournalClubUpsertWithWhereUniqueWithoutPreceptorInput" | "JournalClubWhereInput" | "JournalClubWhereUniqueInput" | "OverallCompetencyCreateInput" | "OverallCompetencyCreateOneInput" | "OverallCompetencyUpdateDataInput" | "OverallCompetencyUpdateInput" | "OverallCompetencyUpdateManyMutationInput" | "OverallCompetencyUpdateOneRequiredInput" | "OverallCompetencyUpsertNestedInput" | "OverallCompetencyWhereInput" | "OverallCompetencyWhereUniqueInput" | "UserChangePasswordInput" | "UserConfirmInput" | "UserCreateInput" | "UserCreateOneInput" | "UserCreateOneWithoutAssignedJournalClubsInput" | "UserCreateOneWithoutJournalClubsInput" | "UserCreateWithoutAssignedJournalClubsInput" | "UserCreateWithoutJournalClubsInput" | "UserForgotPasswordInput" | "UserLoginInput" | "UserRegisterInput" | "UserUpdateDataInput" | "UserUpdateInput" | "UserUpdateManyMutationInput" | "UserUpdateOneRequiredInput" | "UserUpdateOneRequiredWithoutAssignedJournalClubsInput" | "UserUpdateOneRequiredWithoutJournalClubsInput" | "UserUpdateWithoutAssignedJournalClubsDataInput" | "UserUpdateWithoutJournalClubsDataInput" | "UserUpsertNestedInput" | "UserUpsertWithoutAssignedJournalClubsInput" | "UserUpsertWithoutJournalClubsInput" | "UserWhereInput" | "UserWhereUniqueInput";
 

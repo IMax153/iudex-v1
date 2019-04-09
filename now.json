@@ -26,7 +26,7 @@
     "REDIS_HOST": "@iudex-redis-host",
     "REDIS_PASSWORD": "@iudex-redis-password",
     "REDIS_PORT": "@iudex-redis-port",
-    "SESSION_SECRET": "@iudex-session-secret",
+    "JWT_SECRET_KEY": "@iudex-jwt-secret-key",
     "SENDGRID_API_KEY": "@iudex-sendgrid-api-key"
   }
 }

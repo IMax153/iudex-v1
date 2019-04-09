@@ -75,7 +75,7 @@ export async function sendEmail({ to, url, locals }: SendEmailOptions) {
     transport,
   });
 
-  email.send({
+  return email.send({
     template: '../emails',
     message: {
       to,

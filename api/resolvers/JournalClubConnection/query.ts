@@ -6,14 +6,16 @@ export const JournalClubsCount = extendType({
     t.field('journalClubsCount', {
       type: 'Int',
       args: { where: arg({ type: 'JournalClubWhereInput', nullable: false }) },
-      resolve: (root, { where }, ctx) => {
-        return (
-          ctx.prisma
-            // @ts-ignore
-            .journalClubsConnection({ where })
-            .aggregate()
-            .count()
-        );
+      resolve: async (root, { where }, ctx) => {
+        const count = await ctx.prisma
+          // @ts-ignore
+          .journalClubsConnection({ where })
+          .aggregate()
+          .count();
+
+        console.log(count);
+
+        return count;
       },
     });
   },

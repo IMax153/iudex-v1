@@ -1,12 +1,13 @@
 import React, { Fragment } from 'react';
+import { ApolloConsumer } from 'react-apollo';
 import Link from 'next/link';
 import Head from 'next/head';
 import { withRouter, WithRouterProps } from 'next/router';
 import { Button, Container, Dropdown, Icon, Menu, Segment } from 'semantic-ui-react';
 import { capitalize } from 'lodash';
 
-import { LogoutComponent, User } from '../generated/graphql';
-import { redirect } from '../lib/browser/redirect';
+import { User } from '../generated/graphql';
+import { logout } from '../lib/auth/utilities';
 
 interface LayoutProps {
   title?: string;
@@ -61,17 +62,16 @@ const BaseLayout: React.FC<LayoutProps & WithRouterProps> = ({
                 </Link>
 
                 {/* Right Nav Group */}
-                <LogoutComponent>
-                  {(logoutMutation, { client }) => (
+                <ApolloConsumer>
+                  {client => (
                     <Dropdown item text={user.email} className="right" pointing="top">
                       <Dropdown.Menu>
                         <Dropdown.Header>Actions</Dropdown.Header>
                         <Dropdown.Item
                           onClick={async () => {
                             try {
-                              await logoutMutation();
                               await client.cache.reset();
-                              redirect(undefined, '/login');
+                              await logout({ tokenName: 'qid' });
                             } catch (error) {
                               console.log(error);
                             }
@@ -83,7 +83,7 @@ const BaseLayout: React.FC<LayoutProps & WithRouterProps> = ({
                       </Dropdown.Menu>
                     </Dropdown>
                   )}
-                </LogoutComponent>
+                </ApolloConsumer>
               </Fragment>
             ) : (
               <Menu.Item position="right">

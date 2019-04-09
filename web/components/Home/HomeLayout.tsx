@@ -1,10 +1,11 @@
 import React, { Fragment, useState } from 'react';
+import { ApolloConsumer } from 'react-apollo';
 import Head from 'next/head';
 import Link from 'next/link';
 import { Container, Dropdown, Icon, Menu, Segment, Visibility } from 'semantic-ui-react';
 
-import { User, LogoutComponent } from '../../generated/graphql';
-import { redirect } from '../../lib/browser/redirect';
+import { User } from '../../generated/graphql';
+import { logout } from '../../lib/auth/utilities';
 import { Hero } from './Hero';
 
 interface HomeLayoutProps {
@@ -68,16 +69,15 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ children, user }) => {
                   </Link>
 
                   {/* Right Nav Group */}
-                  <LogoutComponent>
-                    {(logoutMutation, { client }) => (
+                  <ApolloConsumer>
+                    {client => (
                       <Dropdown item text={user.email} className="right" pointing="top">
                         <Dropdown.Menu>
                           <Dropdown.Header>Actions</Dropdown.Header>
                           <Dropdown.Item
                             onClick={async () => {
-                              await logoutMutation();
                               await client.cache.reset();
-                              redirect(undefined, '/');
+                              await logout({ tokenName: 'qid' });
                             }}
                           >
                             <Icon name="sign-out" />
@@ -86,7 +86,7 @@ export const HomeLayout: React.FC<HomeLayoutProps> = ({ children, user }) => {
                         </Dropdown.Menu>
                       </Dropdown>
                     )}
-                  </LogoutComponent>
+                  </ApolloConsumer>
                 </Fragment>
               )}
             </Container>

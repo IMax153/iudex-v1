@@ -16,13 +16,13 @@ export const LoginBox: React.FC = () => {
 
         <Message>
           <span style={{ marginRight: '10px' }}>Don&apos;t have an account?</span>{' '}
-          <Link href="/register" passHref>
+          <Link href="/register" passHref prefetch>
             <a href="#">Sign Up</a>
           </Link>
         </Message>
 
         <Message>
-          <Link href="/user/forgot-password" passHref>
+          <Link href="/user/forgot-password" passHref prefetch>
             <a href="#">Forgot password</a>
           </Link>
         </Message>

@@ -18,6 +18,11 @@ type AggregateUser {
   count: Int!
 }
 
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
 type BatchPayload {
   count: Long!
 }
@@ -516,9 +521,8 @@ type Mutation {
   deleteOverallCompetency(where: OverallCompetencyWhereUniqueInput!): OverallCompetency
   deleteUser(where: UserWhereUniqueInput!): User
   forgotPassword(data: UserForgotPasswordInput!): Boolean
-  login(data: UserLoginInput!): User
-  logout: Boolean
-  register(data: UserRegisterInput!): User
+  login(data: UserLoginInput!): AuthPayload
+  register(data: UserRegisterInput!): AuthPayload
   updateCoreCompetency(data: CoreCompetencyUpdateInput!, where: CoreCompetencyWhereUniqueInput!): CoreCompetency
   updateJournalClub(data: JournalClubUpdateInput!, where: JournalClubWhereUniqueInput!): JournalClub
   updateManyCoreCompetencies(data: CoreCompetencyUpdateManyMutationInput!, where: CoreCompetencyWhereInput): BatchPayload!

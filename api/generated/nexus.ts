@@ -722,6 +722,10 @@ export interface NexusGenRootTypes {
   AggregateUser: { // root type
     count: number; // Int!
   }
+  AuthPayload: { // root type
+    token: string; // String!
+    user: NexusGenRootTypes['User']; // User!
+  }
   BatchPayload: { // root type
     count: any; // Long!
   }
@@ -884,6 +888,10 @@ export interface NexusGenFieldTypes {
   AggregateUser: { // field return type
     count: number; // Int!
   }
+  AuthPayload: { // field return type
+    token: string; // String!
+    user: NexusGenRootTypes['User']; // User!
+  }
   BatchPayload: { // field return type
     count: any; // Long!
   }
@@ -949,9 +957,8 @@ export interface NexusGenFieldTypes {
     deleteOverallCompetency: NexusGenRootTypes['OverallCompetency'] | null; // OverallCompetency
     deleteUser: NexusGenRootTypes['User'] | null; // User
     forgotPassword: boolean | null; // Boolean
-    login: NexusGenRootTypes['User'] | null; // User
-    logout: boolean | null; // Boolean
-    register: NexusGenRootTypes['User'] | null; // User
+    login: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
+    register: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     updateCoreCompetency: NexusGenRootTypes['CoreCompetency'] | null; // CoreCompetency
     updateJournalClub: NexusGenRootTypes['JournalClub'] | null; // JournalClub
     updateManyCoreCompetencies: NexusGenRootTypes['BatchPayload']; // BatchPayload!
@@ -1251,7 +1258,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "AggregateCoreCompetency" | "AggregateJournalClub" | "AggregateOverallCompetency" | "AggregateUser" | "BatchPayload" | "CoreCompetency" | "CoreCompetencyConnection" | "CoreCompetencyEdge" | "JournalClub" | "JournalClubConnection" | "JournalClubEdge" | "Mutation" | "OverallCompetency" | "OverallCompetencyConnection" | "OverallCompetencyEdge" | "PageInfo" | "Query" | "Subscription" | "User" | "UserConnection" | "UserEdge";
+export type NexusGenObjectNames = "AggregateCoreCompetency" | "AggregateJournalClub" | "AggregateOverallCompetency" | "AggregateUser" | "AuthPayload" | "BatchPayload" | "CoreCompetency" | "CoreCompetencyConnection" | "CoreCompetencyEdge" | "JournalClub" | "JournalClubConnection" | "JournalClubEdge" | "Mutation" | "OverallCompetency" | "OverallCompetencyConnection" | "OverallCompetencyEdge" | "PageInfo" | "Query" | "Subscription" | "User" | "UserConnection" | "UserEdge";
 
 export type NexusGenInputNames = "CoreCompetencyCreateInput" | "CoreCompetencyCreateOneInput" | "CoreCompetencyUpdateDataInput" | "CoreCompetencyUpdateInput" | "CoreCompetencyUpdateManyMutationInput" | "CoreCompetencyUpdateOneRequiredInput" | "CoreCompetencyUpsertNestedInput" | "CoreCompetencyWhereInput" | "CoreCompetencyWhereUniqueInput" | "JournalClubCreateInput" | "JournalClubCreateManyWithoutEvaluatorInput" | "JournalClubCreateManyWithoutPreceptorInput" | "JournalClubCreateWithoutEvaluatorInput" | "JournalClubCreateWithoutPreceptorInput" | "JournalClubScalarWhereInput" | "JournalClubUpdateInput" | "JournalClubUpdateManyDataInput" | "JournalClubUpdateManyMutationInput" | "JournalClubUpdateManyWithWhereNestedInput" | "JournalClubUpdateManyWithoutEvaluatorInput" | "JournalClubUpdateManyWithoutPreceptorInput" | "JournalClubUpdateWithWhereUniqueWithoutEvaluatorInput" | "JournalClubUpdateWithWhereUniqueWithoutPreceptorInput" | "JournalClubUpdateWithoutEvaluatorDataInput" | "JournalClubUpdateWithoutPreceptorDataInput" | "JournalClubUpsertWithWhereUniqueWithoutEvaluatorInput" | "JournalClubUpsertWithWhereUniqueWithoutPreceptorInput" | "JournalClubWhereInput" | "JournalClubWhereUniqueInput" | "OverallCompetencyCreateInput" | "OverallCompetencyCreateOneInput" | "OverallCompetencyUpdateDataInput" | "OverallCompetencyUpdateInput" | "OverallCompetencyUpdateManyMutationInput" | "OverallCompetencyUpdateOneRequiredInput" | "OverallCompetencyUpsertNestedInput" | "OverallCompetencyWhereInput" | "OverallCompetencyWhereUniqueInput" | "UserChangePasswordInput" | "UserConfirmInput" | "UserCreateInput" | "UserCreateOneInput" | "UserCreateOneWithoutAssignedJournalClubsInput" | "UserCreateOneWithoutJournalClubsInput" | "UserCreateWithoutAssignedJournalClubsInput" | "UserCreateWithoutJournalClubsInput" | "UserForgotPasswordInput" | "UserLoginInput" | "UserRegisterInput" | "UserUpdateDataInput" | "UserUpdateInput" | "UserUpdateManyMutationInput" | "UserUpdateOneRequiredInput" | "UserUpdateOneRequiredWithoutAssignedJournalClubsInput" | "UserUpdateOneRequiredWithoutJournalClubsInput" | "UserUpdateWithoutAssignedJournalClubsDataInput" | "UserUpdateWithoutJournalClubsDataInput" | "UserUpsertNestedInput" | "UserUpsertWithoutAssignedJournalClubsInput" | "UserUpsertWithoutJournalClubsInput" | "UserWhereInput" | "UserWhereUniqueInput";
 

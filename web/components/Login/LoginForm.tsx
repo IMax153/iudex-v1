@@ -4,7 +4,7 @@ import { Button, Form, Segment } from 'semantic-ui-react';
 import { object, string } from 'yup';
 
 import { LoginComponent } from '../../generated/graphql';
-import { redirect } from '../../lib/browser/redirect';
+import { login } from '../../lib/auth/utilities';
 import { InputField } from '../InputField';
 
 const initialValues = { email: '', password: '' };
@@ -29,9 +29,13 @@ export const LoginForm: React.FC = () => {
           onSubmit={async (values, actions) => {
             actions.setSubmitting(true);
             try {
-              await loginMutation({ variables: { data: values } });
-              await client.cache.reset();
-              redirect(undefined, '/dashboard');
+              const result = await loginMutation({ variables: { data: values } });
+
+              if (result && result.data && result.data.login && result.data.login.token) {
+                await client.cache.reset();
+                const { token } = result.data.login;
+                login({ token });
+              }
             } catch (error) {
               actions.resetForm();
             }

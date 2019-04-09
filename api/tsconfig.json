@@ -2,7 +2,8 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "lib": ["dom", "es6", "es2017", "esnext.asynciterable"],
-    "module": "commonjs"
+    "module": "commonjs",
+    "noUnusedParameters": false
   },
   "exclude": ["node_modules"]
 }

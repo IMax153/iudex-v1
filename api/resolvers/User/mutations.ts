@@ -5,13 +5,14 @@ import {
   UserInputError,
 } from 'apollo-server-express';
 import { compare, hash } from 'bcryptjs';
+import { sign } from 'jsonwebtoken';
 import { arg, mutationField } from 'nexus';
 
 import * as Email from '../../utils/email';
 import { redis, CONFIRM_USER_PREFIX, FORGOT_PASSWORD_PREFIX } from '../../utils/redis';
 
 export const RegisterMutation = mutationField('register', {
-  type: 'User',
+  type: 'AuthPayload',
   args: { data: arg({ type: 'UserRegisterInput', required: true }) },
   resolve: async (root, { data }, ctx) => {
     const hashedPassword = await hash(data.password, 12);
@@ -35,12 +36,12 @@ export const RegisterMutation = mutationField('register', {
       throw new ApolloError('Internal Server Error');
     }
 
-    return user;
+    return { user, token: sign({ id: user.id }, process.env.JWT_SECRET_KEY, { expiresIn: '1hr' }) };
   },
 });
 
 export const LoginMutation = mutationField('login', {
-  type: 'User',
+  type: 'AuthPayload',
   args: { data: arg({ type: 'UserLoginInput', required: true }) },
   resolve: async (root, { data: { email, password } }, ctx) => {
     const user = await ctx.prisma.user({ email });
@@ -51,30 +52,8 @@ export const LoginMutation = mutationField('login', {
 
     if (!isValidPassword) throw new AuthenticationError('Invalid password');
     if (!user.emailConfirmed) throw new ForbiddenError('You must confirm your email');
-    if (!ctx.req.session) throw new ApolloError('Internal Server Error');
 
-    ctx.req.session.userId = user.id;
-
-    return user;
-  },
-});
-
-export const LogoutMutation = mutationField('logout', {
-  type: 'Boolean',
-  resolve: (root, args, ctx) => {
-    return new Promise((resolve, reject) => {
-      if (ctx.req.session) {
-        ctx.req.session.destroy((err: any) => {
-          if (err) {
-            console.log(err);
-            throw new ApolloError('There was a problem logging out - please try again');
-          }
-
-          ctx.res.clearCookie('qid');
-          resolve(true);
-        });
-      }
-    });
+    return { user, token: sign({ id: user.id }, process.env.JWT_SECRET_KEY, { expiresIn: '1hr' }) };
   },
 });
 

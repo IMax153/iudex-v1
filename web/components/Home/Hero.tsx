@@ -34,7 +34,7 @@ export const Hero: React.FC<HeroProps> = ({ user }) => (
     />
 
     {user ? null : (
-      <Link href="/login" passHref>
+      <Link href="/login" passHref prefetch>
         <Button primary as="a" size="huge">
           Sign In
         </Button>

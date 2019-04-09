@@ -7,11 +7,7 @@ export const MeQuery = extendType({
       type: 'User',
       nullable: true,
       resolve(root, args, ctx) {
-        if (ctx.req.session && ctx.req.session.userId) {
-          return ctx.prisma.user({ id: ctx.req.session.userId });
-        }
-
-        return null;
+        return ctx.prisma.user({ id: ctx.req.user.id });
       },
     });
   },

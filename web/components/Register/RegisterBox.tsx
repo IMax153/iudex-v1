@@ -16,7 +16,7 @@ export const RegisterBox: React.FC = () => {
 
         <Message>
           <span style={{ marginRight: '10px' }}>Already have an account?</span>{' '}
-          <Link href="/login" passHref>
+          <Link href="/login" passHref prefetch>
             <a href="#">Sign In</a>
           </Link>
         </Message>

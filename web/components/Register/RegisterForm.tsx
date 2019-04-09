@@ -4,7 +4,7 @@ import { Button, Form, Grid, Segment, Dropdown } from 'semantic-ui-react';
 import { object, ref, string } from 'yup';
 
 import { RegisterComponent } from '../../generated/graphql';
-import { redirect } from '../../lib/browser/redirect';
+import { login } from '../../lib/auth/utilities';
 import { InputField } from '../InputField';
 
 const initialValues = {
@@ -51,9 +51,12 @@ export const RegisterForm: React.FC = () => {
             const { passwordConfirm, ...data } = values;
             actions.setSubmitting(true);
             try {
-              await registerMutation({ variables: { data } as any }); //
+              const result = await registerMutation({ variables: { data } as any });
               await client.cache.reset();
-              redirect(undefined, '/user/confirm');
+              if (result && result.data && result.data.register && result.data.register.token) {
+                const { token } = result.data.register;
+                login({ token, redirectTo: '/user/confirm' });
+              }
             } catch (error) {
               actions.resetForm();
             }

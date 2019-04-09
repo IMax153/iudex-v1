@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NextComponentType, NextFC } from 'next';
 
 import { User } from '../../generated/graphql';
@@ -13,6 +13,21 @@ interface WithCurrentUserProps {
 
 export function withCurrentUser(Component: NextComponentType<any, any, AppContext>) {
   const WithCurrentUser: NextFC<WithCurrentUserProps, {}, AppContext> = props => {
+    function syncLogout(e: StorageEvent) {
+      if (e.key === 'logout') {
+        redirect(undefined, '/login');
+      }
+    }
+
+    useEffect(() => {
+      window.addEventListener('storage', syncLogout);
+
+      return () => {
+        window.removeEventListener('storage', syncLogout);
+        window.localStorage.removeItem('logout');
+      };
+    });
+
     return <Component {...props} />;
   };
 

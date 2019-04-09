@@ -28,6 +28,11 @@ export type AggregateUser = {
   count: Scalars['Int'];
 };
 
+export type AuthPayload = {
+  user: User;
+  token: Scalars['String'];
+};
+
 export type BatchPayload = {
   count: Scalars['Long'];
 };
@@ -531,9 +536,8 @@ export type Mutation = {
   upsertOverallCompetency: OverallCompetency;
   deleteOverallCompetency?: Maybe<OverallCompetency>;
   deleteManyOverallCompetencies: BatchPayload;
-  register?: Maybe<User>;
-  login?: Maybe<User>;
-  logout?: Maybe<Scalars['Boolean']>;
+  register?: Maybe<AuthPayload>;
+  login?: Maybe<AuthPayload>;
   confirmUser?: Maybe<User>;
   changePassword?: Maybe<User>;
   forgotPassword?: Maybe<Scalars['Boolean']>;
@@ -1387,12 +1391,12 @@ export type LoginMutationVariables = {
 };
 
 export type LoginMutation = { __typename?: 'Mutation' } & {
-  login: Maybe<{ __typename?: 'User' } & Pick<User, 'id' | 'fullName' | 'email' | 'position'>>;
+  login: Maybe<
+    { __typename?: 'AuthPayload' } & Pick<AuthPayload, 'token'> & {
+        user: { __typename?: 'User' } & Pick<User, 'id' | 'fullName' | 'email' | 'position'>;
+      }
+  >;
 };
-
-export type LogoutMutationVariables = {};
-
-export type LogoutMutation = { __typename?: 'Mutation' } & Pick<Mutation, 'logout'>;
 
 export type MeQueryVariables = {};
 
@@ -1410,7 +1414,11 @@ export type RegisterMutationVariables = {
 };
 
 export type RegisterMutation = { __typename?: 'Mutation' } & {
-  register: Maybe<{ __typename?: 'User' } & Pick<User, 'id' | 'fullName' | 'email' | 'position'>>;
+  register: Maybe<
+    { __typename?: 'AuthPayload' } & Pick<AuthPayload, 'token'> & {
+        user: { __typename?: 'User' } & Pick<User, 'id' | 'fullName' | 'email' | 'position'>;
+      }
+  >;
 };
 
 import gql from 'graphql-tag';
@@ -1900,10 +1908,13 @@ export function withForgotPassword<TProps, TChildProps = {}>(
 export const LoginDocument = gql`
   mutation Login($data: UserLoginInput!) {
     login(data: $data) {
-      id
-      fullName
-      email
-      position
+      user {
+        id
+        fullName
+        email
+        position
+      }
+      token
     }
   }
 `;
@@ -1941,46 +1952,6 @@ export function withLogin<TProps, TChildProps = {}>(
     LoginMutationVariables,
     LoginProps<TChildProps>
   >(LoginDocument, operationOptions);
-}
-export const LogoutDocument = gql`
-  mutation Logout {
-    logout
-  }
-`;
-
-export class LogoutComponent extends React.Component<
-  Partial<ReactApollo.MutationProps<LogoutMutation, LogoutMutationVariables>>
-> {
-  render() {
-    return (
-      <ReactApollo.Mutation<LogoutMutation, LogoutMutationVariables>
-        mutation={LogoutDocument}
-        {...(this as any)['props'] as any}
-      />
-    );
-  }
-}
-export type LogoutProps<TChildProps = {}> = Partial<
-  ReactApollo.MutateProps<LogoutMutation, LogoutMutationVariables>
-> &
-  TChildProps;
-export type LogoutMutationFn = ReactApollo.MutationFn<LogoutMutation, LogoutMutationVariables>;
-export function withLogout<TProps, TChildProps = {}>(
-  operationOptions:
-    | ReactApollo.OperationOption<
-        TProps,
-        LogoutMutation,
-        LogoutMutationVariables,
-        LogoutProps<TChildProps>
-      >
-    | undefined,
-) {
-  return ReactApollo.withMutation<
-    TProps,
-    LogoutMutation,
-    LogoutMutationVariables,
-    LogoutProps<TChildProps>
-  >(LogoutDocument, operationOptions);
 }
 export const MeDocument = gql`
   query Me {
@@ -2022,10 +1993,13 @@ export function withMe<TProps, TChildProps = {}>(
 export const RegisterDocument = gql`
   mutation Register($data: UserRegisterInput!) {
     register(data: $data) {
-      id
-      fullName
-      email
-      position
+      user {
+        id
+        fullName
+        email
+        position
+      }
+      token
     }
   }
 `;

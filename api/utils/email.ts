@@ -25,19 +25,19 @@ async function getEmailTransport() {
         apiKey: process.env.SENDGRID_API_KEY,
       }),
     );
-  } else {
-    const account = await NodeMailer.createTestAccount();
-
-    return NodeMailer.createTransport({
-      host: 'smtp.ethereal.email',
-      port: 587,
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: account.user, // generated ethereal user
-        pass: account.pass, // generated ethereal password
-      },
-    });
   }
+
+  const account = await NodeMailer.createTestAccount();
+
+  return NodeMailer.createTransport({
+    host: 'smtp.ethereal.email',
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: account.user, // generated ethereal user
+      pass: account.pass, // generated ethereal password
+    },
+  });
 }
 
 async function createToken(
@@ -46,7 +46,11 @@ async function createToken(
   expiresIn: number = 60 * 60 * 24, // 1 day expiration by default
 ): Promise<string> {
   const token = uuid();
-  await redis.set(`${prefix}${token}`, value, 'ex', expiresIn);
+  try {
+    await redis.set(`${prefix}${token}`, value, 'ex', expiresIn);
+  } catch (error) {
+    throw new Error('Internal Server Error');
+  }
   return token;
 }
 

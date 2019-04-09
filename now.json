@@ -4,14 +4,14 @@
   "builds": [
     { "src": "web/next.config.js", "use": "@now/next" },
     {
-      "src": "api/dist/index.js",
+      "src": "api/index.ts",
       "use": "@now/node-server"
     }
   ],
   "routes": [
     {
       "src": "/graphql",
-      "dest": "/api/dist/index.js"
+      "dest": "/api/index.ts"
     },
     {
       "src": "/(.*)",

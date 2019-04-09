@@ -14,8 +14,10 @@ declare global {
     interface ProcessEnv {
       CLIENT_URL: string;
       NODE_ENV: 'development' | 'production';
-      PORT?: string;
-      REDIS_URL: string;
+      PORT: string;
+      REDIS_HOST: string;
+      REDIS_PASSWORD: string;
+      REDIS_PORT: string;
       SESSION_SECRET: string;
       SENDGRID_API_KEY: string;
     }

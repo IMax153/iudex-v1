@@ -1,11 +1,12 @@
 {
   "version": 2,
   "name": "iudex",
+  "alias": "iudex.now.sh",
   "builds": [
-    { "src": "web/next.config.js", "use": "@now/next" },
+    { "src": "web/next.config.js", "use": "@now/next@canary" },
     {
       "src": "api/index.ts",
-      "use": "@now/node-server"
+      "use": "@now/node-server@canary"
     }
   ],
   "routes": [
@@ -17,5 +18,15 @@
       "src": "/(.*)",
       "dest": "/web/$1"
     }
-  ]
+  ],
+  "env": {
+    "CLIENT_URL": "@iudex-client-url",
+    "PRISMA_ENDPOINT": "@iudex-prisma-endpoint",
+    "PRISMA_MANAGEMENT_API_SECRET": "@iudex-prisma-management-api-secret",
+    "REDIS_HOST": "@iudex-redis-host",
+    "REDIS_PASSWORD": "@iudex-redis-password",
+    "REDIS_PORT": "@iudex-redis-port",
+    "SESSION_SECRET": "@iudex-session-secret",
+    "SENDGRID_API_KEY": "@iudex-sendgrid-api-key"
+  }
 }

@@ -57,9 +57,7 @@ function getApolloClient(
   });
 
   const httpLink = new HttpLink({
-    uri: PRODUCTION
-      ? 'https://iudex-graphql.herokuapp.com/graphql'
-      : 'http://localhost:4000/graphql',
+    uri: PRODUCTION ? '/graphql' : 'http://localhost:4000/graphql',
     credentials: 'include',
   });
 

@@ -41,7 +41,6 @@ const apolloServer = new ApolloServer({
 apolloServer.applyMiddleware({ app, cors: CorsOptions });
 
 const httpServer = createServer(app);
-apolloServer.installSubscriptionHandlers(httpServer);
 
 httpServer.listen(PORT, () => console.log(`🚀 Server running at http://localhost:${PORT}`));
 

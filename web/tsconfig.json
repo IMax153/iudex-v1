@@ -2,14 +2,14 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
-    "jsx": "preserve",
+    "baseUrl": "../",
     "lib": ["dom", "es2017"],
     "module": "esnext",
     "noEmit": true,
     "noUnusedParameters": true,
     "preserveConstEnums": true,
-    "strict": true,
-    "target": "esnext"
+    "rootDir": ".",
+    "strict": true
   },
   "exclude": ["node_modules"]
 }

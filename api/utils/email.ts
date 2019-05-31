@@ -1,6 +1,7 @@
 import EmailTemplate from 'email-templates';
 import NodeMailer from 'nodemailer';
 import NodeMailerSendGrid from 'nodemailer-sendgrid';
+import Path from 'path';
 import { v4 as uuid } from 'uuid';
 
 import { redis, CONFIRM_USER_PREFIX, FORGOT_PASSWORD_PREFIX } from './redis';
@@ -76,7 +77,7 @@ export async function sendEmail({ to, url, locals }: SendEmailOptions) {
   });
 
   return email.send({
-    template: '../emails',
+    template: Path.join(__dirname, 'emails'),
     message: {
       to,
     },

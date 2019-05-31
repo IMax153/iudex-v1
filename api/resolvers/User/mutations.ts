@@ -33,7 +33,7 @@ export const RegisterMutation = mutationField('register', {
     try {
       await Email.sendEmail(options);
     } catch (error) {
-      throw new ApolloError('Internal Server Error');
+      throw new ApolloError(error);
     }
 
     return { user, token: sign({ id: user.id }, process.env.JWT_SECRET_KEY, { expiresIn: '1hr' }) };

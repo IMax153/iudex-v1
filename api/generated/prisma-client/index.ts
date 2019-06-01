@@ -265,6 +265,24 @@ export interface ClientConstructor<T> {
  * Types
  */
 
+export type Core =
+  | "NEEDS_IMPROVEMENT"
+  | "SATISFACTORY_PROGRESS"
+  | "ACHIEVED"
+  | "NOT_APPLICABLE";
+
+export type CoreCompetencyOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "competency_ASC"
+  | "competency_DESC"
+  | "comment_ASC"
+  | "comment_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
 export type Position = "PHARMACIST" | "RESIDENT";
 
 export type Overall = "MEETS_EXPECTATIONS" | "DOES_NOT_MEET_EXPECTATIONS";
@@ -274,18 +292,6 @@ export type JournalClubOrderByInput =
   | "id_DESC"
   | "article_ASC"
   | "article_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
-export type CoreCompetencyOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "competency_ASC"
-  | "competency_DESC"
-  | "comment_ASC"
-  | "comment_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -318,41 +324,18 @@ export type UserOrderByInput =
   | "password_DESC"
   | "position_ASC"
   | "position_DESC"
-  | "isOnline_ASC"
-  | "isOnline_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
-export type Core =
-  | "NEEDS_IMPROVEMENT"
-  | "SATISFACTORY_PROGRESS"
-  | "ACHIEVED"
-  | "NOT_APPLICABLE";
-
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
-
-export interface OverallCompetencyCreateOneInput {
-  create?: OverallCompetencyCreateInput;
-  connect?: OverallCompetencyWhereUniqueInput;
-}
 
 export type CoreCompetencyWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
 
-export interface JournalClubUpdateManyWithWhereNestedInput {
-  where: JournalClubScalarWhereInput;
-  data: JournalClubUpdateManyDataInput;
-}
-
-export interface OverallCompetencyUpdateDataInput {
-  competency?: Overall;
-  comment?: String;
-}
-
-export interface JournalClubScalarWhereInput {
+export interface CoreCompetencyWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -367,104 +350,32 @@ export interface JournalClubScalarWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  article?: String;
-  article_not?: String;
-  article_in?: String[] | String;
-  article_not_in?: String[] | String;
-  article_lt?: String;
-  article_lte?: String;
-  article_gt?: String;
-  article_gte?: String;
-  article_contains?: String;
-  article_not_contains?: String;
-  article_starts_with?: String;
-  article_not_starts_with?: String;
-  article_ends_with?: String;
-  article_not_ends_with?: String;
-  createdAt?: DateTimeInput;
-  createdAt_not?: DateTimeInput;
-  createdAt_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_lt?: DateTimeInput;
-  createdAt_lte?: DateTimeInput;
-  createdAt_gt?: DateTimeInput;
-  createdAt_gte?: DateTimeInput;
-  updatedAt?: DateTimeInput;
-  updatedAt_not?: DateTimeInput;
-  updatedAt_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_lt?: DateTimeInput;
-  updatedAt_lte?: DateTimeInput;
-  updatedAt_gt?: DateTimeInput;
-  updatedAt_gte?: DateTimeInput;
-  AND?: JournalClubScalarWhereInput[] | JournalClubScalarWhereInput;
-  OR?: JournalClubScalarWhereInput[] | JournalClubScalarWhereInput;
-  NOT?: JournalClubScalarWhereInput[] | JournalClubScalarWhereInput;
-}
-
-export interface UserCreateWithoutJournalClubsInput {
-  firstName: String;
-  lastName: String;
-  email: String;
-  emailConfirmed?: Boolean;
-  password: String;
-  position: Position;
-  isOnline?: Boolean;
-  assignedJournalClubs?: JournalClubCreateManyWithoutPreceptorInput;
-}
-
-export interface JournalClubCreateInput {
-  article: String;
-  resident: UserCreateOneInput;
-  evaluator: UserCreateOneWithoutJournalClubsInput;
-  preceptor: UserCreateOneWithoutAssignedJournalClubsInput;
-  background: CoreCompetencyCreateOneInput;
-  methods: CoreCompetencyCreateOneInput;
-  results: CoreCompetencyCreateOneInput;
-  understanding: CoreCompetencyCreateOneInput;
-  analysis: CoreCompetencyCreateOneInput;
-  application: CoreCompetencyCreateOneInput;
-  conclusions: CoreCompetencyCreateOneInput;
-  clarity: CoreCompetencyCreateOneInput;
-  organization: CoreCompetencyCreateOneInput;
-  grammar: CoreCompetencyCreateOneInput;
-  responseToQuestions: CoreCompetencyCreateOneInput;
-  knowsAudience: CoreCompetencyCreateOneInput;
-  audienceEngagement: CoreCompetencyCreateOneInput;
-  overall: OverallCompetencyCreateOneInput;
+  competency?: Core;
+  competency_not?: Core;
+  competency_in?: Core[] | Core;
+  competency_not_in?: Core[] | Core;
+  comment?: String;
+  comment_not?: String;
+  comment_in?: String[] | String;
+  comment_not_in?: String[] | String;
+  comment_lt?: String;
+  comment_lte?: String;
+  comment_gt?: String;
+  comment_gte?: String;
+  comment_contains?: String;
+  comment_not_contains?: String;
+  comment_starts_with?: String;
+  comment_not_starts_with?: String;
+  comment_ends_with?: String;
+  comment_not_ends_with?: String;
+  AND?: CoreCompetencyWhereInput[] | CoreCompetencyWhereInput;
+  OR?: CoreCompetencyWhereInput[] | CoreCompetencyWhereInput;
+  NOT?: CoreCompetencyWhereInput[] | CoreCompetencyWhereInput;
 }
 
 export type JournalClubWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
-
-export interface UserCreateOneInput {
-  create?: UserCreateInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface JournalClubSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: JournalClubWhereInput;
-  AND?: JournalClubSubscriptionWhereInput[] | JournalClubSubscriptionWhereInput;
-  OR?: JournalClubSubscriptionWhereInput[] | JournalClubSubscriptionWhereInput;
-  NOT?: JournalClubSubscriptionWhereInput[] | JournalClubSubscriptionWhereInput;
-}
-
-export interface UserCreateInput {
-  firstName: String;
-  lastName: String;
-  email: String;
-  emailConfirmed?: Boolean;
-  password: String;
-  position: Position;
-  isOnline?: Boolean;
-  journalClubs?: JournalClubCreateManyWithoutEvaluatorInput;
-  assignedJournalClubs?: JournalClubCreateManyWithoutPreceptorInput;
-}
 
 export interface JournalClubWhereInput {
   id?: ID_Input;
@@ -531,420 +442,6 @@ export interface JournalClubWhereInput {
   AND?: JournalClubWhereInput[] | JournalClubWhereInput;
   OR?: JournalClubWhereInput[] | JournalClubWhereInput;
   NOT?: JournalClubWhereInput[] | JournalClubWhereInput;
-}
-
-export interface JournalClubCreateManyWithoutEvaluatorInput {
-  create?:
-    | JournalClubCreateWithoutEvaluatorInput[]
-    | JournalClubCreateWithoutEvaluatorInput;
-  connect?: JournalClubWhereUniqueInput[] | JournalClubWhereUniqueInput;
-}
-
-export interface UserUpdateManyMutationInput {
-  firstName?: String;
-  lastName?: String;
-  email?: String;
-  emailConfirmed?: Boolean;
-  password?: String;
-  position?: Position;
-  isOnline?: Boolean;
-}
-
-export interface JournalClubCreateWithoutEvaluatorInput {
-  article: String;
-  resident: UserCreateOneInput;
-  preceptor: UserCreateOneWithoutAssignedJournalClubsInput;
-  background: CoreCompetencyCreateOneInput;
-  methods: CoreCompetencyCreateOneInput;
-  results: CoreCompetencyCreateOneInput;
-  understanding: CoreCompetencyCreateOneInput;
-  analysis: CoreCompetencyCreateOneInput;
-  application: CoreCompetencyCreateOneInput;
-  conclusions: CoreCompetencyCreateOneInput;
-  clarity: CoreCompetencyCreateOneInput;
-  organization: CoreCompetencyCreateOneInput;
-  grammar: CoreCompetencyCreateOneInput;
-  responseToQuestions: CoreCompetencyCreateOneInput;
-  knowsAudience: CoreCompetencyCreateOneInput;
-  audienceEngagement: CoreCompetencyCreateOneInput;
-  overall: OverallCompetencyCreateOneInput;
-}
-
-export interface UserUpdateInput {
-  firstName?: String;
-  lastName?: String;
-  email?: String;
-  emailConfirmed?: Boolean;
-  password?: String;
-  position?: Position;
-  isOnline?: Boolean;
-  journalClubs?: JournalClubUpdateManyWithoutEvaluatorInput;
-  assignedJournalClubs?: JournalClubUpdateManyWithoutPreceptorInput;
-}
-
-export interface UserCreateOneWithoutAssignedJournalClubsInput {
-  create?: UserCreateWithoutAssignedJournalClubsInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface OverallCompetencyUpdateInput {
-  competency?: Overall;
-  comment?: String;
-}
-
-export interface UserCreateWithoutAssignedJournalClubsInput {
-  firstName: String;
-  lastName: String;
-  email: String;
-  emailConfirmed?: Boolean;
-  password: String;
-  position: Position;
-  isOnline?: Boolean;
-  journalClubs?: JournalClubCreateManyWithoutEvaluatorInput;
-}
-
-export interface UserUpsertNestedInput {
-  update: UserUpdateDataInput;
-  create: UserCreateInput;
-}
-
-export interface CoreCompetencyCreateOneInput {
-  create?: CoreCompetencyCreateInput;
-  connect?: CoreCompetencyWhereUniqueInput;
-}
-
-export type OverallCompetencyWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
-
-export interface JournalClubUpsertWithWhereUniqueWithoutEvaluatorInput {
-  where: JournalClubWhereUniqueInput;
-  update: JournalClubUpdateWithoutEvaluatorDataInput;
-  create: JournalClubCreateWithoutEvaluatorInput;
-}
-
-export interface UserUpsertWithoutJournalClubsInput {
-  update: UserUpdateWithoutJournalClubsDataInput;
-  create: UserCreateWithoutJournalClubsInput;
-}
-
-export interface OverallCompetencyCreateInput {
-  competency: Overall;
-  comment?: String;
-}
-
-export interface UserUpdateOneRequiredWithoutJournalClubsInput {
-  create?: UserCreateWithoutJournalClubsInput;
-  update?: UserUpdateWithoutJournalClubsDataInput;
-  upsert?: UserUpsertWithoutJournalClubsInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface JournalClubCreateManyWithoutPreceptorInput {
-  create?:
-    | JournalClubCreateWithoutPreceptorInput[]
-    | JournalClubCreateWithoutPreceptorInput;
-  connect?: JournalClubWhereUniqueInput[] | JournalClubWhereUniqueInput;
-}
-
-export interface JournalClubUpdateWithoutPreceptorDataInput {
-  article?: String;
-  resident?: UserUpdateOneRequiredInput;
-  evaluator?: UserUpdateOneRequiredWithoutJournalClubsInput;
-  background?: CoreCompetencyUpdateOneRequiredInput;
-  methods?: CoreCompetencyUpdateOneRequiredInput;
-  results?: CoreCompetencyUpdateOneRequiredInput;
-  understanding?: CoreCompetencyUpdateOneRequiredInput;
-  analysis?: CoreCompetencyUpdateOneRequiredInput;
-  application?: CoreCompetencyUpdateOneRequiredInput;
-  conclusions?: CoreCompetencyUpdateOneRequiredInput;
-  clarity?: CoreCompetencyUpdateOneRequiredInput;
-  organization?: CoreCompetencyUpdateOneRequiredInput;
-  grammar?: CoreCompetencyUpdateOneRequiredInput;
-  responseToQuestions?: CoreCompetencyUpdateOneRequiredInput;
-  knowsAudience?: CoreCompetencyUpdateOneRequiredInput;
-  audienceEngagement?: CoreCompetencyUpdateOneRequiredInput;
-  overall?: OverallCompetencyUpdateOneRequiredInput;
-}
-
-export interface JournalClubCreateWithoutPreceptorInput {
-  article: String;
-  resident: UserCreateOneInput;
-  evaluator: UserCreateOneWithoutJournalClubsInput;
-  background: CoreCompetencyCreateOneInput;
-  methods: CoreCompetencyCreateOneInput;
-  results: CoreCompetencyCreateOneInput;
-  understanding: CoreCompetencyCreateOneInput;
-  analysis: CoreCompetencyCreateOneInput;
-  application: CoreCompetencyCreateOneInput;
-  conclusions: CoreCompetencyCreateOneInput;
-  clarity: CoreCompetencyCreateOneInput;
-  organization: CoreCompetencyCreateOneInput;
-  grammar: CoreCompetencyCreateOneInput;
-  responseToQuestions: CoreCompetencyCreateOneInput;
-  knowsAudience: CoreCompetencyCreateOneInput;
-  audienceEngagement: CoreCompetencyCreateOneInput;
-  overall: OverallCompetencyCreateOneInput;
-}
-
-export interface JournalClubUpdateManyWithoutPreceptorInput {
-  create?:
-    | JournalClubCreateWithoutPreceptorInput[]
-    | JournalClubCreateWithoutPreceptorInput;
-  delete?: JournalClubWhereUniqueInput[] | JournalClubWhereUniqueInput;
-  connect?: JournalClubWhereUniqueInput[] | JournalClubWhereUniqueInput;
-  set?: JournalClubWhereUniqueInput[] | JournalClubWhereUniqueInput;
-  disconnect?: JournalClubWhereUniqueInput[] | JournalClubWhereUniqueInput;
-  update?:
-    | JournalClubUpdateWithWhereUniqueWithoutPreceptorInput[]
-    | JournalClubUpdateWithWhereUniqueWithoutPreceptorInput;
-  upsert?:
-    | JournalClubUpsertWithWhereUniqueWithoutPreceptorInput[]
-    | JournalClubUpsertWithWhereUniqueWithoutPreceptorInput;
-  deleteMany?: JournalClubScalarWhereInput[] | JournalClubScalarWhereInput;
-  updateMany?:
-    | JournalClubUpdateManyWithWhereNestedInput[]
-    | JournalClubUpdateManyWithWhereNestedInput;
-}
-
-export interface UserCreateOneWithoutJournalClubsInput {
-  create?: UserCreateWithoutJournalClubsInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface CoreCompetencyUpdateInput {
-  competency?: Core;
-  comment?: String;
-}
-
-export interface OverallCompetencyUpsertNestedInput {
-  update: OverallCompetencyUpdateDataInput;
-  create: OverallCompetencyCreateInput;
-}
-
-export interface UserSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: UserWhereInput;
-  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-}
-
-export interface JournalClubUpdateInput {
-  article?: String;
-  resident?: UserUpdateOneRequiredInput;
-  evaluator?: UserUpdateOneRequiredWithoutJournalClubsInput;
-  preceptor?: UserUpdateOneRequiredWithoutAssignedJournalClubsInput;
-  background?: CoreCompetencyUpdateOneRequiredInput;
-  methods?: CoreCompetencyUpdateOneRequiredInput;
-  results?: CoreCompetencyUpdateOneRequiredInput;
-  understanding?: CoreCompetencyUpdateOneRequiredInput;
-  analysis?: CoreCompetencyUpdateOneRequiredInput;
-  application?: CoreCompetencyUpdateOneRequiredInput;
-  conclusions?: CoreCompetencyUpdateOneRequiredInput;
-  clarity?: CoreCompetencyUpdateOneRequiredInput;
-  organization?: CoreCompetencyUpdateOneRequiredInput;
-  grammar?: CoreCompetencyUpdateOneRequiredInput;
-  responseToQuestions?: CoreCompetencyUpdateOneRequiredInput;
-  knowsAudience?: CoreCompetencyUpdateOneRequiredInput;
-  audienceEngagement?: CoreCompetencyUpdateOneRequiredInput;
-  overall?: OverallCompetencyUpdateOneRequiredInput;
-}
-
-export interface CoreCompetencySubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: CoreCompetencyWhereInput;
-  AND?:
-    | CoreCompetencySubscriptionWhereInput[]
-    | CoreCompetencySubscriptionWhereInput;
-  OR?:
-    | CoreCompetencySubscriptionWhereInput[]
-    | CoreCompetencySubscriptionWhereInput;
-  NOT?:
-    | CoreCompetencySubscriptionWhereInput[]
-    | CoreCompetencySubscriptionWhereInput;
-}
-
-export interface UserUpdateOneRequiredInput {
-  create?: UserCreateInput;
-  update?: UserUpdateDataInput;
-  upsert?: UserUpsertNestedInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface OverallCompetencyWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  competency?: Overall;
-  competency_not?: Overall;
-  competency_in?: Overall[] | Overall;
-  competency_not_in?: Overall[] | Overall;
-  comment?: String;
-  comment_not?: String;
-  comment_in?: String[] | String;
-  comment_not_in?: String[] | String;
-  comment_lt?: String;
-  comment_lte?: String;
-  comment_gt?: String;
-  comment_gte?: String;
-  comment_contains?: String;
-  comment_not_contains?: String;
-  comment_starts_with?: String;
-  comment_not_starts_with?: String;
-  comment_ends_with?: String;
-  comment_not_ends_with?: String;
-  AND?: OverallCompetencyWhereInput[] | OverallCompetencyWhereInput;
-  OR?: OverallCompetencyWhereInput[] | OverallCompetencyWhereInput;
-  NOT?: OverallCompetencyWhereInput[] | OverallCompetencyWhereInput;
-}
-
-export interface UserUpdateDataInput {
-  firstName?: String;
-  lastName?: String;
-  email?: String;
-  emailConfirmed?: Boolean;
-  password?: String;
-  position?: Position;
-  isOnline?: Boolean;
-  journalClubs?: JournalClubUpdateManyWithoutEvaluatorInput;
-  assignedJournalClubs?: JournalClubUpdateManyWithoutPreceptorInput;
-}
-
-export interface JournalClubUpdateManyMutationInput {
-  article?: String;
-}
-
-export interface JournalClubUpdateManyWithoutEvaluatorInput {
-  create?:
-    | JournalClubCreateWithoutEvaluatorInput[]
-    | JournalClubCreateWithoutEvaluatorInput;
-  delete?: JournalClubWhereUniqueInput[] | JournalClubWhereUniqueInput;
-  connect?: JournalClubWhereUniqueInput[] | JournalClubWhereUniqueInput;
-  set?: JournalClubWhereUniqueInput[] | JournalClubWhereUniqueInput;
-  disconnect?: JournalClubWhereUniqueInput[] | JournalClubWhereUniqueInput;
-  update?:
-    | JournalClubUpdateWithWhereUniqueWithoutEvaluatorInput[]
-    | JournalClubUpdateWithWhereUniqueWithoutEvaluatorInput;
-  upsert?:
-    | JournalClubUpsertWithWhereUniqueWithoutEvaluatorInput[]
-    | JournalClubUpsertWithWhereUniqueWithoutEvaluatorInput;
-  deleteMany?: JournalClubScalarWhereInput[] | JournalClubScalarWhereInput;
-  updateMany?:
-    | JournalClubUpdateManyWithWhereNestedInput[]
-    | JournalClubUpdateManyWithWhereNestedInput;
-}
-
-export interface CoreCompetencyWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  competency?: Core;
-  competency_not?: Core;
-  competency_in?: Core[] | Core;
-  competency_not_in?: Core[] | Core;
-  comment?: String;
-  comment_not?: String;
-  comment_in?: String[] | String;
-  comment_not_in?: String[] | String;
-  comment_lt?: String;
-  comment_lte?: String;
-  comment_gt?: String;
-  comment_gte?: String;
-  comment_contains?: String;
-  comment_not_contains?: String;
-  comment_starts_with?: String;
-  comment_not_starts_with?: String;
-  comment_ends_with?: String;
-  comment_not_ends_with?: String;
-  AND?: CoreCompetencyWhereInput[] | CoreCompetencyWhereInput;
-  OR?: CoreCompetencyWhereInput[] | CoreCompetencyWhereInput;
-  NOT?: CoreCompetencyWhereInput[] | CoreCompetencyWhereInput;
-}
-
-export interface JournalClubUpdateWithWhereUniqueWithoutEvaluatorInput {
-  where: JournalClubWhereUniqueInput;
-  data: JournalClubUpdateWithoutEvaluatorDataInput;
-}
-
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-  email?: String;
-}>;
-
-export interface JournalClubUpdateWithoutEvaluatorDataInput {
-  article?: String;
-  resident?: UserUpdateOneRequiredInput;
-  preceptor?: UserUpdateOneRequiredWithoutAssignedJournalClubsInput;
-  background?: CoreCompetencyUpdateOneRequiredInput;
-  methods?: CoreCompetencyUpdateOneRequiredInput;
-  results?: CoreCompetencyUpdateOneRequiredInput;
-  understanding?: CoreCompetencyUpdateOneRequiredInput;
-  analysis?: CoreCompetencyUpdateOneRequiredInput;
-  application?: CoreCompetencyUpdateOneRequiredInput;
-  conclusions?: CoreCompetencyUpdateOneRequiredInput;
-  clarity?: CoreCompetencyUpdateOneRequiredInput;
-  organization?: CoreCompetencyUpdateOneRequiredInput;
-  grammar?: CoreCompetencyUpdateOneRequiredInput;
-  responseToQuestions?: CoreCompetencyUpdateOneRequiredInput;
-  knowsAudience?: CoreCompetencyUpdateOneRequiredInput;
-  audienceEngagement?: CoreCompetencyUpdateOneRequiredInput;
-  overall?: OverallCompetencyUpdateOneRequiredInput;
-}
-
-export interface JournalClubUpdateManyDataInput {
-  article?: String;
-}
-
-export interface UserUpdateOneRequiredWithoutAssignedJournalClubsInput {
-  create?: UserCreateWithoutAssignedJournalClubsInput;
-  update?: UserUpdateWithoutAssignedJournalClubsDataInput;
-  upsert?: UserUpsertWithoutAssignedJournalClubsInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface CoreCompetencyUpdateManyMutationInput {
-  competency?: Core;
-  comment?: String;
-}
-
-export interface UserUpdateWithoutAssignedJournalClubsDataInput {
-  firstName?: String;
-  lastName?: String;
-  email?: String;
-  emailConfirmed?: Boolean;
-  password?: String;
-  position?: Position;
-  isOnline?: Boolean;
-  journalClubs?: JournalClubUpdateManyWithoutEvaluatorInput;
 }
 
 export interface UserWhereInput {
@@ -1024,14 +521,6 @@ export interface UserWhereInput {
   position_not?: Position;
   position_in?: Position[] | Position;
   position_not_in?: Position[] | Position;
-  isOnline?: Boolean;
-  isOnline_not?: Boolean;
-  journalClubs_every?: JournalClubWhereInput;
-  journalClubs_some?: JournalClubWhereInput;
-  journalClubs_none?: JournalClubWhereInput;
-  assignedJournalClubs_every?: JournalClubWhereInput;
-  assignedJournalClubs_some?: JournalClubWhereInput;
-  assignedJournalClubs_none?: JournalClubWhereInput;
   createdAt?: DateTimeInput;
   createdAt_not?: DateTimeInput;
   createdAt_in?: DateTimeInput[] | DateTimeInput;
@@ -1053,32 +542,162 @@ export interface UserWhereInput {
   NOT?: UserWhereInput[] | UserWhereInput;
 }
 
-export interface UserUpsertWithoutAssignedJournalClubsInput {
-  update: UserUpdateWithoutAssignedJournalClubsDataInput;
-  create: UserCreateWithoutAssignedJournalClubsInput;
+export interface OverallCompetencyWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  competency?: Overall;
+  competency_not?: Overall;
+  competency_in?: Overall[] | Overall;
+  competency_not_in?: Overall[] | Overall;
+  comment?: String;
+  comment_not?: String;
+  comment_in?: String[] | String;
+  comment_not_in?: String[] | String;
+  comment_lt?: String;
+  comment_lte?: String;
+  comment_gt?: String;
+  comment_gte?: String;
+  comment_contains?: String;
+  comment_not_contains?: String;
+  comment_starts_with?: String;
+  comment_not_starts_with?: String;
+  comment_ends_with?: String;
+  comment_not_ends_with?: String;
+  AND?: OverallCompetencyWhereInput[] | OverallCompetencyWhereInput;
+  OR?: OverallCompetencyWhereInput[] | OverallCompetencyWhereInput;
+  NOT?: OverallCompetencyWhereInput[] | OverallCompetencyWhereInput;
 }
 
-export interface JournalClubUpsertWithWhereUniqueWithoutPreceptorInput {
-  where: JournalClubWhereUniqueInput;
-  update: JournalClubUpdateWithoutPreceptorDataInput;
-  create: JournalClubCreateWithoutPreceptorInput;
+export type OverallCompetencyWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+  email?: String;
+}>;
+
+export interface CoreCompetencyCreateInput {
+  id?: ID_Input;
+  competency: Core;
+  comment?: String;
 }
 
-export interface OverallCompetencyUpdateOneRequiredInput {
+export interface CoreCompetencyUpdateInput {
+  competency?: Core;
+  comment?: String;
+}
+
+export interface CoreCompetencyUpdateManyMutationInput {
+  competency?: Core;
+  comment?: String;
+}
+
+export interface JournalClubCreateInput {
+  id?: ID_Input;
+  article: String;
+  resident: UserCreateOneInput;
+  evaluator: UserCreateOneInput;
+  preceptor: UserCreateOneInput;
+  background: CoreCompetencyCreateOneInput;
+  methods: CoreCompetencyCreateOneInput;
+  results: CoreCompetencyCreateOneInput;
+  understanding: CoreCompetencyCreateOneInput;
+  analysis: CoreCompetencyCreateOneInput;
+  application: CoreCompetencyCreateOneInput;
+  conclusions: CoreCompetencyCreateOneInput;
+  clarity: CoreCompetencyCreateOneInput;
+  organization: CoreCompetencyCreateOneInput;
+  grammar: CoreCompetencyCreateOneInput;
+  responseToQuestions: CoreCompetencyCreateOneInput;
+  knowsAudience: CoreCompetencyCreateOneInput;
+  audienceEngagement: CoreCompetencyCreateOneInput;
+  overall: OverallCompetencyCreateOneInput;
+}
+
+export interface UserCreateOneInput {
+  create?: UserCreateInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserCreateInput {
+  id?: ID_Input;
+  firstName: String;
+  lastName: String;
+  email: String;
+  emailConfirmed?: Boolean;
+  password: String;
+  position: Position;
+}
+
+export interface CoreCompetencyCreateOneInput {
+  create?: CoreCompetencyCreateInput;
+  connect?: CoreCompetencyWhereUniqueInput;
+}
+
+export interface OverallCompetencyCreateOneInput {
   create?: OverallCompetencyCreateInput;
-  update?: OverallCompetencyUpdateDataInput;
-  upsert?: OverallCompetencyUpsertNestedInput;
   connect?: OverallCompetencyWhereUniqueInput;
 }
 
-export interface CoreCompetencyUpsertNestedInput {
-  update: CoreCompetencyUpdateDataInput;
-  create: CoreCompetencyCreateInput;
+export interface OverallCompetencyCreateInput {
+  id?: ID_Input;
+  competency: Overall;
+  comment?: String;
 }
 
-export interface CoreCompetencyUpdateDataInput {
-  competency?: Core;
-  comment?: String;
+export interface JournalClubUpdateInput {
+  article?: String;
+  resident?: UserUpdateOneRequiredInput;
+  evaluator?: UserUpdateOneRequiredInput;
+  preceptor?: UserUpdateOneRequiredInput;
+  background?: CoreCompetencyUpdateOneRequiredInput;
+  methods?: CoreCompetencyUpdateOneRequiredInput;
+  results?: CoreCompetencyUpdateOneRequiredInput;
+  understanding?: CoreCompetencyUpdateOneRequiredInput;
+  analysis?: CoreCompetencyUpdateOneRequiredInput;
+  application?: CoreCompetencyUpdateOneRequiredInput;
+  conclusions?: CoreCompetencyUpdateOneRequiredInput;
+  clarity?: CoreCompetencyUpdateOneRequiredInput;
+  organization?: CoreCompetencyUpdateOneRequiredInput;
+  grammar?: CoreCompetencyUpdateOneRequiredInput;
+  responseToQuestions?: CoreCompetencyUpdateOneRequiredInput;
+  knowsAudience?: CoreCompetencyUpdateOneRequiredInput;
+  audienceEngagement?: CoreCompetencyUpdateOneRequiredInput;
+  overall?: OverallCompetencyUpdateOneRequiredInput;
+}
+
+export interface UserUpdateOneRequiredInput {
+  create?: UserCreateInput;
+  update?: UserUpdateDataInput;
+  upsert?: UserUpsertNestedInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserUpdateDataInput {
+  firstName?: String;
+  lastName?: String;
+  email?: String;
+  emailConfirmed?: Boolean;
+  password?: String;
+  position?: Position;
+}
+
+export interface UserUpsertNestedInput {
+  update: UserUpdateDataInput;
+  create: UserCreateInput;
 }
 
 export interface CoreCompetencyUpdateOneRequiredInput {
@@ -1088,20 +707,91 @@ export interface CoreCompetencyUpdateOneRequiredInput {
   connect?: CoreCompetencyWhereUniqueInput;
 }
 
-export interface UserUpdateWithoutJournalClubsDataInput {
+export interface CoreCompetencyUpdateDataInput {
+  competency?: Core;
+  comment?: String;
+}
+
+export interface CoreCompetencyUpsertNestedInput {
+  update: CoreCompetencyUpdateDataInput;
+  create: CoreCompetencyCreateInput;
+}
+
+export interface OverallCompetencyUpdateOneRequiredInput {
+  create?: OverallCompetencyCreateInput;
+  update?: OverallCompetencyUpdateDataInput;
+  upsert?: OverallCompetencyUpsertNestedInput;
+  connect?: OverallCompetencyWhereUniqueInput;
+}
+
+export interface OverallCompetencyUpdateDataInput {
+  competency?: Overall;
+  comment?: String;
+}
+
+export interface OverallCompetencyUpsertNestedInput {
+  update: OverallCompetencyUpdateDataInput;
+  create: OverallCompetencyCreateInput;
+}
+
+export interface JournalClubUpdateManyMutationInput {
+  article?: String;
+}
+
+export interface OverallCompetencyUpdateInput {
+  competency?: Overall;
+  comment?: String;
+}
+
+export interface OverallCompetencyUpdateManyMutationInput {
+  competency?: Overall;
+  comment?: String;
+}
+
+export interface UserUpdateInput {
   firstName?: String;
   lastName?: String;
   email?: String;
   emailConfirmed?: Boolean;
   password?: String;
   position?: Position;
-  isOnline?: Boolean;
-  assignedJournalClubs?: JournalClubUpdateManyWithoutPreceptorInput;
 }
 
-export interface OverallCompetencyUpdateManyMutationInput {
-  competency?: Overall;
-  comment?: String;
+export interface UserUpdateManyMutationInput {
+  firstName?: String;
+  lastName?: String;
+  email?: String;
+  emailConfirmed?: Boolean;
+  password?: String;
+  position?: Position;
+}
+
+export interface CoreCompetencySubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: CoreCompetencyWhereInput;
+  AND?:
+    | CoreCompetencySubscriptionWhereInput[]
+    | CoreCompetencySubscriptionWhereInput;
+  OR?:
+    | CoreCompetencySubscriptionWhereInput[]
+    | CoreCompetencySubscriptionWhereInput;
+  NOT?:
+    | CoreCompetencySubscriptionWhereInput[]
+    | CoreCompetencySubscriptionWhereInput;
+}
+
+export interface JournalClubSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: JournalClubWhereInput;
+  AND?: JournalClubSubscriptionWhereInput[] | JournalClubSubscriptionWhereInput;
+  OR?: JournalClubSubscriptionWhereInput[] | JournalClubSubscriptionWhereInput;
+  NOT?: JournalClubSubscriptionWhereInput[] | JournalClubSubscriptionWhereInput;
 }
 
 export interface OverallCompetencySubscriptionWhereInput {
@@ -1121,82 +811,120 @@ export interface OverallCompetencySubscriptionWhereInput {
     | OverallCompetencySubscriptionWhereInput;
 }
 
-export interface CoreCompetencyCreateInput {
-  competency: Core;
-  comment?: String;
-}
-
-export interface JournalClubUpdateWithWhereUniqueWithoutPreceptorInput {
-  where: JournalClubWhereUniqueInput;
-  data: JournalClubUpdateWithoutPreceptorDataInput;
+export interface UserSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: UserWhereInput;
+  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
 }
 
 export interface NodeNode {
   id: ID_Output;
 }
 
-export interface UserPreviousValues {
+export interface CoreCompetency {
   id: ID_Output;
-  firstName: String;
-  lastName: String;
-  email: String;
-  emailConfirmed: Boolean;
-  password: String;
-  position: Position;
-  isOnline: Boolean;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
+  competency: Core;
+  comment?: String;
 }
 
-export interface UserPreviousValuesPromise
-  extends Promise<UserPreviousValues>,
+export interface CoreCompetencyPromise
+  extends Promise<CoreCompetency>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  firstName: () => Promise<String>;
-  lastName: () => Promise<String>;
-  email: () => Promise<String>;
-  emailConfirmed: () => Promise<Boolean>;
-  password: () => Promise<String>;
-  position: () => Promise<Position>;
-  isOnline: () => Promise<Boolean>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
+  competency: () => Promise<Core>;
+  comment: () => Promise<String>;
 }
 
-export interface UserPreviousValuesSubscription
-  extends Promise<AsyncIterator<UserPreviousValues>>,
+export interface CoreCompetencySubscription
+  extends Promise<AsyncIterator<CoreCompetency>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  firstName: () => Promise<AsyncIterator<String>>;
-  lastName: () => Promise<AsyncIterator<String>>;
-  email: () => Promise<AsyncIterator<String>>;
-  emailConfirmed: () => Promise<AsyncIterator<Boolean>>;
-  password: () => Promise<AsyncIterator<String>>;
-  position: () => Promise<AsyncIterator<Position>>;
-  isOnline: () => Promise<AsyncIterator<Boolean>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  competency: () => Promise<AsyncIterator<Core>>;
+  comment: () => Promise<AsyncIterator<String>>;
 }
 
-export interface JournalClubConnection {
+export interface CoreCompetencyConnection {
   pageInfo: PageInfo;
-  edges: JournalClubEdge[];
+  edges: CoreCompetencyEdge[];
 }
 
-export interface JournalClubConnectionPromise
-  extends Promise<JournalClubConnection>,
+export interface CoreCompetencyConnectionPromise
+  extends Promise<CoreCompetencyConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<JournalClubEdge>>() => T;
-  aggregate: <T = AggregateJournalClubPromise>() => T;
+  edges: <T = FragmentableArray<CoreCompetencyEdge>>() => T;
+  aggregate: <T = AggregateCoreCompetencyPromise>() => T;
 }
 
-export interface JournalClubConnectionSubscription
-  extends Promise<AsyncIterator<JournalClubConnection>>,
+export interface CoreCompetencyConnectionSubscription
+  extends Promise<AsyncIterator<CoreCompetencyConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<JournalClubEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateJournalClubSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<CoreCompetencyEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateCoreCompetencySubscription>() => T;
+}
+
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
+}
+
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface CoreCompetencyEdge {
+  node: CoreCompetency;
+  cursor: String;
+}
+
+export interface CoreCompetencyEdgePromise
+  extends Promise<CoreCompetencyEdge>,
+    Fragmentable {
+  node: <T = CoreCompetencyPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface CoreCompetencyEdgeSubscription
+  extends Promise<AsyncIterator<CoreCompetencyEdge>>,
+    Fragmentable {
+  node: <T = CoreCompetencySubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateCoreCompetency {
+  count: Int;
+}
+
+export interface AggregateCoreCompetencyPromise
+  extends Promise<AggregateCoreCompetency>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateCoreCompetencySubscription
+  extends Promise<AsyncIterator<AggregateCoreCompetency>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface JournalClub {
@@ -1256,6 +984,44 @@ export interface JournalClubSubscription
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
+export interface User {
+  id: ID_Output;
+  firstName: String;
+  lastName: String;
+  email: String;
+  emailConfirmed: Boolean;
+  password: String;
+  position: Position;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface UserPromise extends Promise<User>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  firstName: () => Promise<String>;
+  lastName: () => Promise<String>;
+  email: () => Promise<String>;
+  emailConfirmed: () => Promise<Boolean>;
+  password: () => Promise<String>;
+  position: () => Promise<Position>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface UserSubscription
+  extends Promise<AsyncIterator<User>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  firstName: () => Promise<AsyncIterator<String>>;
+  lastName: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  emailConfirmed: () => Promise<AsyncIterator<Boolean>>;
+  password: () => Promise<AsyncIterator<String>>;
+  position: () => Promise<AsyncIterator<Position>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
 export interface OverallCompetency {
   id: ID_Output;
   competency: Overall;
@@ -1278,163 +1044,81 @@ export interface OverallCompetencySubscription
   comment: () => Promise<AsyncIterator<String>>;
 }
 
-export interface CoreCompetencyEdge {
-  node: CoreCompetency;
-  cursor: String;
-}
-
-export interface CoreCompetencyEdgePromise
-  extends Promise<CoreCompetencyEdge>,
-    Fragmentable {
-  node: <T = CoreCompetencyPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface CoreCompetencyEdgeSubscription
-  extends Promise<AsyncIterator<CoreCompetencyEdge>>,
-    Fragmentable {
-  node: <T = CoreCompetencySubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface OverallCompetencyPreviousValues {
-  id: ID_Output;
-  competency: Overall;
-  comment?: String;
-}
-
-export interface OverallCompetencyPreviousValuesPromise
-  extends Promise<OverallCompetencyPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  competency: () => Promise<Overall>;
-  comment: () => Promise<String>;
-}
-
-export interface OverallCompetencyPreviousValuesSubscription
-  extends Promise<AsyncIterator<OverallCompetencyPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  competency: () => Promise<AsyncIterator<Overall>>;
-  comment: () => Promise<AsyncIterator<String>>;
-}
-
-export interface BatchPayload {
-  count: Long;
-}
-
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
-    Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface CoreCompetencyConnection {
+export interface JournalClubConnection {
   pageInfo: PageInfo;
-  edges: CoreCompetencyEdge[];
+  edges: JournalClubEdge[];
 }
 
-export interface CoreCompetencyConnectionPromise
-  extends Promise<CoreCompetencyConnection>,
+export interface JournalClubConnectionPromise
+  extends Promise<JournalClubConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<CoreCompetencyEdge>>() => T;
-  aggregate: <T = AggregateCoreCompetencyPromise>() => T;
+  edges: <T = FragmentableArray<JournalClubEdge>>() => T;
+  aggregate: <T = AggregateJournalClubPromise>() => T;
 }
 
-export interface CoreCompetencyConnectionSubscription
-  extends Promise<AsyncIterator<CoreCompetencyConnection>>,
+export interface JournalClubConnectionSubscription
+  extends Promise<AsyncIterator<JournalClubConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<CoreCompetencyEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateCoreCompetencySubscription>() => T;
+  edges: <T = Promise<AsyncIterator<JournalClubEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateJournalClubSubscription>() => T;
 }
 
-export interface UserEdge {
-  node: User;
+export interface JournalClubEdge {
+  node: JournalClub;
   cursor: String;
 }
 
-export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
-  node: <T = UserPromise>() => T;
+export interface JournalClubEdgePromise
+  extends Promise<JournalClubEdge>,
+    Fragmentable {
+  node: <T = JournalClubPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdge>>,
+export interface JournalClubEdgeSubscription
+  extends Promise<AsyncIterator<JournalClubEdge>>,
     Fragmentable {
-  node: <T = UserSubscription>() => T;
+  node: <T = JournalClubSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface OverallCompetencySubscriptionPayload {
-  mutation: MutationType;
-  node: OverallCompetency;
-  updatedFields: String[];
-  previousValues: OverallCompetencyPreviousValues;
-}
-
-export interface OverallCompetencySubscriptionPayloadPromise
-  extends Promise<OverallCompetencySubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = OverallCompetencyPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = OverallCompetencyPreviousValuesPromise>() => T;
-}
-
-export interface OverallCompetencySubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<OverallCompetencySubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = OverallCompetencySubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = OverallCompetencyPreviousValuesSubscription>() => T;
-}
-
-export interface AggregateCoreCompetency {
+export interface AggregateJournalClub {
   count: Int;
 }
 
-export interface AggregateCoreCompetencyPromise
-  extends Promise<AggregateCoreCompetency>,
+export interface AggregateJournalClubPromise
+  extends Promise<AggregateJournalClub>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateCoreCompetencySubscription
-  extends Promise<AsyncIterator<AggregateCoreCompetency>>,
+export interface AggregateJournalClubSubscription
+  extends Promise<AsyncIterator<AggregateJournalClub>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
+export interface OverallCompetencyConnection {
+  pageInfo: PageInfo;
+  edges: OverallCompetencyEdge[];
 }
 
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
+export interface OverallCompetencyConnectionPromise
+  extends Promise<OverallCompetencyConnection>,
     Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<OverallCompetencyEdge>>() => T;
+  aggregate: <T = AggregateOverallCompetencyPromise>() => T;
+}
+
+export interface OverallCompetencyConnectionSubscription
+  extends Promise<AsyncIterator<OverallCompetencyConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<OverallCompetencyEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateOverallCompetencySubscription>() => T;
 }
 
 export interface OverallCompetencyEdge {
@@ -1456,42 +1140,90 @@ export interface OverallCompetencyEdgeSubscription
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface CoreCompetency {
-  id: ID_Output;
-  competency: Core;
-  comment?: String;
-}
-
-export interface CoreCompetencyPromise
-  extends Promise<CoreCompetency>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  competency: () => Promise<Core>;
-  comment: () => Promise<String>;
-}
-
-export interface CoreCompetencySubscription
-  extends Promise<AsyncIterator<CoreCompetency>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  competency: () => Promise<AsyncIterator<Core>>;
-  comment: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateJournalClub {
+export interface AggregateOverallCompetency {
   count: Int;
 }
 
-export interface AggregateJournalClubPromise
-  extends Promise<AggregateJournalClub>,
+export interface AggregateOverallCompetencyPromise
+  extends Promise<AggregateOverallCompetency>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateJournalClubSubscription
-  extends Promise<AsyncIterator<AggregateJournalClub>>,
+export interface AggregateOverallCompetencySubscription
+  extends Promise<AsyncIterator<AggregateOverallCompetency>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface UserConnection {
+  pageInfo: PageInfo;
+  edges: UserEdge[];
+}
+
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
+}
+
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
+}
+
+export interface UserEdge {
+  node: User;
+  cursor: String;
+}
+
+export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
+  node: <T = UserPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserEdgeSubscription
+  extends Promise<AsyncIterator<UserEdge>>,
+    Fragmentable {
+  node: <T = UserSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateUser {
+  count: Int;
+}
+
+export interface AggregateUserPromise
+  extends Promise<AggregateUser>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUser>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
 }
 
 export interface CoreCompetencySubscriptionPayload {
@@ -1519,75 +1251,26 @@ export interface CoreCompetencySubscriptionPayloadSubscription
   previousValues: <T = CoreCompetencyPreviousValuesSubscription>() => T;
 }
 
-export interface UserSubscriptionPayload {
-  mutation: MutationType;
-  node: User;
-  updatedFields: String[];
-  previousValues: UserPreviousValues;
-}
-
-export interface UserSubscriptionPayloadPromise
-  extends Promise<UserSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = UserPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = UserPreviousValuesPromise>() => T;
-}
-
-export interface UserSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = UserSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = UserPreviousValuesSubscription>() => T;
-}
-
-export interface UserConnection {
-  pageInfo: PageInfo;
-  edges: UserEdge[];
-}
-
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
-}
-
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
-}
-
-export interface JournalClubPreviousValues {
+export interface CoreCompetencyPreviousValues {
   id: ID_Output;
-  article: String;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
+  competency: Core;
+  comment?: String;
 }
 
-export interface JournalClubPreviousValuesPromise
-  extends Promise<JournalClubPreviousValues>,
+export interface CoreCompetencyPreviousValuesPromise
+  extends Promise<CoreCompetencyPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  article: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
+  competency: () => Promise<Core>;
+  comment: () => Promise<String>;
 }
 
-export interface JournalClubPreviousValuesSubscription
-  extends Promise<AsyncIterator<JournalClubPreviousValues>>,
+export interface CoreCompetencyPreviousValuesSubscription
+  extends Promise<AsyncIterator<CoreCompetencyPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  article: () => Promise<AsyncIterator<String>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  competency: () => Promise<AsyncIterator<Core>>;
+  comment: () => Promise<AsyncIterator<String>>;
 }
 
 export interface JournalClubSubscriptionPayload {
@@ -1615,7 +1298,104 @@ export interface JournalClubSubscriptionPayloadSubscription
   previousValues: <T = JournalClubPreviousValuesSubscription>() => T;
 }
 
-export interface User {
+export interface JournalClubPreviousValues {
+  id: ID_Output;
+  article: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface JournalClubPreviousValuesPromise
+  extends Promise<JournalClubPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  article: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface JournalClubPreviousValuesSubscription
+  extends Promise<AsyncIterator<JournalClubPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  article: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface OverallCompetencySubscriptionPayload {
+  mutation: MutationType;
+  node: OverallCompetency;
+  updatedFields: String[];
+  previousValues: OverallCompetencyPreviousValues;
+}
+
+export interface OverallCompetencySubscriptionPayloadPromise
+  extends Promise<OverallCompetencySubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = OverallCompetencyPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = OverallCompetencyPreviousValuesPromise>() => T;
+}
+
+export interface OverallCompetencySubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<OverallCompetencySubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = OverallCompetencySubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = OverallCompetencyPreviousValuesSubscription>() => T;
+}
+
+export interface OverallCompetencyPreviousValues {
+  id: ID_Output;
+  competency: Overall;
+  comment?: String;
+}
+
+export interface OverallCompetencyPreviousValuesPromise
+  extends Promise<OverallCompetencyPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  competency: () => Promise<Overall>;
+  comment: () => Promise<String>;
+}
+
+export interface OverallCompetencyPreviousValuesSubscription
+  extends Promise<AsyncIterator<OverallCompetencyPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  competency: () => Promise<AsyncIterator<Overall>>;
+  comment: () => Promise<AsyncIterator<String>>;
+}
+
+export interface UserSubscriptionPayload {
+  mutation: MutationType;
+  node: User;
+  updatedFields: String[];
+  previousValues: UserPreviousValues;
+}
+
+export interface UserSubscriptionPayloadPromise
+  extends Promise<UserSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = UserPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserPreviousValuesPromise>() => T;
+}
+
+export interface UserSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserPreviousValuesSubscription>() => T;
+}
+
+export interface UserPreviousValues {
   id: ID_Output;
   firstName: String;
   lastName: String;
@@ -1623,12 +1403,13 @@ export interface User {
   emailConfirmed: Boolean;
   password: String;
   position: Position;
-  isOnline: Boolean;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
 }
 
-export interface UserPromise extends Promise<User>, Fragmentable {
+export interface UserPreviousValuesPromise
+  extends Promise<UserPreviousValues>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
   firstName: () => Promise<String>;
   lastName: () => Promise<String>;
@@ -1636,35 +1417,12 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   emailConfirmed: () => Promise<Boolean>;
   password: () => Promise<String>;
   position: () => Promise<Position>;
-  isOnline: () => Promise<Boolean>;
-  journalClubs: <T = FragmentableArray<JournalClub>>(
-    args?: {
-      where?: JournalClubWhereInput;
-      orderBy?: JournalClubOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  assignedJournalClubs: <T = FragmentableArray<JournalClub>>(
-    args?: {
-      where?: JournalClubWhereInput;
-      orderBy?: JournalClubOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface UserSubscription
-  extends Promise<AsyncIterator<User>>,
+export interface UserPreviousValuesSubscription
+  extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   firstName: () => Promise<AsyncIterator<String>>;
@@ -1673,126 +1431,20 @@ export interface UserSubscription
   emailConfirmed: () => Promise<AsyncIterator<Boolean>>;
   password: () => Promise<AsyncIterator<String>>;
   position: () => Promise<AsyncIterator<Position>>;
-  isOnline: () => Promise<AsyncIterator<Boolean>>;
-  journalClubs: <T = Promise<AsyncIterator<JournalClubSubscription>>>(
-    args?: {
-      where?: JournalClubWhereInput;
-      orderBy?: JournalClubOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-  assignedJournalClubs: <T = Promise<AsyncIterator<JournalClubSubscription>>>(
-    args?: {
-      where?: JournalClubWhereInput;
-      orderBy?: JournalClubOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
-export interface CoreCompetencyPreviousValues {
-  id: ID_Output;
-  competency: Core;
-  comment?: String;
-}
+/*
+The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
+*/
+export type ID_Input = string | number;
+export type ID_Output = string;
 
-export interface CoreCompetencyPreviousValuesPromise
-  extends Promise<CoreCompetencyPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  competency: () => Promise<Core>;
-  comment: () => Promise<String>;
-}
-
-export interface CoreCompetencyPreviousValuesSubscription
-  extends Promise<AsyncIterator<CoreCompetencyPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  competency: () => Promise<AsyncIterator<Core>>;
-  comment: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateOverallCompetency {
-  count: Int;
-}
-
-export interface AggregateOverallCompetencyPromise
-  extends Promise<AggregateOverallCompetency>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateOverallCompetencySubscription
-  extends Promise<AsyncIterator<AggregateOverallCompetency>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface AggregateUser {
-  count: Int;
-}
-
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface JournalClubEdge {
-  node: JournalClub;
-  cursor: String;
-}
-
-export interface JournalClubEdgePromise
-  extends Promise<JournalClubEdge>,
-    Fragmentable {
-  node: <T = JournalClubPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface JournalClubEdgeSubscription
-  extends Promise<AsyncIterator<JournalClubEdge>>,
-    Fragmentable {
-  node: <T = JournalClubSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface OverallCompetencyConnection {
-  pageInfo: PageInfo;
-  edges: OverallCompetencyEdge[];
-}
-
-export interface OverallCompetencyConnectionPromise
-  extends Promise<OverallCompetencyConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<OverallCompetencyEdge>>() => T;
-  aggregate: <T = AggregateOverallCompetencyPromise>() => T;
-}
-
-export interface OverallCompetencyConnectionSubscription
-  extends Promise<AsyncIterator<OverallCompetencyConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<OverallCompetencyEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateOverallCompetencySubscription>() => T;
-}
+/*
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+*/
+export type String = string;
 
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
@@ -1804,19 +1456,6 @@ The `Boolean` scalar type represents `true` or `false`.
 */
 export type Boolean = boolean;
 
-export type Long = string;
-
-/*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
-*/
-export type String = string;
-
-/*
-The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
-*/
-export type ID_Input = string | number;
-export type ID_Output = string;
-
 /*
 DateTime scalar input type, allowing Date
 */
@@ -1826,6 +1465,8 @@ export type DateTimeInput = Date | string;
 DateTime scalar output type, which is always a string
 */
 export type DateTimeOutput = string;
+
+export type Long = string;
 
 /**
  * Model Metadata

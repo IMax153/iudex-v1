@@ -42,6 +42,7 @@ type CoreCompetencyConnection {
 }
 
 input CoreCompetencyCreateInput {
+  id: ID
   competency: Core!
   comment: String
 }
@@ -195,60 +196,11 @@ type JournalClubConnection {
 }
 
 input JournalClubCreateInput {
+  id: ID
   article: String!
   resident: UserCreateOneInput!
-  evaluator: UserCreateOneWithoutJournalClubsInput!
-  preceptor: UserCreateOneWithoutAssignedJournalClubsInput!
-  background: CoreCompetencyCreateOneInput!
-  methods: CoreCompetencyCreateOneInput!
-  results: CoreCompetencyCreateOneInput!
-  understanding: CoreCompetencyCreateOneInput!
-  analysis: CoreCompetencyCreateOneInput!
-  application: CoreCompetencyCreateOneInput!
-  conclusions: CoreCompetencyCreateOneInput!
-  clarity: CoreCompetencyCreateOneInput!
-  organization: CoreCompetencyCreateOneInput!
-  grammar: CoreCompetencyCreateOneInput!
-  responseToQuestions: CoreCompetencyCreateOneInput!
-  knowsAudience: CoreCompetencyCreateOneInput!
-  audienceEngagement: CoreCompetencyCreateOneInput!
-  overall: OverallCompetencyCreateOneInput!
-}
-
-input JournalClubCreateManyWithoutEvaluatorInput {
-  create: [JournalClubCreateWithoutEvaluatorInput!]
-  connect: [JournalClubWhereUniqueInput!]
-}
-
-input JournalClubCreateManyWithoutPreceptorInput {
-  create: [JournalClubCreateWithoutPreceptorInput!]
-  connect: [JournalClubWhereUniqueInput!]
-}
-
-input JournalClubCreateWithoutEvaluatorInput {
-  article: String!
-  resident: UserCreateOneInput!
-  preceptor: UserCreateOneWithoutAssignedJournalClubsInput!
-  background: CoreCompetencyCreateOneInput!
-  methods: CoreCompetencyCreateOneInput!
-  results: CoreCompetencyCreateOneInput!
-  understanding: CoreCompetencyCreateOneInput!
-  analysis: CoreCompetencyCreateOneInput!
-  application: CoreCompetencyCreateOneInput!
-  conclusions: CoreCompetencyCreateOneInput!
-  clarity: CoreCompetencyCreateOneInput!
-  organization: CoreCompetencyCreateOneInput!
-  grammar: CoreCompetencyCreateOneInput!
-  responseToQuestions: CoreCompetencyCreateOneInput!
-  knowsAudience: CoreCompetencyCreateOneInput!
-  audienceEngagement: CoreCompetencyCreateOneInput!
-  overall: OverallCompetencyCreateOneInput!
-}
-
-input JournalClubCreateWithoutPreceptorInput {
-  article: String!
-  resident: UserCreateOneInput!
-  evaluator: UserCreateOneWithoutJournalClubsInput!
+  evaluator: UserCreateOneInput!
+  preceptor: UserCreateOneInput!
   background: CoreCompetencyCreateOneInput!
   methods: CoreCompetencyCreateOneInput!
   results: CoreCompetencyCreateOneInput!
@@ -288,56 +240,6 @@ type JournalClubPreviousValues {
   updatedAt: DateTime!
 }
 
-input JournalClubScalarWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  article: String
-  article_not: String
-  article_in: [String!]
-  article_not_in: [String!]
-  article_lt: String
-  article_lte: String
-  article_gt: String
-  article_gte: String
-  article_contains: String
-  article_not_contains: String
-  article_starts_with: String
-  article_not_starts_with: String
-  article_ends_with: String
-  article_not_ends_with: String
-  createdAt: DateTime
-  createdAt_not: DateTime
-  createdAt_in: [DateTime!]
-  createdAt_not_in: [DateTime!]
-  createdAt_lt: DateTime
-  createdAt_lte: DateTime
-  createdAt_gt: DateTime
-  createdAt_gte: DateTime
-  updatedAt: DateTime
-  updatedAt_not: DateTime
-  updatedAt_in: [DateTime!]
-  updatedAt_not_in: [DateTime!]
-  updatedAt_lt: DateTime
-  updatedAt_lte: DateTime
-  updatedAt_gt: DateTime
-  updatedAt_gte: DateTime
-  AND: [JournalClubScalarWhereInput!]
-  OR: [JournalClubScalarWhereInput!]
-  NOT: [JournalClubScalarWhereInput!]
-}
-
 type JournalClubSubscriptionPayload {
   mutation: MutationType!
   node: JournalClub
@@ -359,8 +261,8 @@ input JournalClubSubscriptionWhereInput {
 input JournalClubUpdateInput {
   article: String
   resident: UserUpdateOneRequiredInput
-  evaluator: UserUpdateOneRequiredWithoutJournalClubsInput
-  preceptor: UserUpdateOneRequiredWithoutAssignedJournalClubsInput
+  evaluator: UserUpdateOneRequiredInput
+  preceptor: UserUpdateOneRequiredInput
   background: CoreCompetencyUpdateOneRequiredInput
   methods: CoreCompetencyUpdateOneRequiredInput
   results: CoreCompetencyUpdateOneRequiredInput
@@ -375,105 +277,10 @@ input JournalClubUpdateInput {
   knowsAudience: CoreCompetencyUpdateOneRequiredInput
   audienceEngagement: CoreCompetencyUpdateOneRequiredInput
   overall: OverallCompetencyUpdateOneRequiredInput
-}
-
-input JournalClubUpdateManyDataInput {
-  article: String
 }
 
 input JournalClubUpdateManyMutationInput {
   article: String
-}
-
-input JournalClubUpdateManyWithoutEvaluatorInput {
-  create: [JournalClubCreateWithoutEvaluatorInput!]
-  delete: [JournalClubWhereUniqueInput!]
-  connect: [JournalClubWhereUniqueInput!]
-  set: [JournalClubWhereUniqueInput!]
-  disconnect: [JournalClubWhereUniqueInput!]
-  update: [JournalClubUpdateWithWhereUniqueWithoutEvaluatorInput!]
-  upsert: [JournalClubUpsertWithWhereUniqueWithoutEvaluatorInput!]
-  deleteMany: [JournalClubScalarWhereInput!]
-  updateMany: [JournalClubUpdateManyWithWhereNestedInput!]
-}
-
-input JournalClubUpdateManyWithoutPreceptorInput {
-  create: [JournalClubCreateWithoutPreceptorInput!]
-  delete: [JournalClubWhereUniqueInput!]
-  connect: [JournalClubWhereUniqueInput!]
-  set: [JournalClubWhereUniqueInput!]
-  disconnect: [JournalClubWhereUniqueInput!]
-  update: [JournalClubUpdateWithWhereUniqueWithoutPreceptorInput!]
-  upsert: [JournalClubUpsertWithWhereUniqueWithoutPreceptorInput!]
-  deleteMany: [JournalClubScalarWhereInput!]
-  updateMany: [JournalClubUpdateManyWithWhereNestedInput!]
-}
-
-input JournalClubUpdateManyWithWhereNestedInput {
-  where: JournalClubScalarWhereInput!
-  data: JournalClubUpdateManyDataInput!
-}
-
-input JournalClubUpdateWithoutEvaluatorDataInput {
-  article: String
-  resident: UserUpdateOneRequiredInput
-  preceptor: UserUpdateOneRequiredWithoutAssignedJournalClubsInput
-  background: CoreCompetencyUpdateOneRequiredInput
-  methods: CoreCompetencyUpdateOneRequiredInput
-  results: CoreCompetencyUpdateOneRequiredInput
-  understanding: CoreCompetencyUpdateOneRequiredInput
-  analysis: CoreCompetencyUpdateOneRequiredInput
-  application: CoreCompetencyUpdateOneRequiredInput
-  conclusions: CoreCompetencyUpdateOneRequiredInput
-  clarity: CoreCompetencyUpdateOneRequiredInput
-  organization: CoreCompetencyUpdateOneRequiredInput
-  grammar: CoreCompetencyUpdateOneRequiredInput
-  responseToQuestions: CoreCompetencyUpdateOneRequiredInput
-  knowsAudience: CoreCompetencyUpdateOneRequiredInput
-  audienceEngagement: CoreCompetencyUpdateOneRequiredInput
-  overall: OverallCompetencyUpdateOneRequiredInput
-}
-
-input JournalClubUpdateWithoutPreceptorDataInput {
-  article: String
-  resident: UserUpdateOneRequiredInput
-  evaluator: UserUpdateOneRequiredWithoutJournalClubsInput
-  background: CoreCompetencyUpdateOneRequiredInput
-  methods: CoreCompetencyUpdateOneRequiredInput
-  results: CoreCompetencyUpdateOneRequiredInput
-  understanding: CoreCompetencyUpdateOneRequiredInput
-  analysis: CoreCompetencyUpdateOneRequiredInput
-  application: CoreCompetencyUpdateOneRequiredInput
-  conclusions: CoreCompetencyUpdateOneRequiredInput
-  clarity: CoreCompetencyUpdateOneRequiredInput
-  organization: CoreCompetencyUpdateOneRequiredInput
-  grammar: CoreCompetencyUpdateOneRequiredInput
-  responseToQuestions: CoreCompetencyUpdateOneRequiredInput
-  knowsAudience: CoreCompetencyUpdateOneRequiredInput
-  audienceEngagement: CoreCompetencyUpdateOneRequiredInput
-  overall: OverallCompetencyUpdateOneRequiredInput
-}
-
-input JournalClubUpdateWithWhereUniqueWithoutEvaluatorInput {
-  where: JournalClubWhereUniqueInput!
-  data: JournalClubUpdateWithoutEvaluatorDataInput!
-}
-
-input JournalClubUpdateWithWhereUniqueWithoutPreceptorInput {
-  where: JournalClubWhereUniqueInput!
-  data: JournalClubUpdateWithoutPreceptorDataInput!
-}
-
-input JournalClubUpsertWithWhereUniqueWithoutEvaluatorInput {
-  where: JournalClubWhereUniqueInput!
-  update: JournalClubUpdateWithoutEvaluatorDataInput!
-  create: JournalClubCreateWithoutEvaluatorInput!
-}
-
-input JournalClubUpsertWithWhereUniqueWithoutPreceptorInput {
-  where: JournalClubWhereUniqueInput!
-  update: JournalClubUpdateWithoutPreceptorDataInput!
-  create: JournalClubCreateWithoutPreceptorInput!
 }
 
 input JournalClubWhereInput {
@@ -604,6 +411,7 @@ type OverallCompetencyConnection {
 }
 
 input OverallCompetencyCreateInput {
+  id: ID
   competency: Overall!
   comment: String
 }
@@ -767,9 +575,6 @@ type User {
   emailConfirmed: Boolean!
   password: String!
   position: Position!
-  isOnline: Boolean!
-  journalClubs(where: JournalClubWhereInput, orderBy: JournalClubOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [JournalClub!]
-  assignedJournalClubs(where: JournalClubWhereInput, orderBy: JournalClubOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [JournalClub!]
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -781,52 +586,18 @@ type UserConnection {
 }
 
 input UserCreateInput {
+  id: ID
   firstName: String!
   lastName: String!
   email: String!
   emailConfirmed: Boolean
   password: String!
   position: Position!
-  isOnline: Boolean
-  journalClubs: JournalClubCreateManyWithoutEvaluatorInput
-  assignedJournalClubs: JournalClubCreateManyWithoutPreceptorInput
 }
 
 input UserCreateOneInput {
   create: UserCreateInput
   connect: UserWhereUniqueInput
-}
-
-input UserCreateOneWithoutAssignedJournalClubsInput {
-  create: UserCreateWithoutAssignedJournalClubsInput
-  connect: UserWhereUniqueInput
-}
-
-input UserCreateOneWithoutJournalClubsInput {
-  create: UserCreateWithoutJournalClubsInput
-  connect: UserWhereUniqueInput
-}
-
-input UserCreateWithoutAssignedJournalClubsInput {
-  firstName: String!
-  lastName: String!
-  email: String!
-  emailConfirmed: Boolean
-  password: String!
-  position: Position!
-  isOnline: Boolean
-  journalClubs: JournalClubCreateManyWithoutEvaluatorInput
-}
-
-input UserCreateWithoutJournalClubsInput {
-  firstName: String!
-  lastName: String!
-  email: String!
-  emailConfirmed: Boolean
-  password: String!
-  position: Position!
-  isOnline: Boolean
-  assignedJournalClubs: JournalClubCreateManyWithoutPreceptorInput
 }
 
 type UserEdge {
@@ -849,8 +620,6 @@ enum UserOrderByInput {
   password_DESC
   position_ASC
   position_DESC
-  isOnline_ASC
-  isOnline_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -865,7 +634,6 @@ type UserPreviousValues {
   emailConfirmed: Boolean!
   password: String!
   position: Position!
-  isOnline: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -895,9 +663,6 @@ input UserUpdateDataInput {
   emailConfirmed: Boolean
   password: String
   position: Position
-  isOnline: Boolean
-  journalClubs: JournalClubUpdateManyWithoutEvaluatorInput
-  assignedJournalClubs: JournalClubUpdateManyWithoutPreceptorInput
 }
 
 input UserUpdateInput {
@@ -907,9 +672,6 @@ input UserUpdateInput {
   emailConfirmed: Boolean
   password: String
   position: Position
-  isOnline: Boolean
-  journalClubs: JournalClubUpdateManyWithoutEvaluatorInput
-  assignedJournalClubs: JournalClubUpdateManyWithoutPreceptorInput
 }
 
 input UserUpdateManyMutationInput {
@@ -919,7 +681,6 @@ input UserUpdateManyMutationInput {
   emailConfirmed: Boolean
   password: String
   position: Position
-  isOnline: Boolean
 }
 
 input UserUpdateOneRequiredInput {
@@ -929,55 +690,9 @@ input UserUpdateOneRequiredInput {
   connect: UserWhereUniqueInput
 }
 
-input UserUpdateOneRequiredWithoutAssignedJournalClubsInput {
-  create: UserCreateWithoutAssignedJournalClubsInput
-  update: UserUpdateWithoutAssignedJournalClubsDataInput
-  upsert: UserUpsertWithoutAssignedJournalClubsInput
-  connect: UserWhereUniqueInput
-}
-
-input UserUpdateOneRequiredWithoutJournalClubsInput {
-  create: UserCreateWithoutJournalClubsInput
-  update: UserUpdateWithoutJournalClubsDataInput
-  upsert: UserUpsertWithoutJournalClubsInput
-  connect: UserWhereUniqueInput
-}
-
-input UserUpdateWithoutAssignedJournalClubsDataInput {
-  firstName: String
-  lastName: String
-  email: String
-  emailConfirmed: Boolean
-  password: String
-  position: Position
-  isOnline: Boolean
-  journalClubs: JournalClubUpdateManyWithoutEvaluatorInput
-}
-
-input UserUpdateWithoutJournalClubsDataInput {
-  firstName: String
-  lastName: String
-  email: String
-  emailConfirmed: Boolean
-  password: String
-  position: Position
-  isOnline: Boolean
-  assignedJournalClubs: JournalClubUpdateManyWithoutPreceptorInput
-}
-
 input UserUpsertNestedInput {
   update: UserUpdateDataInput!
   create: UserCreateInput!
-}
-
-input UserUpsertWithoutAssignedJournalClubsInput {
-  update: UserUpdateWithoutAssignedJournalClubsDataInput!
-  create: UserCreateWithoutAssignedJournalClubsInput!
-}
-
-input UserUpsertWithoutJournalClubsInput {
-  update: UserUpdateWithoutJournalClubsDataInput!
-  create: UserCreateWithoutJournalClubsInput!
 }
 
 input UserWhereInput {
@@ -1057,14 +772,6 @@ input UserWhereInput {
   position_not: Position
   position_in: [Position!]
   position_not_in: [Position!]
-  isOnline: Boolean
-  isOnline_not: Boolean
-  journalClubs_every: JournalClubWhereInput
-  journalClubs_some: JournalClubWhereInput
-  journalClubs_none: JournalClubWhereInput
-  assignedJournalClubs_every: JournalClubWhereInput
-  assignedJournalClubs_some: JournalClubWhereInput
-  assignedJournalClubs_none: JournalClubWhereInput
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]

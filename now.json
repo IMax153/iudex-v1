@@ -3,13 +3,21 @@
   "name": "iudex",
   "alias": "iudex.now.sh",
   "builds": [
-    { "src": "web/next.config.js", "use": "@now/next@canary" },
+    {
+      "src": "email/index.ts",
+      "use": "@now/node@canary"
+    },
     {
       "src": "api/index.ts",
       "use": "@now/node-server@canary"
-    }
+    },
+    { "src": "web/next.config.js", "use": "@now/next@canary" }
   ],
   "routes": [
+    {
+      "src": "/email/(.*)",
+      "dest": "/email/$1"
+    },
     {
       "src": "/graphql",
       "dest": "/api/index.ts"
@@ -27,6 +35,7 @@
     "REDIS_PASSWORD": "@iudex-redis-password",
     "REDIS_PORT": "@iudex-redis-port",
     "JWT_SECRET_KEY": "@iudex-jwt-secret-key",
+    "JWT_EMAIL_SECRET_KEY": "@iudex-jwt-email-secret-key",
     "SENDGRID_API_KEY": "@iudex-sendgrid-api-key"
   }
 }

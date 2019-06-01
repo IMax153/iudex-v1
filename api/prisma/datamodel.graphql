@@ -1,52 +1,56 @@
 type User {
-  id: ID! @unique
+  id: ID! @id
   firstName: String!
   lastName: String!
   email: String! @unique
   emailConfirmed: Boolean! @default(value: false)
   password: String!
   position: Position!
-  isOnline: Boolean! @default(value: false)
-  journalClubs: [JournalClub!]! @relation(name: "UserJournalClubs", onDelete: CASCADE)
-  assignedJournalClubs: [JournalClub!]! @relation(name: "PreceptorJournalClubs", onDelete: CASCADE)
-  createdAt: DateTime!
-  updatedAt: DateTime!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type JournalClub {
-  id: ID! @unique
+  id: ID! @id
   article: String!
-  resident: User! @relation(name: "JournalClubResident", onDelete: CASCADE)
-  evaluator: User! @relation(name: "UserJournalClubs", onDelete: CASCADE)
-  preceptor: User! @relation(name: "PreceptorJournalClubs", onDelete: CASCADE)
-  background: CoreCompetency! @relation(name: "JournalClubBackground", onDelete: CASCADE)
-  methods: CoreCompetency! @relation(name: "JournalClubMethods", onDelete: CASCADE)
-  results: CoreCompetency! @relation(name: "JournalClubResults", onDelete: CASCADE)
-  understanding: CoreCompetency! @relation(name: "JournalClubUnderstanding", onDelete: CASCADE)
-  analysis: CoreCompetency! @relation(name: "JournalClubAnalysis", onDelete: CASCADE)
-  application: CoreCompetency! @relation(name: "JournalClubApplication", onDelete: CASCADE)
-  conclusions: CoreCompetency! @relation(name: "JournalClubConclusions", onDelete: CASCADE)
-  clarity: CoreCompetency! @relation(name: "JournalClubClarity", onDelete: CASCADE)
-  organization: CoreCompetency! @relation(name: "JournalClubOrganization", onDelete: CASCADE)
-  grammar: CoreCompetency! @relation(name: "JournalClubGrammar", onDelete: CASCADE)
+  resident: User! @relation(link: INLINE, name: "JournalClubToResident")
+  evaluator: User! @relation(link: INLINE, name: "JournalClubToEvaluator")
+  preceptor: User! @relation(link: INLINE, name: "JournalClubToPreceptor")
+  background: CoreCompetency!
+    @relation(link: INLINE, name: "JournalClubBackground", onDelete: CASCADE)
+  methods: CoreCompetency! @relation(link: INLINE, name: "JournalClubToMethods", onDelete: CASCADE)
+  results: CoreCompetency! @relation(link: INLINE, name: "JournalClubToResults", onDelete: CASCADE)
+  understanding: CoreCompetency!
+    @relation(link: INLINE, name: "JournalClubToUnderstanding", onDelete: CASCADE)
+  analysis: CoreCompetency! @relation(link: INLINE, name: "JournalClubAnalysis", onDelete: CASCADE)
+  application: CoreCompetency!
+    @relation(link: INLINE, name: "JournalClubToApplication", onDelete: CASCADE)
+  conclusions: CoreCompetency!
+    @relation(link: INLINE, name: "JournalClubToConclusions", onDelete: CASCADE)
+  clarity: CoreCompetency! @relation(link: INLINE, name: "JournalClubClarity", onDelete: CASCADE)
+  organization: CoreCompetency!
+    @relation(link: INLINE, name: "JournalClubToOrganization", onDelete: CASCADE)
+  grammar: CoreCompetency! @relation(link: INLINE, name: "JournalClubGrammar", onDelete: CASCADE)
   responseToQuestions: CoreCompetency!
-    @relation(name: "JournalClubResponseToQuestions", onDelete: CASCADE)
-  knowsAudience: CoreCompetency! @relation(name: "JournalClubKnowsAudience", onDelete: CASCADE)
+    @relation(link: INLINE, name: "JournalClubToResponseToQuestions", onDelete: CASCADE)
+  knowsAudience: CoreCompetency!
+    @relation(link: INLINE, name: "JournalClubToKnowsAudience", onDelete: CASCADE)
   audienceEngagement: CoreCompetency!
-    @relation(name: "JournalClubAudienceEngagement", onDelete: CASCADE)
-  overall: OverallCompetency! @relation(name: "JournalClubOverall", onDelete: CASCADE)
-  createdAt: DateTime!
-  updatedAt: DateTime!
+    @relation(link: INLINE, name: "JournalClubToAudienceEngagement", onDelete: CASCADE)
+  overall: OverallCompetency!
+    @relation(link: INLINE, name: "JournalClubToOverall", onDelete: CASCADE)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type CoreCompetency {
-  id: ID! @unique
+  id: ID! @id
   competency: Core!
   comment: String
 }
 
 type OverallCompetency {
-  id: ID! @unique
+  id: ID! @id
   competency: Overall!
   comment: String
 }

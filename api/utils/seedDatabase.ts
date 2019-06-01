@@ -13,31 +13,31 @@ import {
   Overall,
 } from '../generated/prisma-client';
 
-const positions = ['PHARMACIST', 'RESIDENT'];
-const core = ['NEEDS_IMPROVEMENT', 'SATISFACTORY_PROGRESS', 'ACHIEVED', 'NOT_APPLICABLE'];
-const overall = ['MEETS_EXPECTATIONS', 'DOES_NOT_MEET_EXPECTATIONS'];
+const positions: Position[] = ['PHARMACIST', 'RESIDENT'];
+const core: Core[] = ['NEEDS_IMPROVEMENT', 'SATISFACTORY_PROGRESS', 'ACHIEVED', 'NOT_APPLICABLE'];
+const overall: Overall[] = ['MEETS_EXPECTATIONS', 'DOES_NOT_MEET_EXPECTATIONS'];
 
-function getPosition(): Position {
-  return faker.random.arrayElement(positions) as Position;
+function getPosition() {
+  return faker.random.arrayElement(positions);
 }
 
-function getCore(): Core {
-  return faker.random.arrayElement(core) as Core;
+function getCore() {
+  return faker.random.arrayElement(core);
 }
 
-function getOverall(): Overall {
-  return faker.random.arrayElement(overall) as Overall;
+function getOverall() {
+  return faker.random.arrayElement(overall);
 }
 
-function getComment(): string | undefined {
+function getComment() {
   return faker.random.arrayElement([faker.lorem.sentence(5), faker.lorem.sentences(3), undefined]);
 }
 
-function getRandomUser(users: User[]): User {
+function getRandomUser(users: User[]) {
   return faker.random.arrayElement(users);
 }
 
-function getRandomUserByPosition(users: User[], position: Position): User {
+function getRandomUserByPosition(users: User[], position: Position) {
   return faker.random.arrayElement(users.filter(u => u.position === position));
 }
 
@@ -55,7 +55,7 @@ function generateOverallCompetency(): OverallCompetencyCreateInput {
   };
 }
 
-function generateUser(): Promise<User> {
+function generateUser() {
   return prisma.createUser({
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
@@ -66,7 +66,7 @@ function generateUser(): Promise<User> {
   });
 }
 
-function generateJournalClub(users: User[]): Promise<JournalClub> {
+function generateJournalClub(users: User[]) {
   return prisma.createJournalClub({
     article: faker.company.catchPhrase(),
     resident: { connect: { id: getRandomUserByPosition(users, 'RESIDENT').id } },

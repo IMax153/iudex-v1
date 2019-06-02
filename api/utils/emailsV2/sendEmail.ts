@@ -31,7 +31,7 @@ const defaultOptions = {
 export const sendEmail = async (options: Options) => {
   const { templateId, to, dynamic_template_data, userId } = options;
 
-  if (process.env.NODE_ENV === 'production' && SENDGRID_API_KEY !== 'undefined') {
+  if (SENDGRID_API_KEY !== 'undefined') {
     console.log(
       `--Send LIVE email with templateId ${templateId}--\nto: ${to
         .map(t => t.email)

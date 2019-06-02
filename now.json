@@ -5,7 +5,7 @@
   "builds": [
     {
       "src": "email/index.ts",
-      "use": "@now/node@canary"
+      "use": "@now/node-server@canary"
     },
     {
       "src": "api/index.ts",
@@ -15,8 +15,8 @@
   ],
   "routes": [
     {
-      "src": "/email/(.*)",
-      "dest": "/email/$1"
+      "src": "/email",
+      "dest": "/email/index.ts"
     },
     {
       "src": "/graphql",

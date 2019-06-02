@@ -6,8 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "dotenv -e .env.development -- ts-node-dev --no-notify --respawn --transpileOnly ./index.ts",
-    "process:emails:test": "(cd scripts && python3 inlineCss.py) && dotenv -e .env.development -- ts-node ./scripts/sendGridSync.ts",
-    "process:emails": ""
+    "process:emails:test": "(cd scripts && python3 inlineCss.py) && dotenv -e .env.development -- ts-node ./scripts/sendGridSync.ts"
   },
   "dependencies": {
     "bull": "^3.9.1",

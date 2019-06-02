@@ -1,10 +1,7 @@
 {
-  "compileOnSave": false,
+  "compileOnSave": true,
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
-    "composite": false,
-    "declaration": false,
     "esModuleInterop": true,
     "jsx": "react",
     "moduleResolution": "node",
@@ -14,14 +11,11 @@
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "removeComments": true,
-    "paths": {
-      "@iudex/shared/*": ["./shared/*"]
-    },
     "skipLibCheck": true,
     "sourceMap": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "target": "es5"
   },
-  "include": ["./**/*.ts"]
+  "exclude": ["node_modules"]
 }

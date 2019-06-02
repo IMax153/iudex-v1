@@ -2,6 +2,7 @@ import { ApolloServer } from 'apollo-server-express';
 import Express from 'express';
 import { createServer } from 'http';
 
+import {} from '@iudex/email/index';
 import { addSecurityMiddleware } from './middlewares/addSecurityMiddleware';
 import { middlewares } from './middlewares';
 import { CorsOptions } from './middlewares/cors';

@@ -718,6 +718,7 @@ export interface NexusGenFieldTypes {
     overallCompetencies: NexusGenRootTypes['OverallCompetency'][]; // [OverallCompetency!]!
     overallCompetenciesConnection: NexusGenRootTypes['OverallCompetencyConnection']; // OverallCompetencyConnection!
     overallCompetency: NexusGenRootTypes['OverallCompetency'] | null; // OverallCompetency
+    testEmail: string | null; // String
     user: NexusGenRootTypes['User'] | null; // User
     users: NexusGenRootTypes['User'][]; // [User!]!
     usersConnection: NexusGenRootTypes['UserConnection']; // UserConnection!

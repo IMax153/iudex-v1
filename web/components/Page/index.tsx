@@ -62,8 +62,8 @@ const PageBase: React.FC<LayoutProps & WithRouterProps> = ({
               icon={<Icon icon="sign-out-alt" color="brand" />}
               href={
                 process.env.NODE_ENV === 'production'
-                  ? 'https://iudex.now.sh/auth/logout'
-                  : 'http://localhost:4000/auth/logout'
+                  ? 'https://iudex.now.sh/api/auth/logout'
+                  : 'http://localhost:4000/api/auth/logout'
               }
               bordered
               block

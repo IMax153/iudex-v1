@@ -51,14 +51,13 @@ function getApolloClient(
     return {
       headers: {
         ...headers,
-        // authorization: token ? `Bearer ${token}` : '',
         cookie: qid ? `qid=${qid}` : '',
       },
     };
   });
 
   const httpLink = new HttpLink({
-    uri: PRODUCTION ? 'https://iudex.now.sh/graphql' : 'http://localhost:4000/graphql',
+    uri: PRODUCTION ? 'https://iudex.now.sh/api/graphql' : 'http://localhost:4000/graphql',
     credentials: 'include',
   });
 

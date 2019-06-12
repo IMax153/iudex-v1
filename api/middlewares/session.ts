@@ -1,3 +1,5 @@
+// import Session from 'cookie-session';
+// import Keygrip from 'keygrip';
 import Session from 'express-session';
 import ConnectRedis from 'connect-redis';
 
@@ -16,7 +18,7 @@ export const session = Session({
   cookie: {
     domain: IS_PROD ? 'iudex.now.sh' : 'localhost',
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    secure: IS_PROD,
     maxAge: 24 * 60 * 60 * 1000, // 1 day
     sameSite: 'lax',
   },

@@ -11,8 +11,8 @@
   ],
   "routes": [
     {
-      "src": "/api",
-      "dest": "/api/index.ts"
+      "src": "/api/(.*)",
+      "dest": "/api"
     },
     {
       "src": "/(.*)",
@@ -28,6 +28,6 @@
     "REDIS_HOST": "@iudex-redis-host",
     "REDIS_PASSWORD": "@iudex-redis-password",
     "REDIS_PORT": "@iudex-redis-port",
-    "SESSION_SECRET": "@iudex-jwt-secret-key"
+    "SESSION_SECRET": "@iudex-session-secret"
   }
 }

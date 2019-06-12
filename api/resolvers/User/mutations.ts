@@ -1,8 +1,5 @@
 import { ApolloError } from 'apollo-server-express';
-import { hash } from 'bcryptjs';
 import { arg, mutationField } from 'nexus';
-
-import { Queues } from '../../utils/redis';
 
 export const ConfirmUserMutation = mutationField('setUserPosition', {
   type: 'User',

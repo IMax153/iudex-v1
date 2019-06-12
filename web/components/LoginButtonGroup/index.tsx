@@ -9,11 +9,11 @@ interface Props {}
 
 type Provider = 'facebook' | 'google' | 'twitter';
 
-export const LoginButtonGroup: React.FC<Props> = ({}) => {
+export const LoginButtonGroup: React.FC<Props> = () => {
   const getHref = (provider: Provider) => {
     return process.env.NODE_ENV === 'production'
-      ? `https://iudex.now.sh/auth/${provider}`
-      : `http://localhost:4000/auth/${provider}`;
+      ? `/api/auth/${provider}`
+      : `http://localhost:4000/api/auth/${provider}`;
   };
 
   return (

@@ -14,7 +14,8 @@
   "scripts": {
     "api": "yarn workspace api",
     "email": "yarn workspace email",
-    "web": "yarn workspace web"
+    "web": "yarn workspace web",
+    "now": "now --target production"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^1.9.0",

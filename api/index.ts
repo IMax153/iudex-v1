@@ -8,15 +8,13 @@ import { middlewares } from './middlewares';
 import { CorsOptions } from './middlewares/cors';
 import { passport } from './modules/authentication';
 import { authRouter } from './routes/auth';
-import { emailRouter } from './routes/email';
 import { schema } from './schema';
 
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
       CLIENT_URL: string;
-      JWT_SECRET_KEY: string;
-      JWT_EMAIL_SECRET_KEY: string;
+      IS_NOW: string;
       NODE_ENV: 'development' | 'production';
       PORT: string;
       REDIS_HOST: string;
@@ -38,9 +36,9 @@ passport.initialize();
 
 addSecurityMiddleware(app);
 
+app.set('trust proxy', 1);
 app.use(middlewares);
-app.use('/auth', authRouter);
-app.use('/email', emailRouter);
+app.use('/api/auth', authRouter);
 
 const apolloServer = new ApolloServer({
   schema,
@@ -49,7 +47,11 @@ const apolloServer = new ApolloServer({
   },
 });
 
-apolloServer.applyMiddleware({ app, cors: CorsOptions });
+apolloServer.applyMiddleware({
+  app,
+  path: process.env.NODE_ENV === 'production' ? '/api/graphql' : '/graphql',
+  cors: CorsOptions,
+});
 
 const httpServer = createServer(app);
 

@@ -10,6 +10,7 @@ import { LoginButtonGroup } from '../components/LoginButtonGroup';
 import { Page } from '../components/Page';
 
 interface IndexProps {
+  query?: Record<string, string>;
   user: Partial<User>;
 }
 
@@ -28,9 +29,9 @@ const LoginButtonContainer = styled.div`
   margin: ${({ theme }) => theme.base.spacing.xxl};
 `;
 
-const Index: NextFC<IndexProps, {}, AppContext> = ({ user }) => {
+const Index: NextFC<IndexProps, {}, AppContext> = ({ query, user }) => {
   return (
-    <Page title="Home" user={user}>
+    <Page title="Home" query={query} user={user}>
       <Hero>
         <Heading type="display" color="brand">
           iudex
@@ -38,7 +39,11 @@ const Index: NextFC<IndexProps, {}, AppContext> = ({ user }) => {
         <Heading type="title2" color="white">
           Simplifying management of resident evaluations.
         </Heading>
-        <LoginButtonContainer>{!user && <LoginButtonGroup />}</LoginButtonContainer>
+        {!user && (
+          <LoginButtonContainer>
+            <LoginButtonGroup />
+          </LoginButtonContainer>
+        )}
       </Hero>
     </Page>
   );

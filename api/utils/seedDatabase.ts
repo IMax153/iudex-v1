@@ -1,4 +1,3 @@
-import { hashSync } from 'bcryptjs';
 import faker from 'faker';
 import times from 'lodash.times';
 
@@ -60,8 +59,6 @@ function generateUser() {
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
     email: faker.internet.email(),
-    emailConfirmed: true,
-    password: hashSync('Testing123*', 12),
     position: getPosition(),
   });
 }

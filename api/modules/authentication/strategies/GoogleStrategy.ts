@@ -9,8 +9,8 @@ export const GoogleStrategy = new Strategy(
     clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
     callbackURL:
       process.env.NODE_ENV === 'production'
-        ? 'https://iudex.now.sh/auth/google/callback'
-        : 'http://localhost:4000/auth/google/callback',
+        ? 'https://iudex.now.sh/api/auth/google/callback'
+        : 'http://localhost:4000/api/auth/google/callback',
   },
   async (token, tokenSecret, profile, done) => {
     const googleProfile = new GoogleProfile(profile);

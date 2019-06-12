@@ -312,16 +312,14 @@ export type OverallCompetencyOrderByInput =
 export type UserOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "googleProviderId_ASC"
+  | "googleProviderId_DESC"
   | "firstName_ASC"
   | "firstName_DESC"
   | "lastName_ASC"
   | "lastName_DESC"
   | "email_ASC"
   | "email_DESC"
-  | "emailConfirmed_ASC"
-  | "emailConfirmed_DESC"
-  | "password_ASC"
-  | "password_DESC"
   | "position_ASC"
   | "position_DESC"
   | "createdAt_ASC"
@@ -459,6 +457,20 @@ export interface UserWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  googleProviderId?: String;
+  googleProviderId_not?: String;
+  googleProviderId_in?: String[] | String;
+  googleProviderId_not_in?: String[] | String;
+  googleProviderId_lt?: String;
+  googleProviderId_lte?: String;
+  googleProviderId_gt?: String;
+  googleProviderId_gte?: String;
+  googleProviderId_contains?: String;
+  googleProviderId_not_contains?: String;
+  googleProviderId_starts_with?: String;
+  googleProviderId_not_starts_with?: String;
+  googleProviderId_ends_with?: String;
+  googleProviderId_not_ends_with?: String;
   firstName?: String;
   firstName_not?: String;
   firstName_in?: String[] | String;
@@ -501,22 +513,6 @@ export interface UserWhereInput {
   email_not_starts_with?: String;
   email_ends_with?: String;
   email_not_ends_with?: String;
-  emailConfirmed?: Boolean;
-  emailConfirmed_not?: Boolean;
-  password?: String;
-  password_not?: String;
-  password_in?: String[] | String;
-  password_not_in?: String[] | String;
-  password_lt?: String;
-  password_lte?: String;
-  password_gt?: String;
-  password_gte?: String;
-  password_contains?: String;
-  password_not_contains?: String;
-  password_starts_with?: String;
-  password_not_starts_with?: String;
-  password_ends_with?: String;
-  password_not_ends_with?: String;
   position?: Position;
   position_not?: Position;
   position_in?: Position[] | Position;
@@ -586,6 +582,7 @@ export type OverallCompetencyWhereUniqueInput = AtLeastOne<{
 
 export type UserWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  googleProviderId?: String;
   email?: String;
 }>;
 
@@ -634,12 +631,11 @@ export interface UserCreateOneInput {
 
 export interface UserCreateInput {
   id?: ID_Input;
+  googleProviderId?: String;
   firstName: String;
   lastName: String;
   email: String;
-  emailConfirmed?: Boolean;
-  password: String;
-  position: Position;
+  position?: Position;
 }
 
 export interface CoreCompetencyCreateOneInput {
@@ -687,11 +683,10 @@ export interface UserUpdateOneRequiredInput {
 }
 
 export interface UserUpdateDataInput {
+  googleProviderId?: String;
   firstName?: String;
   lastName?: String;
   email?: String;
-  emailConfirmed?: Boolean;
-  password?: String;
   position?: Position;
 }
 
@@ -749,20 +744,18 @@ export interface OverallCompetencyUpdateManyMutationInput {
 }
 
 export interface UserUpdateInput {
+  googleProviderId?: String;
   firstName?: String;
   lastName?: String;
   email?: String;
-  emailConfirmed?: Boolean;
-  password?: String;
   position?: Position;
 }
 
 export interface UserUpdateManyMutationInput {
+  googleProviderId?: String;
   firstName?: String;
   lastName?: String;
   email?: String;
-  emailConfirmed?: Boolean;
-  password?: String;
   position?: Position;
 }
 
@@ -986,23 +979,21 @@ export interface JournalClubSubscription
 
 export interface User {
   id: ID_Output;
+  googleProviderId?: String;
   firstName: String;
   lastName: String;
   email: String;
-  emailConfirmed: Boolean;
-  password: String;
-  position: Position;
+  position?: Position;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
+  googleProviderId: () => Promise<String>;
   firstName: () => Promise<String>;
   lastName: () => Promise<String>;
   email: () => Promise<String>;
-  emailConfirmed: () => Promise<Boolean>;
-  password: () => Promise<String>;
   position: () => Promise<Position>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
@@ -1012,11 +1003,10 @@ export interface UserSubscription
   extends Promise<AsyncIterator<User>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  googleProviderId: () => Promise<AsyncIterator<String>>;
   firstName: () => Promise<AsyncIterator<String>>;
   lastName: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
-  emailConfirmed: () => Promise<AsyncIterator<Boolean>>;
-  password: () => Promise<AsyncIterator<String>>;
   position: () => Promise<AsyncIterator<Position>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -1397,12 +1387,11 @@ export interface UserSubscriptionPayloadSubscription
 
 export interface UserPreviousValues {
   id: ID_Output;
+  googleProviderId?: String;
   firstName: String;
   lastName: String;
   email: String;
-  emailConfirmed: Boolean;
-  password: String;
-  position: Position;
+  position?: Position;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
 }
@@ -1411,11 +1400,10 @@ export interface UserPreviousValuesPromise
   extends Promise<UserPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  googleProviderId: () => Promise<String>;
   firstName: () => Promise<String>;
   lastName: () => Promise<String>;
   email: () => Promise<String>;
-  emailConfirmed: () => Promise<Boolean>;
-  password: () => Promise<String>;
   position: () => Promise<Position>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
@@ -1425,11 +1413,10 @@ export interface UserPreviousValuesSubscription
   extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  googleProviderId: () => Promise<AsyncIterator<String>>;
   firstName: () => Promise<AsyncIterator<String>>;
   lastName: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
-  emailConfirmed: () => Promise<AsyncIterator<Boolean>>;
-  password: () => Promise<AsyncIterator<String>>;
   position: () => Promise<AsyncIterator<Position>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;

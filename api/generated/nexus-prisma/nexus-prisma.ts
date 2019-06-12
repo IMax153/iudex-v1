@@ -399,22 +399,20 @@ export interface QueryFieldDetails {
 type UserObject =
   | UserFields
   | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'googleProviderId', args?: [] | false, alias?: string  } 
   | { name: 'firstName', args?: [] | false, alias?: string  } 
   | { name: 'lastName', args?: [] | false, alias?: string  } 
   | { name: 'email', args?: [] | false, alias?: string  } 
-  | { name: 'emailConfirmed', args?: [] | false, alias?: string  } 
-  | { name: 'password', args?: [] | false, alias?: string  } 
   | { name: 'position', args?: [] | false, alias?: string  } 
   | { name: 'createdAt', args?: [] | false, alias?: string  } 
   | { name: 'updatedAt', args?: [] | false, alias?: string  } 
 
 type UserFields =
   | 'id'
+  | 'googleProviderId'
   | 'firstName'
   | 'lastName'
   | 'email'
-  | 'emailConfirmed'
-  | 'password'
   | 'position'
   | 'createdAt'
   | 'updatedAt'
@@ -430,6 +428,14 @@ export interface UserFieldDetails {
     description: string
     list: undefined
     nullable: false
+    resolve: undefined
+  }
+  googleProviderId: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
     resolve: undefined
   }
   firstName: {
@@ -456,34 +462,18 @@ export interface UserFieldDetails {
     nullable: false
     resolve: undefined
   }
-  emailConfirmed: {
-    type: 'Boolean'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: undefined
-  }
-  password: {
-    type: 'String'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: undefined
-  }
   position: {
     type: 'Position'
     args: {}
     description: string
     list: undefined
-    nullable: false
+    nullable: true
     resolve: (
       root: core.RootValue<"User">,
       args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Position> | prisma.Position
+    ) => Promise<prisma.Position | null> | prisma.Position | null
   }
   createdAt: {
     type: 'DateTime'
@@ -2089,22 +2079,20 @@ export interface UserSubscriptionPayloadFieldDetails {
 type UserPreviousValuesObject =
   | UserPreviousValuesFields
   | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'googleProviderId', args?: [] | false, alias?: string  } 
   | { name: 'firstName', args?: [] | false, alias?: string  } 
   | { name: 'lastName', args?: [] | false, alias?: string  } 
   | { name: 'email', args?: [] | false, alias?: string  } 
-  | { name: 'emailConfirmed', args?: [] | false, alias?: string  } 
-  | { name: 'password', args?: [] | false, alias?: string  } 
   | { name: 'position', args?: [] | false, alias?: string  } 
   | { name: 'createdAt', args?: [] | false, alias?: string  } 
   | { name: 'updatedAt', args?: [] | false, alias?: string  } 
 
 type UserPreviousValuesFields =
   | 'id'
+  | 'googleProviderId'
   | 'firstName'
   | 'lastName'
   | 'email'
-  | 'emailConfirmed'
-  | 'password'
   | 'position'
   | 'createdAt'
   | 'updatedAt'
@@ -2120,6 +2108,14 @@ export interface UserPreviousValuesFieldDetails {
     description: string
     list: undefined
     nullable: false
+    resolve: undefined
+  }
+  googleProviderId: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
     resolve: undefined
   }
   firstName: {
@@ -2146,34 +2142,18 @@ export interface UserPreviousValuesFieldDetails {
     nullable: false
     resolve: undefined
   }
-  emailConfirmed: {
-    type: 'Boolean'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: undefined
-  }
-  password: {
-    type: 'String'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: undefined
-  }
   position: {
     type: 'Position'
     args: {}
     description: string
     list: undefined
-    nullable: false
+    nullable: true
     resolve: (
       root: core.RootValue<"UserPreviousValues">,
       args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Position> | prisma.Position
+    ) => Promise<prisma.Position | null> | prisma.Position | null
   }
   createdAt: {
     type: 'DateTime'
@@ -2562,11 +2542,13 @@ export interface OverallCompetencyPreviousValuesFieldDetails {
 
 export interface UserWhereUniqueInput {
   id?: string | null
+  googleProviderId?: string | null
   email?: string | null
 }
 export type UserWhereUniqueInputInputObject =
   | Extract<keyof UserWhereUniqueInput, string>
   | { name: 'id', alias?: string  } 
+  | { name: 'googleProviderId', alias?: string  } 
   | { name: 'email', alias?: string  } 
   
 export interface UserWhereInput {
@@ -2584,6 +2566,20 @@ export interface UserWhereInput {
   id_not_starts_with?: string | null
   id_ends_with?: string | null
   id_not_ends_with?: string | null
+  googleProviderId?: string | null
+  googleProviderId_not?: string | null
+  googleProviderId_in?: string[]
+  googleProviderId_not_in?: string[]
+  googleProviderId_lt?: string | null
+  googleProviderId_lte?: string | null
+  googleProviderId_gt?: string | null
+  googleProviderId_gte?: string | null
+  googleProviderId_contains?: string | null
+  googleProviderId_not_contains?: string | null
+  googleProviderId_starts_with?: string | null
+  googleProviderId_not_starts_with?: string | null
+  googleProviderId_ends_with?: string | null
+  googleProviderId_not_ends_with?: string | null
   firstName?: string | null
   firstName_not?: string | null
   firstName_in?: string[]
@@ -2626,22 +2622,6 @@ export interface UserWhereInput {
   email_not_starts_with?: string | null
   email_ends_with?: string | null
   email_not_ends_with?: string | null
-  emailConfirmed?: boolean | null
-  emailConfirmed_not?: boolean | null
-  password?: string | null
-  password_not?: string | null
-  password_in?: string[]
-  password_not_in?: string[]
-  password_lt?: string | null
-  password_lte?: string | null
-  password_gt?: string | null
-  password_gte?: string | null
-  password_contains?: string | null
-  password_not_contains?: string | null
-  password_starts_with?: string | null
-  password_not_starts_with?: string | null
-  password_ends_with?: string | null
-  password_not_ends_with?: string | null
   position?: prisma.Position | null
   position_not?: prisma.Position | null
   position_in?: prisma.Position[]
@@ -2682,6 +2662,20 @@ export type UserWhereInputInputObject =
   | { name: 'id_not_starts_with', alias?: string  } 
   | { name: 'id_ends_with', alias?: string  } 
   | { name: 'id_not_ends_with', alias?: string  } 
+  | { name: 'googleProviderId', alias?: string  } 
+  | { name: 'googleProviderId_not', alias?: string  } 
+  | { name: 'googleProviderId_in', alias?: string  } 
+  | { name: 'googleProviderId_not_in', alias?: string  } 
+  | { name: 'googleProviderId_lt', alias?: string  } 
+  | { name: 'googleProviderId_lte', alias?: string  } 
+  | { name: 'googleProviderId_gt', alias?: string  } 
+  | { name: 'googleProviderId_gte', alias?: string  } 
+  | { name: 'googleProviderId_contains', alias?: string  } 
+  | { name: 'googleProviderId_not_contains', alias?: string  } 
+  | { name: 'googleProviderId_starts_with', alias?: string  } 
+  | { name: 'googleProviderId_not_starts_with', alias?: string  } 
+  | { name: 'googleProviderId_ends_with', alias?: string  } 
+  | { name: 'googleProviderId_not_ends_with', alias?: string  } 
   | { name: 'firstName', alias?: string  } 
   | { name: 'firstName_not', alias?: string  } 
   | { name: 'firstName_in', alias?: string  } 
@@ -2724,22 +2718,6 @@ export type UserWhereInputInputObject =
   | { name: 'email_not_starts_with', alias?: string  } 
   | { name: 'email_ends_with', alias?: string  } 
   | { name: 'email_not_ends_with', alias?: string  } 
-  | { name: 'emailConfirmed', alias?: string  } 
-  | { name: 'emailConfirmed_not', alias?: string  } 
-  | { name: 'password', alias?: string  } 
-  | { name: 'password_not', alias?: string  } 
-  | { name: 'password_in', alias?: string  } 
-  | { name: 'password_not_in', alias?: string  } 
-  | { name: 'password_lt', alias?: string  } 
-  | { name: 'password_lte', alias?: string  } 
-  | { name: 'password_gt', alias?: string  } 
-  | { name: 'password_gte', alias?: string  } 
-  | { name: 'password_contains', alias?: string  } 
-  | { name: 'password_not_contains', alias?: string  } 
-  | { name: 'password_starts_with', alias?: string  } 
-  | { name: 'password_not_starts_with', alias?: string  } 
-  | { name: 'password_ends_with', alias?: string  } 
-  | { name: 'password_not_ends_with', alias?: string  } 
   | { name: 'position', alias?: string  } 
   | { name: 'position_not', alias?: string  } 
   | { name: 'position_in', alias?: string  } 
@@ -3070,55 +3048,49 @@ export type OverallCompetencyWhereUniqueInputInputObject =
   
 export interface UserCreateInput {
   id?: string | null
+  googleProviderId?: string | null
   firstName?: string
   lastName?: string
   email?: string
-  emailConfirmed?: boolean | null
-  password?: string
-  position?: prisma.Position
+  position?: prisma.Position | null
 }
 export type UserCreateInputInputObject =
   | Extract<keyof UserCreateInput, string>
   | { name: 'id', alias?: string  } 
+  | { name: 'googleProviderId', alias?: string  } 
   | { name: 'firstName', alias?: string  } 
   | { name: 'lastName', alias?: string  } 
   | { name: 'email', alias?: string  } 
-  | { name: 'emailConfirmed', alias?: string  } 
-  | { name: 'password', alias?: string  } 
   | { name: 'position', alias?: string  } 
   
 export interface UserUpdateInput {
+  googleProviderId?: string | null
   firstName?: string | null
   lastName?: string | null
   email?: string | null
-  emailConfirmed?: boolean | null
-  password?: string | null
   position?: prisma.Position | null
 }
 export type UserUpdateInputInputObject =
   | Extract<keyof UserUpdateInput, string>
+  | { name: 'googleProviderId', alias?: string  } 
   | { name: 'firstName', alias?: string  } 
   | { name: 'lastName', alias?: string  } 
   | { name: 'email', alias?: string  } 
-  | { name: 'emailConfirmed', alias?: string  } 
-  | { name: 'password', alias?: string  } 
   | { name: 'position', alias?: string  } 
   
 export interface UserUpdateManyMutationInput {
+  googleProviderId?: string | null
   firstName?: string | null
   lastName?: string | null
   email?: string | null
-  emailConfirmed?: boolean | null
-  password?: string | null
   position?: prisma.Position | null
 }
 export type UserUpdateManyMutationInputInputObject =
   | Extract<keyof UserUpdateManyMutationInput, string>
+  | { name: 'googleProviderId', alias?: string  } 
   | { name: 'firstName', alias?: string  } 
   | { name: 'lastName', alias?: string  } 
   | { name: 'email', alias?: string  } 
-  | { name: 'emailConfirmed', alias?: string  } 
-  | { name: 'password', alias?: string  } 
   | { name: 'position', alias?: string  } 
   
 export interface JournalClubCreateInput {
@@ -3268,20 +3240,18 @@ export type UserUpdateOneRequiredInputInputObject =
   | { name: 'connect', alias?: string  } 
   
 export interface UserUpdateDataInput {
+  googleProviderId?: string | null
   firstName?: string | null
   lastName?: string | null
   email?: string | null
-  emailConfirmed?: boolean | null
-  password?: string | null
   position?: prisma.Position | null
 }
 export type UserUpdateDataInputInputObject =
   | Extract<keyof UserUpdateDataInput, string>
+  | { name: 'googleProviderId', alias?: string  } 
   | { name: 'firstName', alias?: string  } 
   | { name: 'lastName', alias?: string  } 
   | { name: 'email', alias?: string  } 
-  | { name: 'emailConfirmed', alias?: string  } 
-  | { name: 'password', alias?: string  } 
   | { name: 'position', alias?: string  } 
   
 export interface UserUpsertNestedInput {
@@ -3490,16 +3460,14 @@ export type PositionValues =
 export type UserOrderByInputValues =
   | 'id_ASC'
   | 'id_DESC'
+  | 'googleProviderId_ASC'
+  | 'googleProviderId_DESC'
   | 'firstName_ASC'
   | 'firstName_DESC'
   | 'lastName_ASC'
   | 'lastName_DESC'
   | 'email_ASC'
   | 'email_DESC'
-  | 'emailConfirmed_ASC'
-  | 'emailConfirmed_DESC'
-  | 'password_ASC'
-  | 'password_DESC'
   | 'position_ASC'
   | 'position_DESC'
   | 'createdAt_ASC'

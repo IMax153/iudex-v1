@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { Container, Divider, Grid, Header, Icon, Segment } from 'semantic-ui-react';
-import { ToastConsumer } from 'react-toast-notifications';
 
 import { User } from '../../generated/graphql';
 import { HomeLayout } from './HomeLayout';

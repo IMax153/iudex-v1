@@ -569,12 +569,11 @@ type Subscription {
 
 type User {
   id: ID!
+  googleProviderId: String
   firstName: String!
   lastName: String!
   email: String!
-  emailConfirmed: Boolean!
-  password: String!
-  position: Position!
+  position: Position
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -587,12 +586,11 @@ type UserConnection {
 
 input UserCreateInput {
   id: ID
+  googleProviderId: String
   firstName: String!
   lastName: String!
   email: String!
-  emailConfirmed: Boolean
-  password: String!
-  position: Position!
+  position: Position
 }
 
 input UserCreateOneInput {
@@ -608,16 +606,14 @@ type UserEdge {
 enum UserOrderByInput {
   id_ASC
   id_DESC
+  googleProviderId_ASC
+  googleProviderId_DESC
   firstName_ASC
   firstName_DESC
   lastName_ASC
   lastName_DESC
   email_ASC
   email_DESC
-  emailConfirmed_ASC
-  emailConfirmed_DESC
-  password_ASC
-  password_DESC
   position_ASC
   position_DESC
   createdAt_ASC
@@ -628,12 +624,11 @@ enum UserOrderByInput {
 
 type UserPreviousValues {
   id: ID!
+  googleProviderId: String
   firstName: String!
   lastName: String!
   email: String!
-  emailConfirmed: Boolean!
-  password: String!
-  position: Position!
+  position: Position
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -657,29 +652,26 @@ input UserSubscriptionWhereInput {
 }
 
 input UserUpdateDataInput {
+  googleProviderId: String
   firstName: String
   lastName: String
   email: String
-  emailConfirmed: Boolean
-  password: String
   position: Position
 }
 
 input UserUpdateInput {
+  googleProviderId: String
   firstName: String
   lastName: String
   email: String
-  emailConfirmed: Boolean
-  password: String
   position: Position
 }
 
 input UserUpdateManyMutationInput {
+  googleProviderId: String
   firstName: String
   lastName: String
   email: String
-  emailConfirmed: Boolean
-  password: String
   position: Position
 }
 
@@ -710,6 +702,20 @@ input UserWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  googleProviderId: String
+  googleProviderId_not: String
+  googleProviderId_in: [String!]
+  googleProviderId_not_in: [String!]
+  googleProviderId_lt: String
+  googleProviderId_lte: String
+  googleProviderId_gt: String
+  googleProviderId_gte: String
+  googleProviderId_contains: String
+  googleProviderId_not_contains: String
+  googleProviderId_starts_with: String
+  googleProviderId_not_starts_with: String
+  googleProviderId_ends_with: String
+  googleProviderId_not_ends_with: String
   firstName: String
   firstName_not: String
   firstName_in: [String!]
@@ -752,22 +758,6 @@ input UserWhereInput {
   email_not_starts_with: String
   email_ends_with: String
   email_not_ends_with: String
-  emailConfirmed: Boolean
-  emailConfirmed_not: Boolean
-  password: String
-  password_not: String
-  password_in: [String!]
-  password_not_in: [String!]
-  password_lt: String
-  password_lte: String
-  password_gt: String
-  password_gte: String
-  password_contains: String
-  password_not_contains: String
-  password_starts_with: String
-  password_not_starts_with: String
-  password_ends_with: String
-  password_not_ends_with: String
   position: Position
   position_not: Position
   position_in: [Position!]
@@ -795,6 +785,7 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   id: ID
+  googleProviderId: String
   email: String
 }
 `

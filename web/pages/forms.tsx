@@ -1,50 +1,34 @@
 import React, { useState } from 'react';
-import { NextFC } from 'next';
-import { Container, Grid, Header, Menu } from 'semantic-ui-react';
 
 import { User } from '../generated/graphql';
-import { AppContext } from '../lib/apollo';
-import { withCurrentUser } from '../lib/auth/withCurrentUser';
-import { Layout } from '../components/Layout';
+import { Page } from '../components/Page';
 import { JournalClubForm } from '../components/JournalClubForm';
+import { Layout, LayoutColumn } from '../components/Layout';
+import { RequireAuth } from '../components/RequireAuth';
+import { Tabs } from '../components/Tabs';
 
-interface DashboardProps {
-  tab: string;
+interface Props {
   user: Partial<User>;
 }
-const Dashboard: NextFC<DashboardProps, {}, AppContext> = ({ tab = 'Journal Club', user }) => {
-  const [activeItem, setActiveItem] = useState(tab);
 
+const Forms: React.FC<Props> = ({ user }) => {
+  const [selected, setSelected] = useState('Journal Club');
   return (
-    <Layout title="Forms Page" user={user}>
-      <Container style={{ marginTop: '1em' }}>
-        <Header as="h1" content="Forms" color="teal" block />
-
-        <Grid stretched>
-          <Grid.Column width={3}>
-            <Menu fluid vertical tabular>
-              <Menu.Item
-                name="Journal Club"
-                active={activeItem === 'Journal Club'}
-                onClick={(_, { name }) => name && setActiveItem(name)}
-              />
-            </Menu>
-          </Grid.Column>
-
-          <Grid.Column stretched width={13}>
-            {activeItem === 'Journal Club' && <JournalClubForm user={user} />}
-          </Grid.Column>
-
-          <Grid.Column />
-        </Grid>
-      </Container>
-    </Layout>
+    <Page title="Evaluation Forms" user={user}>
+      <Layout type="dashboard">
+        <LayoutColumn>
+          <Tabs
+            defaultSelected={selected}
+            tabs={['Journal Club']}
+            onClick={tab => setSelected(tab)}
+          />
+        </LayoutColumn>
+        <LayoutColumn>
+          {selected === 'Journal Club' && <JournalClubForm user={user} />}
+        </LayoutColumn>
+      </Layout>
+    </Page>
   );
 };
 
-Dashboard.getInitialProps = async ({ query }) => {
-  const { tab } = query;
-  return { tab };
-};
-
-export default withCurrentUser(Dashboard);
+export default RequireAuth(Forms);

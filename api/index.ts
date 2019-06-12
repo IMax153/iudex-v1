@@ -2,13 +2,14 @@ import { ApolloServer } from 'apollo-server-express';
 import Express from 'express';
 import { createServer } from 'http';
 
-import {} from '@iudex/email/index';
+import { prisma } from './generated/prisma-client';
 import { addSecurityMiddleware } from './middlewares/addSecurityMiddleware';
 import { middlewares } from './middlewares';
 import { CorsOptions } from './middlewares/cors';
-import { prisma } from './generated/prisma-client';
+import { passport } from './modules/authentication';
+import { authRouter } from './routes/auth';
+import { emailRouter } from './routes/email';
 import { schema } from './schema';
-import { Context } from './types';
 
 declare global {
   namespace NodeJS {
@@ -22,6 +23,8 @@ declare global {
       REDIS_PASSWORD: string;
       REDIS_PORT: string;
       SESSION_SECRET: string;
+      GOOGLE_OAUTH_CLIENT_ID: string;
+      GOOGLE_OAUTH_CLIENT_SECRET: string;
       SENDGRID_API_KEY: string;
     }
   }
@@ -31,12 +34,17 @@ const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 4000;
 
 const app = Express();
 
+passport.initialize();
+
 addSecurityMiddleware(app);
+
 app.use(middlewares);
+app.use('/auth', authRouter);
+app.use('/email', emailRouter);
 
 const apolloServer = new ApolloServer({
   schema,
-  context: ({ req, res }: Context) => {
+  context: ({ req, res }) => {
     return { req, res, prisma };
   },
 });

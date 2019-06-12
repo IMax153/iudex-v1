@@ -1,7 +1,6 @@
 import React from 'react';
-import { Formik } from 'formik';
-import { Button, Form, Header, Icon, Segment } from 'semantic-ui-react';
-import { reduce } from 'lodash';
+import { Formik, Form } from 'formik';
+import reduce from 'lodash/reduce';
 
 import {
   CreateJournalClubComponent,
@@ -10,19 +9,40 @@ import {
   JournalClubOrderByInput,
 } from '../../generated/graphql';
 import { redirect } from '../../lib/browser/redirect';
+import { Button } from '../Button';
+import { Card, CardSection } from '../Card';
+import { CompetencySection } from './CompetencySection';
+import { DetailsSection } from './DetailsSection';
+import { Stack } from '../Stack';
 import { initialValues } from './initialValues';
 import { validationSchema } from './validationSchema';
-import { AnalyticsSection } from './sections/AnalyticsSection';
-import { CommunicationSection } from './sections/CommunicationSection';
-import { CritiqueSection } from './sections/CritiqueSection';
-import { DetailsSection } from './sections/DetailsSection';
-import { OverallSection } from './sections/OverallSection';
+import {
+  analyticsSections,
+  communicationSections,
+  critiqueSections,
+  overallSections,
+} from './sections';
 
-interface JournalClubFormProps {
+interface Props {
   user: Partial<User>;
 }
 
-function createConnection(data: Record<string, any>) {
+const coreCompetencies = [
+  { label: 'Needs Improvement', value: 'NEEDS_IMPROVEMENT' },
+  { label: 'Satisfactory Progress', value: 'SATISFACTORY_PROGRESS' },
+  { label: 'Achieved', value: 'ACHIEVED' },
+  { label: 'Not Applicable', value: 'NOT_APPLICABLE' },
+];
+
+const overallCompetencies = [
+  { label: 'Meets Expectations', value: 'MEETS_EXPECTATIONS' },
+  {
+    label: 'Does Not Meet Expectations',
+    value: 'DOES_NOT_MEET_EXPECTATIONS',
+  },
+];
+
+const formatData = (data: Record<string, any>) => {
   return reduce(
     data,
     (result, value, key) => {
@@ -30,9 +50,9 @@ function createConnection(data: Record<string, any>) {
     },
     {},
   );
-}
+};
 
-export const JournalClubForm: React.FC<JournalClubFormProps> = ({ user }) => {
+export const JournalClubForm: React.FC<Props> = ({ user }) => {
   return (
     <CreateJournalClubComponent>
       {(createJournalClubMutation, { loading }) => (
@@ -50,7 +70,7 @@ export const JournalClubForm: React.FC<JournalClubFormProps> = ({ user }) => {
                     resident: { connect: { id: resident } },
                     evaluator: { connect: { id: user.id } },
                     preceptor: { connect: { id: preceptor } },
-                    ...(createConnection(data) as any),
+                    ...(formatData(data) as any),
                   },
                 },
                 refetchQueries: [
@@ -75,49 +95,57 @@ export const JournalClubForm: React.FC<JournalClubFormProps> = ({ user }) => {
             actions.setSubmitting(false);
           }}
         >
-          {({ isSubmitting, isValid, handleSubmit }) => (
-            <Form onSubmit={handleSubmit} autoComplete="off">
-              <Segment>
-                <Header as="h1" dividing style={{ marginBottom: '1.5em' }}>
-                  Journal Club Evaluation
-                </Header>
+          {({ isSubmitting, isValid }) => (
+            <Form autoComplete="off">
+              <Card>
+                <CardSection>
+                  <DetailsSection heading="Details" />
+                </CardSection>
 
-                <DetailsSection />
+                <CardSection>
+                  <CompetencySection
+                    heading="Analytical Skills"
+                    sections={analyticsSections}
+                    options={coreCompetencies}
+                  />
+                </CardSection>
 
-                <Header as="h3" dividing style={{ marginBottom: '1em', marginTop: '4em' }}>
-                  Analytical Skills
-                </Header>
+                <CardSection>
+                  <CompetencySection
+                    heading="Communication Skills"
+                    sections={communicationSections}
+                    options={coreCompetencies}
+                  />
+                </CardSection>
 
-                <AnalyticsSection />
+                <CardSection>
+                  <CompetencySection
+                    heading="Article Critique"
+                    sections={critiqueSections}
+                    options={coreCompetencies}
+                  />
+                </CardSection>
 
-                <Header as="h3" dividing style={{ marginBottom: '1em', marginTop: '4em' }}>
-                  Communication Skills
-                </Header>
+                <CardSection>
+                  <Stack spaceAfter="largest">
+                    <CompetencySection
+                      heading="Overall Evaluation"
+                      sections={overallSections}
+                      options={overallCompetencies}
+                    />
 
-                <CommunicationSection />
-
-                <Header as="h3" dividing style={{ marginBottom: '1em', marginTop: '4em' }}>
-                  Article Critique
-                </Header>
-
-                <CritiqueSection />
-
-                <Header as="h3" dividing style={{ marginBottom: '1em', marginTop: '4em' }}>
-                  Overall
-                </Header>
-
-                <OverallSection />
-
-                <Button
-                  type="submit"
-                  fluid
-                  style={{ marginTop: '1em' }}
-                  loading={loading}
-                  disabled={isSubmitting || !isValid}
-                >
-                  <Icon name="send" /> Submit Evaluation
-                </Button>
-              </Segment>
+                    <Button
+                      type="primary"
+                      loading={loading}
+                      disabled={!isValid || isSubmitting}
+                      submit
+                      block
+                    >
+                      Submit Evaluation
+                    </Button>
+                  </Stack>
+                </CardSection>
+              </Card>
             </Form>
           )}
         </Formik>

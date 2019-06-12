@@ -1,6 +1,23 @@
-import ExpressJWT from 'express-jwt';
+import Session from 'express-session';
+import ConnectRedis from 'connect-redis';
 
-export const session = ExpressJWT({
-  secret: process.env.JWT_SECRET_KEY,
-  credentialsRequired: false,
+import { createRedis } from '../utils/redis';
+
+const RedisStore = ConnectRedis(Session);
+
+const IS_PROD = process.env.NODE_ENV === 'production';
+
+export const session = Session({
+  store: new RedisStore({ client: createRedis() as any }),
+  name: 'qid',
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    domain: IS_PROD ? 'iudex.now.sh' : 'localhost',
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 24 * 60 * 60 * 1000, // 1 day
+    sameSite: 'lax',
+  },
 });

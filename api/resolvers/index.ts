@@ -1,4 +1,3 @@
-export * from './AuthPayload';
 export * from './CoreCompetency';
 export * from './OverallCompetency';
 export * from './Mutation';

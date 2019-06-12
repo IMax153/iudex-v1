@@ -2,8 +2,8 @@ import gql from 'graphql-tag';
 
 import { JournalClubFragment } from '../fragments/journalClub';
 
-export const JournalClubEvaluation = gql`
-  query JournalClubEvaluation($where: JournalClubWhereUniqueInput!) {
+export const JournalClub = gql`
+  query JournalClub($where: JournalClubWhereUniqueInput!) {
     journalClub(where: $where) {
       ...journalClubFields
     }

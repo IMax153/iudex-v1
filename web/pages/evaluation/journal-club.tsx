@@ -1,12 +1,18 @@
 import React from 'react';
 import { NextFC } from 'next';
-import { Container, Header, Segment } from 'semantic-ui-react';
 
-import { User } from '../../generated/graphql';
+import {
+  User,
+  JournalClub as JournalClubType,
+  JournalClubComponent,
+} from '../../generated/graphql';
 import { AppContext } from '../../lib/apollo';
-import { withCurrentUser } from '../../lib/auth/withCurrentUser';
-import { JournalClubEvaluation } from '../../components/JournalClubEvaluation';
-import { Layout } from '../../components/Layout';
+import { redirect } from '../../lib/browser';
+import { Layout, LayoutColumn } from '../../components/Layout';
+import { Loading } from '../../components/Loading';
+import { JournalClubReview } from '../../components/JournalClubReview';
+import { Page } from '../../components/Page';
+import { RequireAuth } from '../../components/RequireAuth';
 
 interface JournalClubProps {
   id: string;
@@ -15,21 +21,29 @@ interface JournalClubProps {
 
 const JournalClub: NextFC<JournalClubProps, {}, AppContext> = ({ id, user }) => {
   return (
-    <Layout title="Forms Page" user={user}>
-      <Container style={{ marginTop: '1em', marginBottom: '1em' }}>
-        <Header as="h1" content="Journal Club Evaluation" color="teal" block />
+    <Page title="Journal Club Evaluation" user={user}>
+      <Layout type="page">
+        <LayoutColumn>
+          <JournalClubComponent variables={{ where: { id } }}>
+            {({ data, loading, error }) => {
+              if (error) return null;
+              if (loading || !data || !data.journalClub) return <Loading />;
 
-        <Segment>
-          <JournalClubEvaluation id={id} />
-        </Segment>
-      </Container>
-    </Layout>
+              const evaluation = data.journalClub as JournalClubType;
+
+              return <JournalClubReview evaluation={evaluation} />;
+            }}
+          </JournalClubComponent>
+        </LayoutColumn>
+      </Layout>
+    </Page>
   );
 };
 
-JournalClub.getInitialProps = async ({ query }) => {
-  const { id } = query;
+JournalClub.getInitialProps = async ctx => {
+  const { id } = ctx.query;
+  if (!id) redirect(ctx, '/dashboard');
   return { id };
 };
 
-export default withCurrentUser(JournalClub);
+export default RequireAuth(JournalClub);

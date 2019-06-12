@@ -1,11 +1,10 @@
 type User {
   id: ID! @id
+  googleProviderId: String @unique
   firstName: String!
   lastName: String!
   email: String! @unique
-  emailConfirmed: Boolean! @default(value: false)
-  password: String!
-  position: Position!
+  position: Position
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }

@@ -1,0 +1,1 @@
+export { GoogleStrategy } from './GoogleStrategy';

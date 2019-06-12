@@ -18,11 +18,6 @@ type AggregateUser {
   count: Int!
 }
 
-type AuthPayload {
-  token: String!
-  user: User!
-}
-
 type BatchPayload {
   count: Long!
 }
@@ -313,8 +308,6 @@ input JournalClubWhereUniqueInput {
 scalar Long
 
 type Mutation {
-  changePassword(data: UserChangePasswordInput!): User
-  confirmUser(data: UserConfirmInput!): User
   createCoreCompetency(data: CoreCompetencyCreateInput!): CoreCompetency!
   createJournalClub(data: JournalClubCreateInput!): JournalClub!
   createOverallCompetency(data: OverallCompetencyCreateInput!): OverallCompetency!
@@ -327,9 +320,7 @@ type Mutation {
   deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteOverallCompetency(where: OverallCompetencyWhereUniqueInput!): OverallCompetency
   deleteUser(where: UserWhereUniqueInput!): User
-  forgotPassword(data: UserForgotPasswordInput!): Boolean
-  login(data: UserLoginInput!): AuthPayload
-  register(data: UserRegisterInput!): AuthPayload
+  setUserPosition(data: SetUserPositionInput!): User
   updateCoreCompetency(data: CoreCompetencyUpdateInput!, where: CoreCompetencyWhereUniqueInput!): CoreCompetency
   updateJournalClub(data: JournalClubUpdateInput!, where: JournalClubWhereUniqueInput!): JournalClub
   updateManyCoreCompetencies(data: CoreCompetencyUpdateManyMutationInput!, where: CoreCompetencyWhereInput): BatchPayload!
@@ -478,36 +469,29 @@ type Query {
   journalClub(where: JournalClubWhereUniqueInput!): JournalClub
   journalClubs(after: String, before: String, first: Int, last: Int, orderBy: JournalClubOrderByInput, skip: Int, where: JournalClubWhereInput): [JournalClub!]!
   journalClubsConnection(after: String, before: String, first: Int, last: Int, orderBy: JournalClubOrderByInput, skip: Int, where: JournalClubWhereInput): JournalClubConnection!
-  journalClubsCount(where: JournalClubWhereInput!): Int
   me: User
   overallCompetencies(after: String, before: String, first: Int, last: Int, orderBy: OverallCompetencyOrderByInput, skip: Int, where: OverallCompetencyWhereInput): [OverallCompetency!]!
   overallCompetenciesConnection(after: String, before: String, first: Int, last: Int, orderBy: OverallCompetencyOrderByInput, skip: Int, where: OverallCompetencyWhereInput): OverallCompetencyConnection!
   overallCompetency(where: OverallCompetencyWhereUniqueInput!): OverallCompetency
-  testEmail: String
   user(where: UserWhereUniqueInput!): User
   users(after: String, before: String, first: Int, last: Int, orderBy: UserOrderByInput, skip: Int, where: UserWhereInput): [User!]!
   usersConnection(after: String, before: String, first: Int, last: Int, orderBy: UserOrderByInput, skip: Int, where: UserWhereInput): UserConnection!
 }
 
+input SetUserPositionInput {
+  position: Position!
+}
+
 type User {
   createdAt: DateTime!
   email: String!
-  emailConfirmed: Boolean!
   firstName: String!
   fullName: String!
+  googleProviderId: String
   id: ID!
   lastName: String!
-  position: Position!
+  position: Position
   updatedAt: DateTime!
-}
-
-input UserChangePasswordInput {
-  password: String!
-  token: String!
-}
-
-input UserConfirmInput {
-  token: String!
 }
 
 type UserConnection {
@@ -518,12 +502,11 @@ type UserConnection {
 
 input UserCreateInput {
   email: String!
-  emailConfirmed: Boolean
   firstName: String!
+  googleProviderId: String
   id: ID
   lastName: String!
-  password: String!
-  position: Position!
+  position: Position
 }
 
 input UserCreateOneInput {
@@ -536,68 +519,46 @@ type UserEdge {
   node: User!
 }
 
-input UserForgotPasswordInput {
-  email: String!
-}
-
-input UserLoginInput {
-  email: String!
-  password: String!
-}
-
 enum UserOrderByInput {
   createdAt_ASC
   createdAt_DESC
   email_ASC
   email_DESC
-  emailConfirmed_ASC
-  emailConfirmed_DESC
   firstName_ASC
   firstName_DESC
+  googleProviderId_ASC
+  googleProviderId_DESC
   id_ASC
   id_DESC
   lastName_ASC
   lastName_DESC
-  password_ASC
-  password_DESC
   position_ASC
   position_DESC
   updatedAt_ASC
   updatedAt_DESC
 }
 
-input UserRegisterInput {
-  email: String!
-  firstName: String!
-  lastName: String!
-  password: String!
-  position: Position!
-}
-
 input UserUpdateDataInput {
   email: String
-  emailConfirmed: Boolean
   firstName: String
+  googleProviderId: String
   lastName: String
-  password: String
   position: Position
 }
 
 input UserUpdateInput {
   email: String
-  emailConfirmed: Boolean
   firstName: String
+  googleProviderId: String
   lastName: String
-  password: String
   position: Position
 }
 
 input UserUpdateManyMutationInput {
   email: String
-  emailConfirmed: Boolean
   firstName: String
+  googleProviderId: String
   lastName: String
-  password: String
   position: Position
 }
 
@@ -637,8 +598,6 @@ input UserWhereInput {
   email_not_in: [String!]
   email_not_starts_with: String
   email_starts_with: String
-  emailConfirmed: Boolean
-  emailConfirmed_not: Boolean
   firstName: String
   firstName_contains: String
   firstName_ends_with: String
@@ -653,6 +612,20 @@ input UserWhereInput {
   firstName_not_in: [String!]
   firstName_not_starts_with: String
   firstName_starts_with: String
+  googleProviderId: String
+  googleProviderId_contains: String
+  googleProviderId_ends_with: String
+  googleProviderId_gt: String
+  googleProviderId_gte: String
+  googleProviderId_in: [String!]
+  googleProviderId_lt: String
+  googleProviderId_lte: String
+  googleProviderId_not: String
+  googleProviderId_not_contains: String
+  googleProviderId_not_ends_with: String
+  googleProviderId_not_in: [String!]
+  googleProviderId_not_starts_with: String
+  googleProviderId_starts_with: String
   id: ID
   id_contains: ID
   id_ends_with: ID
@@ -683,20 +656,6 @@ input UserWhereInput {
   lastName_starts_with: String
   NOT: [UserWhereInput!]
   OR: [UserWhereInput!]
-  password: String
-  password_contains: String
-  password_ends_with: String
-  password_gt: String
-  password_gte: String
-  password_in: [String!]
-  password_lt: String
-  password_lte: String
-  password_not: String
-  password_not_contains: String
-  password_not_ends_with: String
-  password_not_in: [String!]
-  password_not_starts_with: String
-  password_starts_with: String
   position: Position
   position_in: [Position!]
   position_not: Position
@@ -713,5 +672,6 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   email: String
+  googleProviderId: String
   id: ID
 }

@@ -1,6 +1,6 @@
 import * as UserRoot from './root';
-import * as UserInputs from './inputs';
 import * as UserQueries from './queries';
 import * as UserMutations from './mutations';
+import * as UserInputs from './inputs';
 
-export const UserTypes = [UserRoot, UserInputs, UserQueries, UserMutations];
+export const UserTypes = [UserRoot, UserQueries, UserMutations, UserInputs];

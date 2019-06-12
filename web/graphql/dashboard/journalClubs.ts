@@ -1,8 +1,5 @@
 import gql from 'graphql-tag';
 
-import { CoreCompetencyFragment } from '../fragments/coreCompetency';
-import { OverallCompetencyFragment } from '../fragments/overallCompetency';
-
 export const JournalClubs = gql`
   query JournalClubs(
     $where: JournalClubWhereInput
@@ -11,28 +8,44 @@ export const JournalClubs = gql`
     $after: String
     $skip: Int
   ) {
-    journalClubs(where: $where, orderBy: $orderBy, first: $first, after: $after, skip: $skip) {
-      id
-      article
-      createdAt
-      updatedAt
-      resident {
-        id
-        fullName
+    journalClubsConnection(
+      where: $where
+      orderBy: $orderBy
+      first: $first
+      after: $after
+      skip: $skip
+    ) {
+      aggregate {
+        count
       }
-      evaluator {
-        id
-        fullName
+      pageInfo {
+        endCursor
+        hasNextPage
       }
-      preceptor {
-        id
-        fullName
-      }
-      overall {
-        ...overallCompetencyFields
+      edges {
+        node {
+          id
+          article
+          createdAt
+          updatedAt
+          resident {
+            id
+            fullName
+          }
+          evaluator {
+            id
+            fullName
+          }
+          preceptor {
+            id
+            fullName
+          }
+          overall {
+            comment
+            competency
+          }
+        }
       }
     }
   }
-  ${CoreCompetencyFragment}
-  ${OverallCompetencyFragment}
 `;

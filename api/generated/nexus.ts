@@ -266,62 +266,40 @@ export interface NexusGenInputs {
   OverallCompetencyWhereUniqueInput: { // input type
     id?: string | null; // ID
   }
-  UserChangePasswordInput: { // input type
-    password: string; // String!
-    token: string; // String!
-  }
-  UserConfirmInput: { // input type
-    token: string; // String!
+  SetUserPositionInput: { // input type
+    position: NexusGenEnums['Position']; // Position!
   }
   UserCreateInput: { // input type
     email: string; // String!
-    emailConfirmed?: boolean | null; // Boolean
     firstName: string; // String!
+    googleProviderId?: string | null; // String
     id?: string | null; // ID
     lastName: string; // String!
-    password: string; // String!
-    position: NexusGenEnums['Position']; // Position!
+    position?: NexusGenEnums['Position'] | null; // Position
   }
   UserCreateOneInput: { // input type
     connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
     create?: NexusGenInputs['UserCreateInput'] | null; // UserCreateInput
   }
-  UserForgotPasswordInput: { // input type
-    email: string; // String!
-  }
-  UserLoginInput: { // input type
-    email: string; // String!
-    password: string; // String!
-  }
-  UserRegisterInput: { // input type
-    email: string; // String!
-    firstName: string; // String!
-    lastName: string; // String!
-    password: string; // String!
-    position: NexusGenEnums['Position']; // Position!
-  }
   UserUpdateDataInput: { // input type
     email?: string | null; // String
-    emailConfirmed?: boolean | null; // Boolean
     firstName?: string | null; // String
+    googleProviderId?: string | null; // String
     lastName?: string | null; // String
-    password?: string | null; // String
     position?: NexusGenEnums['Position'] | null; // Position
   }
   UserUpdateInput: { // input type
     email?: string | null; // String
-    emailConfirmed?: boolean | null; // Boolean
     firstName?: string | null; // String
+    googleProviderId?: string | null; // String
     lastName?: string | null; // String
-    password?: string | null; // String
     position?: NexusGenEnums['Position'] | null; // Position
   }
   UserUpdateManyMutationInput: { // input type
     email?: string | null; // String
-    emailConfirmed?: boolean | null; // Boolean
     firstName?: string | null; // String
+    googleProviderId?: string | null; // String
     lastName?: string | null; // String
-    password?: string | null; // String
     position?: NexusGenEnums['Position'] | null; // Position
   }
   UserUpdateOneRequiredInput: { // input type
@@ -358,8 +336,6 @@ export interface NexusGenInputs {
     email_not_in?: string[] | null; // [String!]
     email_not_starts_with?: string | null; // String
     email_starts_with?: string | null; // String
-    emailConfirmed?: boolean | null; // Boolean
-    emailConfirmed_not?: boolean | null; // Boolean
     firstName?: string | null; // String
     firstName_contains?: string | null; // String
     firstName_ends_with?: string | null; // String
@@ -374,6 +350,20 @@ export interface NexusGenInputs {
     firstName_not_in?: string[] | null; // [String!]
     firstName_not_starts_with?: string | null; // String
     firstName_starts_with?: string | null; // String
+    googleProviderId?: string | null; // String
+    googleProviderId_contains?: string | null; // String
+    googleProviderId_ends_with?: string | null; // String
+    googleProviderId_gt?: string | null; // String
+    googleProviderId_gte?: string | null; // String
+    googleProviderId_in?: string[] | null; // [String!]
+    googleProviderId_lt?: string | null; // String
+    googleProviderId_lte?: string | null; // String
+    googleProviderId_not?: string | null; // String
+    googleProviderId_not_contains?: string | null; // String
+    googleProviderId_not_ends_with?: string | null; // String
+    googleProviderId_not_in?: string[] | null; // [String!]
+    googleProviderId_not_starts_with?: string | null; // String
+    googleProviderId_starts_with?: string | null; // String
     id?: string | null; // ID
     id_contains?: string | null; // ID
     id_ends_with?: string | null; // ID
@@ -404,20 +394,6 @@ export interface NexusGenInputs {
     lastName_starts_with?: string | null; // String
     NOT?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
     OR?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
-    password?: string | null; // String
-    password_contains?: string | null; // String
-    password_ends_with?: string | null; // String
-    password_gt?: string | null; // String
-    password_gte?: string | null; // String
-    password_in?: string[] | null; // [String!]
-    password_lt?: string | null; // String
-    password_lte?: string | null; // String
-    password_not?: string | null; // String
-    password_not_contains?: string | null; // String
-    password_not_ends_with?: string | null; // String
-    password_not_in?: string[] | null; // [String!]
-    password_not_starts_with?: string | null; // String
-    password_starts_with?: string | null; // String
     position?: NexusGenEnums['Position'] | null; // Position
     position_in?: NexusGenEnums['Position'][] | null; // [Position!]
     position_not?: NexusGenEnums['Position'] | null; // Position
@@ -433,6 +409,7 @@ export interface NexusGenInputs {
   }
   UserWhereUniqueInput: { // input type
     email?: string | null; // String
+    googleProviderId?: string | null; // String
     id?: string | null; // ID
   }
 }
@@ -444,7 +421,7 @@ export interface NexusGenEnums {
   Overall: "DOES_NOT_MEET_EXPECTATIONS" | "MEETS_EXPECTATIONS"
   OverallCompetencyOrderByInput: "comment_ASC" | "comment_DESC" | "competency_ASC" | "competency_DESC" | "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
   Position: "PHARMACIST" | "RESIDENT"
-  UserOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "email_ASC" | "email_DESC" | "emailConfirmed_ASC" | "emailConfirmed_DESC" | "firstName_ASC" | "firstName_DESC" | "id_ASC" | "id_DESC" | "lastName_ASC" | "lastName_DESC" | "password_ASC" | "password_DESC" | "position_ASC" | "position_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
+  UserOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "email_ASC" | "email_DESC" | "firstName_ASC" | "firstName_DESC" | "googleProviderId_ASC" | "googleProviderId_DESC" | "id_ASC" | "id_DESC" | "lastName_ASC" | "lastName_DESC" | "position_ASC" | "position_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
 }
 
 export interface NexusGenRootTypes {
@@ -459,10 +436,6 @@ export interface NexusGenRootTypes {
   }
   AggregateUser: { // root type
     count: number; // Int!
-  }
-  AuthPayload: { // root type
-    token: string; // String!
-    user: NexusGenRootTypes['User']; // User!
   }
   BatchPayload: { // root type
     count: any; // Long!
@@ -518,11 +491,11 @@ export interface NexusGenRootTypes {
   User: { // root type
     createdAt: any; // DateTime!
     email: string; // String!
-    emailConfirmed: boolean; // Boolean!
     firstName: string; // String!
+    googleProviderId?: string | null; // String
     id: string; // ID!
     lastName: string; // String!
-    position: NexusGenEnums['Position']; // Position!
+    position?: NexusGenEnums['Position'] | null; // Position
     updatedAt: any; // DateTime!
   }
   UserConnection: { // root type
@@ -566,13 +539,9 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   OverallCompetencyUpsertNestedInput: NexusGenInputs['OverallCompetencyUpsertNestedInput'];
   OverallCompetencyWhereInput: NexusGenInputs['OverallCompetencyWhereInput'];
   OverallCompetencyWhereUniqueInput: NexusGenInputs['OverallCompetencyWhereUniqueInput'];
-  UserChangePasswordInput: NexusGenInputs['UserChangePasswordInput'];
-  UserConfirmInput: NexusGenInputs['UserConfirmInput'];
+  SetUserPositionInput: NexusGenInputs['SetUserPositionInput'];
   UserCreateInput: NexusGenInputs['UserCreateInput'];
   UserCreateOneInput: NexusGenInputs['UserCreateOneInput'];
-  UserForgotPasswordInput: NexusGenInputs['UserForgotPasswordInput'];
-  UserLoginInput: NexusGenInputs['UserLoginInput'];
-  UserRegisterInput: NexusGenInputs['UserRegisterInput'];
   UserUpdateDataInput: NexusGenInputs['UserUpdateDataInput'];
   UserUpdateInput: NexusGenInputs['UserUpdateInput'];
   UserUpdateManyMutationInput: NexusGenInputs['UserUpdateManyMutationInput'];
@@ -601,10 +570,6 @@ export interface NexusGenFieldTypes {
   }
   AggregateUser: { // field return type
     count: number; // Int!
-  }
-  AuthPayload: { // field return type
-    token: string; // String!
-    user: NexusGenRootTypes['User']; // User!
   }
   BatchPayload: { // field return type
     count: any; // Long!
@@ -656,8 +621,6 @@ export interface NexusGenFieldTypes {
     node: NexusGenRootTypes['JournalClub']; // JournalClub!
   }
   Mutation: { // field return type
-    changePassword: NexusGenRootTypes['User'] | null; // User
-    confirmUser: NexusGenRootTypes['User'] | null; // User
     createCoreCompetency: NexusGenRootTypes['CoreCompetency']; // CoreCompetency!
     createJournalClub: NexusGenRootTypes['JournalClub']; // JournalClub!
     createOverallCompetency: NexusGenRootTypes['OverallCompetency']; // OverallCompetency!
@@ -670,9 +633,7 @@ export interface NexusGenFieldTypes {
     deleteManyUsers: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     deleteOverallCompetency: NexusGenRootTypes['OverallCompetency'] | null; // OverallCompetency
     deleteUser: NexusGenRootTypes['User'] | null; // User
-    forgotPassword: boolean | null; // Boolean
-    login: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
-    register: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
+    setUserPosition: NexusGenRootTypes['User'] | null; // User
     updateCoreCompetency: NexusGenRootTypes['CoreCompetency'] | null; // CoreCompetency
     updateJournalClub: NexusGenRootTypes['JournalClub'] | null; // JournalClub
     updateManyCoreCompetencies: NexusGenRootTypes['BatchPayload']; // BatchPayload!
@@ -713,12 +674,10 @@ export interface NexusGenFieldTypes {
     journalClub: NexusGenRootTypes['JournalClub'] | null; // JournalClub
     journalClubs: NexusGenRootTypes['JournalClub'][]; // [JournalClub!]!
     journalClubsConnection: NexusGenRootTypes['JournalClubConnection']; // JournalClubConnection!
-    journalClubsCount: number | null; // Int
     me: NexusGenRootTypes['User'] | null; // User
     overallCompetencies: NexusGenRootTypes['OverallCompetency'][]; // [OverallCompetency!]!
     overallCompetenciesConnection: NexusGenRootTypes['OverallCompetencyConnection']; // OverallCompetencyConnection!
     overallCompetency: NexusGenRootTypes['OverallCompetency'] | null; // OverallCompetency
-    testEmail: string | null; // String
     user: NexusGenRootTypes['User'] | null; // User
     users: NexusGenRootTypes['User'][]; // [User!]!
     usersConnection: NexusGenRootTypes['UserConnection']; // UserConnection!
@@ -726,12 +685,12 @@ export interface NexusGenFieldTypes {
   User: { // field return type
     createdAt: any; // DateTime!
     email: string; // String!
-    emailConfirmed: boolean; // Boolean!
     firstName: string; // String!
     fullName: string; // String!
+    googleProviderId: string | null; // String
     id: string; // ID!
     lastName: string; // String!
-    position: NexusGenEnums['Position']; // Position!
+    position: NexusGenEnums['Position'] | null; // Position
     updatedAt: any; // DateTime!
   }
   UserConnection: { // field return type
@@ -747,12 +706,6 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenArgTypes {
   Mutation: {
-    changePassword: { // args
-      data: NexusGenInputs['UserChangePasswordInput']; // UserChangePasswordInput!
-    }
-    confirmUser: { // args
-      data: NexusGenInputs['UserConfirmInput']; // UserConfirmInput!
-    }
     createCoreCompetency: { // args
       data: NexusGenInputs['CoreCompetencyCreateInput']; // CoreCompetencyCreateInput!
     }
@@ -789,14 +742,8 @@ export interface NexusGenArgTypes {
     deleteUser: { // args
       where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
     }
-    forgotPassword: { // args
-      data: NexusGenInputs['UserForgotPasswordInput']; // UserForgotPasswordInput!
-    }
-    login: { // args
-      data: NexusGenInputs['UserLoginInput']; // UserLoginInput!
-    }
-    register: { // args
-      data: NexusGenInputs['UserRegisterInput']; // UserRegisterInput!
+    setUserPosition: { // args
+      data: NexusGenInputs['SetUserPositionInput']; // SetUserPositionInput!
     }
     updateCoreCompetency: { // args
       data: NexusGenInputs['CoreCompetencyUpdateInput']; // CoreCompetencyUpdateInput!
@@ -894,9 +841,6 @@ export interface NexusGenArgTypes {
       skip?: number | null; // Int
       where?: NexusGenInputs['JournalClubWhereInput'] | null; // JournalClubWhereInput
     }
-    journalClubsCount: { // args
-      where: NexusGenInputs['JournalClubWhereInput']; // JournalClubWhereInput!
-    }
     overallCompetencies: { // args
       after?: string | null; // String
       before?: string | null; // String
@@ -947,9 +891,9 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "AggregateCoreCompetency" | "AggregateJournalClub" | "AggregateOverallCompetency" | "AggregateUser" | "AuthPayload" | "BatchPayload" | "CoreCompetency" | "CoreCompetencyConnection" | "CoreCompetencyEdge" | "JournalClub" | "JournalClubConnection" | "JournalClubEdge" | "Mutation" | "OverallCompetency" | "OverallCompetencyConnection" | "OverallCompetencyEdge" | "PageInfo" | "Query" | "User" | "UserConnection" | "UserEdge";
+export type NexusGenObjectNames = "AggregateCoreCompetency" | "AggregateJournalClub" | "AggregateOverallCompetency" | "AggregateUser" | "BatchPayload" | "CoreCompetency" | "CoreCompetencyConnection" | "CoreCompetencyEdge" | "JournalClub" | "JournalClubConnection" | "JournalClubEdge" | "Mutation" | "OverallCompetency" | "OverallCompetencyConnection" | "OverallCompetencyEdge" | "PageInfo" | "Query" | "User" | "UserConnection" | "UserEdge";
 
-export type NexusGenInputNames = "CoreCompetencyCreateInput" | "CoreCompetencyCreateOneInput" | "CoreCompetencyUpdateDataInput" | "CoreCompetencyUpdateInput" | "CoreCompetencyUpdateManyMutationInput" | "CoreCompetencyUpdateOneRequiredInput" | "CoreCompetencyUpsertNestedInput" | "CoreCompetencyWhereInput" | "CoreCompetencyWhereUniqueInput" | "JournalClubCreateInput" | "JournalClubUpdateInput" | "JournalClubUpdateManyMutationInput" | "JournalClubWhereInput" | "JournalClubWhereUniqueInput" | "OverallCompetencyCreateInput" | "OverallCompetencyCreateOneInput" | "OverallCompetencyUpdateDataInput" | "OverallCompetencyUpdateInput" | "OverallCompetencyUpdateManyMutationInput" | "OverallCompetencyUpdateOneRequiredInput" | "OverallCompetencyUpsertNestedInput" | "OverallCompetencyWhereInput" | "OverallCompetencyWhereUniqueInput" | "UserChangePasswordInput" | "UserConfirmInput" | "UserCreateInput" | "UserCreateOneInput" | "UserForgotPasswordInput" | "UserLoginInput" | "UserRegisterInput" | "UserUpdateDataInput" | "UserUpdateInput" | "UserUpdateManyMutationInput" | "UserUpdateOneRequiredInput" | "UserUpsertNestedInput" | "UserWhereInput" | "UserWhereUniqueInput";
+export type NexusGenInputNames = "CoreCompetencyCreateInput" | "CoreCompetencyCreateOneInput" | "CoreCompetencyUpdateDataInput" | "CoreCompetencyUpdateInput" | "CoreCompetencyUpdateManyMutationInput" | "CoreCompetencyUpdateOneRequiredInput" | "CoreCompetencyUpsertNestedInput" | "CoreCompetencyWhereInput" | "CoreCompetencyWhereUniqueInput" | "JournalClubCreateInput" | "JournalClubUpdateInput" | "JournalClubUpdateManyMutationInput" | "JournalClubWhereInput" | "JournalClubWhereUniqueInput" | "OverallCompetencyCreateInput" | "OverallCompetencyCreateOneInput" | "OverallCompetencyUpdateDataInput" | "OverallCompetencyUpdateInput" | "OverallCompetencyUpdateManyMutationInput" | "OverallCompetencyUpdateOneRequiredInput" | "OverallCompetencyUpsertNestedInput" | "OverallCompetencyWhereInput" | "OverallCompetencyWhereUniqueInput" | "SetUserPositionInput" | "UserCreateInput" | "UserCreateOneInput" | "UserUpdateDataInput" | "UserUpdateInput" | "UserUpdateManyMutationInput" | "UserUpdateOneRequiredInput" | "UserUpsertNestedInput" | "UserWhereInput" | "UserWhereUniqueInput";
 
 export type NexusGenEnumNames = "Core" | "CoreCompetencyOrderByInput" | "JournalClubOrderByInput" | "Overall" | "OverallCompetencyOrderByInput" | "Position" | "UserOrderByInput";
 

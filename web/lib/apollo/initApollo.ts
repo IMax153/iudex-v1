@@ -11,7 +11,7 @@ import { isBrowser } from '../browser/isBrowser';
 declare let global: GlobalFetch;
 
 interface CreateApolloOptions {
-  getToken: () => string | undefined;
+  getCookies: () => string | undefined;
 }
 
 const PRODUCTION = process.env.NODE_ENV === 'production';
@@ -46,19 +46,20 @@ function getApolloClient(
   });
 
   const authLink = setContext((_, { headers }) => {
-    const token = options.getToken();
+    const qid = options.getCookies();
 
     return {
       headers: {
         ...headers,
-        authorization: token ? `Bearer ${token}` : '',
+        // authorization: token ? `Bearer ${token}` : '',
+        cookie: qid ? `qid=${qid}` : '',
       },
     };
   });
 
   const httpLink = new HttpLink({
     uri: PRODUCTION ? 'https://iudex.now.sh/graphql' : 'http://localhost:4000/graphql',
-    credentials: PRODUCTION ? 'same-origin' : 'include',
+    credentials: 'include',
   });
 
   const client = new ApolloClient<NormalizedCacheObject>({

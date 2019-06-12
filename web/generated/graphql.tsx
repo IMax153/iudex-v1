@@ -1,4 +1,4 @@
-// eslint-disable
+/* eslint-disable */
 
 type Maybe<T> = T | null;
 /** All built-in and custom scalars, mapped to their actual values */
@@ -28,11 +28,6 @@ export type AggregateUser = {
   count: Scalars['Int'];
 };
 
-export type AuthPayload = {
-  user: User;
-  token: Scalars['String'];
-};
-
 export type BatchPayload = {
   count: Scalars['Long'];
 };
@@ -57,6 +52,7 @@ export type CoreCompetencyConnection = {
 };
 
 export type CoreCompetencyCreateInput = {
+  id?: Maybe<Scalars['ID']>;
   competency: Core;
   comment?: Maybe<Scalars['String']>;
 };
@@ -184,60 +180,11 @@ export type JournalClubConnection = {
 };
 
 export type JournalClubCreateInput = {
+  id?: Maybe<Scalars['ID']>;
   article: Scalars['String'];
   resident: UserCreateOneInput;
-  evaluator: UserCreateOneWithoutJournalClubsInput;
-  preceptor: UserCreateOneWithoutAssignedJournalClubsInput;
-  background: CoreCompetencyCreateOneInput;
-  methods: CoreCompetencyCreateOneInput;
-  results: CoreCompetencyCreateOneInput;
-  understanding: CoreCompetencyCreateOneInput;
-  analysis: CoreCompetencyCreateOneInput;
-  application: CoreCompetencyCreateOneInput;
-  conclusions: CoreCompetencyCreateOneInput;
-  clarity: CoreCompetencyCreateOneInput;
-  organization: CoreCompetencyCreateOneInput;
-  grammar: CoreCompetencyCreateOneInput;
-  responseToQuestions: CoreCompetencyCreateOneInput;
-  knowsAudience: CoreCompetencyCreateOneInput;
-  audienceEngagement: CoreCompetencyCreateOneInput;
-  overall: OverallCompetencyCreateOneInput;
-};
-
-export type JournalClubCreateManyWithoutEvaluatorInput = {
-  create?: Maybe<Array<JournalClubCreateWithoutEvaluatorInput>>;
-  connect?: Maybe<Array<JournalClubWhereUniqueInput>>;
-};
-
-export type JournalClubCreateManyWithoutPreceptorInput = {
-  create?: Maybe<Array<JournalClubCreateWithoutPreceptorInput>>;
-  connect?: Maybe<Array<JournalClubWhereUniqueInput>>;
-};
-
-export type JournalClubCreateWithoutEvaluatorInput = {
-  article: Scalars['String'];
-  resident: UserCreateOneInput;
-  preceptor: UserCreateOneWithoutAssignedJournalClubsInput;
-  background: CoreCompetencyCreateOneInput;
-  methods: CoreCompetencyCreateOneInput;
-  results: CoreCompetencyCreateOneInput;
-  understanding: CoreCompetencyCreateOneInput;
-  analysis: CoreCompetencyCreateOneInput;
-  application: CoreCompetencyCreateOneInput;
-  conclusions: CoreCompetencyCreateOneInput;
-  clarity: CoreCompetencyCreateOneInput;
-  organization: CoreCompetencyCreateOneInput;
-  grammar: CoreCompetencyCreateOneInput;
-  responseToQuestions: CoreCompetencyCreateOneInput;
-  knowsAudience: CoreCompetencyCreateOneInput;
-  audienceEngagement: CoreCompetencyCreateOneInput;
-  overall: OverallCompetencyCreateOneInput;
-};
-
-export type JournalClubCreateWithoutPreceptorInput = {
-  article: Scalars['String'];
-  resident: UserCreateOneInput;
-  evaluator: UserCreateOneWithoutJournalClubsInput;
+  evaluator: UserCreateOneInput;
+  preceptor: UserCreateOneInput;
   background: CoreCompetencyCreateOneInput;
   methods: CoreCompetencyCreateOneInput;
   results: CoreCompetencyCreateOneInput;
@@ -270,61 +217,11 @@ export enum JournalClubOrderByInput {
   UpdatedAt_Desc = 'updatedAt_DESC',
 }
 
-export type JournalClubScalarWhereInput = {
-  id?: Maybe<Scalars['ID']>;
-  id_not?: Maybe<Scalars['ID']>;
-  id_in?: Maybe<Array<Scalars['ID']>>;
-  id_not_in?: Maybe<Array<Scalars['ID']>>;
-  id_lt?: Maybe<Scalars['ID']>;
-  id_lte?: Maybe<Scalars['ID']>;
-  id_gt?: Maybe<Scalars['ID']>;
-  id_gte?: Maybe<Scalars['ID']>;
-  id_contains?: Maybe<Scalars['ID']>;
-  id_not_contains?: Maybe<Scalars['ID']>;
-  id_starts_with?: Maybe<Scalars['ID']>;
-  id_not_starts_with?: Maybe<Scalars['ID']>;
-  id_ends_with?: Maybe<Scalars['ID']>;
-  id_not_ends_with?: Maybe<Scalars['ID']>;
-  article?: Maybe<Scalars['String']>;
-  article_not?: Maybe<Scalars['String']>;
-  article_in?: Maybe<Array<Scalars['String']>>;
-  article_not_in?: Maybe<Array<Scalars['String']>>;
-  article_lt?: Maybe<Scalars['String']>;
-  article_lte?: Maybe<Scalars['String']>;
-  article_gt?: Maybe<Scalars['String']>;
-  article_gte?: Maybe<Scalars['String']>;
-  article_contains?: Maybe<Scalars['String']>;
-  article_not_contains?: Maybe<Scalars['String']>;
-  article_starts_with?: Maybe<Scalars['String']>;
-  article_not_starts_with?: Maybe<Scalars['String']>;
-  article_ends_with?: Maybe<Scalars['String']>;
-  article_not_ends_with?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  createdAt_not?: Maybe<Scalars['DateTime']>;
-  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
-  createdAt_lt?: Maybe<Scalars['DateTime']>;
-  createdAt_lte?: Maybe<Scalars['DateTime']>;
-  createdAt_gt?: Maybe<Scalars['DateTime']>;
-  createdAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  updatedAt_not?: Maybe<Scalars['DateTime']>;
-  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt_lt?: Maybe<Scalars['DateTime']>;
-  updatedAt_lte?: Maybe<Scalars['DateTime']>;
-  updatedAt_gt?: Maybe<Scalars['DateTime']>;
-  updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  AND?: Maybe<Array<JournalClubScalarWhereInput>>;
-  OR?: Maybe<Array<JournalClubScalarWhereInput>>;
-  NOT?: Maybe<Array<JournalClubScalarWhereInput>>;
-};
-
 export type JournalClubUpdateInput = {
   article?: Maybe<Scalars['String']>;
   resident?: Maybe<UserUpdateOneRequiredInput>;
-  evaluator?: Maybe<UserUpdateOneRequiredWithoutJournalClubsInput>;
-  preceptor?: Maybe<UserUpdateOneRequiredWithoutAssignedJournalClubsInput>;
+  evaluator?: Maybe<UserUpdateOneRequiredInput>;
+  preceptor?: Maybe<UserUpdateOneRequiredInput>;
   background?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
   methods?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
   results?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
@@ -339,105 +236,10 @@ export type JournalClubUpdateInput = {
   knowsAudience?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
   audienceEngagement?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
   overall?: Maybe<OverallCompetencyUpdateOneRequiredInput>;
-};
-
-export type JournalClubUpdateManyDataInput = {
-  article?: Maybe<Scalars['String']>;
 };
 
 export type JournalClubUpdateManyMutationInput = {
   article?: Maybe<Scalars['String']>;
-};
-
-export type JournalClubUpdateManyWithoutEvaluatorInput = {
-  create?: Maybe<Array<JournalClubCreateWithoutEvaluatorInput>>;
-  delete?: Maybe<Array<JournalClubWhereUniqueInput>>;
-  connect?: Maybe<Array<JournalClubWhereUniqueInput>>;
-  set?: Maybe<Array<JournalClubWhereUniqueInput>>;
-  disconnect?: Maybe<Array<JournalClubWhereUniqueInput>>;
-  update?: Maybe<Array<JournalClubUpdateWithWhereUniqueWithoutEvaluatorInput>>;
-  upsert?: Maybe<Array<JournalClubUpsertWithWhereUniqueWithoutEvaluatorInput>>;
-  deleteMany?: Maybe<Array<JournalClubScalarWhereInput>>;
-  updateMany?: Maybe<Array<JournalClubUpdateManyWithWhereNestedInput>>;
-};
-
-export type JournalClubUpdateManyWithoutPreceptorInput = {
-  create?: Maybe<Array<JournalClubCreateWithoutPreceptorInput>>;
-  delete?: Maybe<Array<JournalClubWhereUniqueInput>>;
-  connect?: Maybe<Array<JournalClubWhereUniqueInput>>;
-  set?: Maybe<Array<JournalClubWhereUniqueInput>>;
-  disconnect?: Maybe<Array<JournalClubWhereUniqueInput>>;
-  update?: Maybe<Array<JournalClubUpdateWithWhereUniqueWithoutPreceptorInput>>;
-  upsert?: Maybe<Array<JournalClubUpsertWithWhereUniqueWithoutPreceptorInput>>;
-  deleteMany?: Maybe<Array<JournalClubScalarWhereInput>>;
-  updateMany?: Maybe<Array<JournalClubUpdateManyWithWhereNestedInput>>;
-};
-
-export type JournalClubUpdateManyWithWhereNestedInput = {
-  where: JournalClubScalarWhereInput;
-  data: JournalClubUpdateManyDataInput;
-};
-
-export type JournalClubUpdateWithoutEvaluatorDataInput = {
-  article?: Maybe<Scalars['String']>;
-  resident?: Maybe<UserUpdateOneRequiredInput>;
-  preceptor?: Maybe<UserUpdateOneRequiredWithoutAssignedJournalClubsInput>;
-  background?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  methods?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  results?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  understanding?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  analysis?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  application?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  conclusions?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  clarity?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  organization?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  grammar?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  responseToQuestions?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  knowsAudience?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  audienceEngagement?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  overall?: Maybe<OverallCompetencyUpdateOneRequiredInput>;
-};
-
-export type JournalClubUpdateWithoutPreceptorDataInput = {
-  article?: Maybe<Scalars['String']>;
-  resident?: Maybe<UserUpdateOneRequiredInput>;
-  evaluator?: Maybe<UserUpdateOneRequiredWithoutJournalClubsInput>;
-  background?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  methods?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  results?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  understanding?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  analysis?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  application?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  conclusions?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  clarity?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  organization?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  grammar?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  responseToQuestions?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  knowsAudience?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  audienceEngagement?: Maybe<CoreCompetencyUpdateOneRequiredInput>;
-  overall?: Maybe<OverallCompetencyUpdateOneRequiredInput>;
-};
-
-export type JournalClubUpdateWithWhereUniqueWithoutEvaluatorInput = {
-  where: JournalClubWhereUniqueInput;
-  data: JournalClubUpdateWithoutEvaluatorDataInput;
-};
-
-export type JournalClubUpdateWithWhereUniqueWithoutPreceptorInput = {
-  where: JournalClubWhereUniqueInput;
-  data: JournalClubUpdateWithoutPreceptorDataInput;
-};
-
-export type JournalClubUpsertWithWhereUniqueWithoutEvaluatorInput = {
-  where: JournalClubWhereUniqueInput;
-  update: JournalClubUpdateWithoutEvaluatorDataInput;
-  create: JournalClubCreateWithoutEvaluatorInput;
-};
-
-export type JournalClubUpsertWithWhereUniqueWithoutPreceptorInput = {
-  where: JournalClubWhereUniqueInput;
-  update: JournalClubUpdateWithoutPreceptorDataInput;
-  create: JournalClubCreateWithoutPreceptorInput;
 };
 
 export type JournalClubWhereInput = {
@@ -536,11 +338,7 @@ export type Mutation = {
   upsertOverallCompetency: OverallCompetency;
   deleteOverallCompetency?: Maybe<OverallCompetency>;
   deleteManyOverallCompetencies: BatchPayload;
-  register?: Maybe<AuthPayload>;
-  login?: Maybe<AuthPayload>;
-  confirmUser?: Maybe<User>;
-  changePassword?: Maybe<User>;
-  forgotPassword?: Maybe<Scalars['Boolean']>;
+  setUserPosition?: Maybe<User>;
 };
 
 export type MutationCreateUserArgs = {
@@ -655,24 +453,8 @@ export type MutationDeleteManyOverallCompetenciesArgs = {
   where?: Maybe<OverallCompetencyWhereInput>;
 };
 
-export type MutationRegisterArgs = {
-  data: UserRegisterInput;
-};
-
-export type MutationLoginArgs = {
-  data: UserLoginInput;
-};
-
-export type MutationConfirmUserArgs = {
-  data: UserConfirmInput;
-};
-
-export type MutationChangePasswordArgs = {
-  data: UserChangePasswordInput;
-};
-
-export type MutationForgotPasswordArgs = {
-  data: UserForgotPasswordInput;
+export type MutationSetUserPositionArgs = {
+  data: SetUserPositionInput;
 };
 
 export enum Overall {
@@ -693,6 +475,7 @@ export type OverallCompetencyConnection = {
 };
 
 export type OverallCompetencyCreateInput = {
+  id?: Maybe<Scalars['ID']>;
   competency: Overall;
   comment?: Maybe<Scalars['String']>;
 };
@@ -814,7 +597,6 @@ export type Query = {
   overallCompetency?: Maybe<OverallCompetency>;
   overallCompetencies: Array<OverallCompetency>;
   overallCompetenciesConnection: OverallCompetencyConnection;
-  journalClubsCount?: Maybe<Scalars['Int']>;
   me?: Maybe<User>;
 };
 
@@ -914,56 +696,20 @@ export type QueryOverallCompetenciesConnectionArgs = {
   last?: Maybe<Scalars['Int']>;
 };
 
-export type QueryJournalClubsCountArgs = {
-  where: JournalClubWhereInput;
-};
-
-export type Subscription = {
-  user?: Maybe<User>;
+export type SetUserPositionInput = {
+  position: Position;
 };
 
 export type User = {
   id: Scalars['ID'];
+  googleProviderId?: Maybe<Scalars['String']>;
   firstName: Scalars['String'];
   lastName: Scalars['String'];
   email: Scalars['String'];
-  emailConfirmed: Scalars['Boolean'];
-  position: Position;
-  isOnline: Scalars['Boolean'];
-  journalClubs?: Maybe<Array<JournalClub>>;
-  assignedJournalClubs?: Maybe<Array<JournalClub>>;
+  position?: Maybe<Position>;
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
   fullName: Scalars['String'];
-};
-
-export type UserJournalClubsArgs = {
-  where?: Maybe<JournalClubWhereInput>;
-  orderBy?: Maybe<JournalClubOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-};
-
-export type UserAssignedJournalClubsArgs = {
-  where?: Maybe<JournalClubWhereInput>;
-  orderBy?: Maybe<JournalClubOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-};
-
-export type UserChangePasswordInput = {
-  token: Scalars['String'];
-  password: Scalars['String'];
-};
-
-export type UserConfirmInput = {
-  token: Scalars['String'];
 };
 
 export type UserConnection = {
@@ -973,15 +719,12 @@ export type UserConnection = {
 };
 
 export type UserCreateInput = {
+  id?: Maybe<Scalars['ID']>;
+  googleProviderId?: Maybe<Scalars['String']>;
   firstName: Scalars['String'];
   lastName: Scalars['String'];
   email: Scalars['String'];
-  emailConfirmed?: Maybe<Scalars['Boolean']>;
-  password: Scalars['String'];
-  position: Position;
-  isOnline?: Maybe<Scalars['Boolean']>;
-  journalClubs?: Maybe<JournalClubCreateManyWithoutEvaluatorInput>;
-  assignedJournalClubs?: Maybe<JournalClubCreateManyWithoutPreceptorInput>;
+  position?: Maybe<Position>;
 };
 
 export type UserCreateOneInput = {
@@ -989,115 +732,52 @@ export type UserCreateOneInput = {
   connect?: Maybe<UserWhereUniqueInput>;
 };
 
-export type UserCreateOneWithoutAssignedJournalClubsInput = {
-  create?: Maybe<UserCreateWithoutAssignedJournalClubsInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-};
-
-export type UserCreateOneWithoutJournalClubsInput = {
-  create?: Maybe<UserCreateWithoutJournalClubsInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-};
-
-export type UserCreateWithoutAssignedJournalClubsInput = {
-  firstName: Scalars['String'];
-  lastName: Scalars['String'];
-  email: Scalars['String'];
-  emailConfirmed?: Maybe<Scalars['Boolean']>;
-  password: Scalars['String'];
-  position: Position;
-  isOnline?: Maybe<Scalars['Boolean']>;
-  journalClubs?: Maybe<JournalClubCreateManyWithoutEvaluatorInput>;
-};
-
-export type UserCreateWithoutJournalClubsInput = {
-  firstName: Scalars['String'];
-  lastName: Scalars['String'];
-  email: Scalars['String'];
-  emailConfirmed?: Maybe<Scalars['Boolean']>;
-  password: Scalars['String'];
-  position: Position;
-  isOnline?: Maybe<Scalars['Boolean']>;
-  assignedJournalClubs?: Maybe<JournalClubCreateManyWithoutPreceptorInput>;
-};
-
 export type UserEdge = {
   node: User;
   cursor: Scalars['String'];
 };
 
-export type UserForgotPasswordInput = {
-  email: Scalars['String'];
-};
-
-export type UserLoginInput = {
-  email: Scalars['String'];
-  password: Scalars['String'];
-};
-
 export enum UserOrderByInput {
   Id_Asc = 'id_ASC',
   Id_Desc = 'id_DESC',
+  GoogleProviderId_Asc = 'googleProviderId_ASC',
+  GoogleProviderId_Desc = 'googleProviderId_DESC',
   FirstName_Asc = 'firstName_ASC',
   FirstName_Desc = 'firstName_DESC',
   LastName_Asc = 'lastName_ASC',
   LastName_Desc = 'lastName_DESC',
   Email_Asc = 'email_ASC',
   Email_Desc = 'email_DESC',
-  EmailConfirmed_Asc = 'emailConfirmed_ASC',
-  EmailConfirmed_Desc = 'emailConfirmed_DESC',
-  Password_Asc = 'password_ASC',
-  Password_Desc = 'password_DESC',
   Position_Asc = 'position_ASC',
   Position_Desc = 'position_DESC',
-  IsOnline_Asc = 'isOnline_ASC',
-  IsOnline_Desc = 'isOnline_DESC',
   CreatedAt_Asc = 'createdAt_ASC',
   CreatedAt_Desc = 'createdAt_DESC',
   UpdatedAt_Asc = 'updatedAt_ASC',
   UpdatedAt_Desc = 'updatedAt_DESC',
 }
 
-export type UserRegisterInput = {
-  firstName: Scalars['String'];
-  lastName: Scalars['String'];
-  email: Scalars['String'];
-  password: Scalars['String'];
-  position: Position;
-};
-
 export type UserUpdateDataInput = {
+  googleProviderId?: Maybe<Scalars['String']>;
   firstName?: Maybe<Scalars['String']>;
   lastName?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
-  emailConfirmed?: Maybe<Scalars['Boolean']>;
-  password?: Maybe<Scalars['String']>;
   position?: Maybe<Position>;
-  isOnline?: Maybe<Scalars['Boolean']>;
-  journalClubs?: Maybe<JournalClubUpdateManyWithoutEvaluatorInput>;
-  assignedJournalClubs?: Maybe<JournalClubUpdateManyWithoutPreceptorInput>;
 };
 
 export type UserUpdateInput = {
+  googleProviderId?: Maybe<Scalars['String']>;
   firstName?: Maybe<Scalars['String']>;
   lastName?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
-  emailConfirmed?: Maybe<Scalars['Boolean']>;
-  password?: Maybe<Scalars['String']>;
   position?: Maybe<Position>;
-  isOnline?: Maybe<Scalars['Boolean']>;
-  journalClubs?: Maybe<JournalClubUpdateManyWithoutEvaluatorInput>;
-  assignedJournalClubs?: Maybe<JournalClubUpdateManyWithoutPreceptorInput>;
 };
 
 export type UserUpdateManyMutationInput = {
+  googleProviderId?: Maybe<Scalars['String']>;
   firstName?: Maybe<Scalars['String']>;
   lastName?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
-  emailConfirmed?: Maybe<Scalars['Boolean']>;
-  password?: Maybe<Scalars['String']>;
   position?: Maybe<Position>;
-  isOnline?: Maybe<Scalars['Boolean']>;
 };
 
 export type UserUpdateOneRequiredInput = {
@@ -1107,55 +787,9 @@ export type UserUpdateOneRequiredInput = {
   connect?: Maybe<UserWhereUniqueInput>;
 };
 
-export type UserUpdateOneRequiredWithoutAssignedJournalClubsInput = {
-  create?: Maybe<UserCreateWithoutAssignedJournalClubsInput>;
-  update?: Maybe<UserUpdateWithoutAssignedJournalClubsDataInput>;
-  upsert?: Maybe<UserUpsertWithoutAssignedJournalClubsInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-};
-
-export type UserUpdateOneRequiredWithoutJournalClubsInput = {
-  create?: Maybe<UserCreateWithoutJournalClubsInput>;
-  update?: Maybe<UserUpdateWithoutJournalClubsDataInput>;
-  upsert?: Maybe<UserUpsertWithoutJournalClubsInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-};
-
-export type UserUpdateWithoutAssignedJournalClubsDataInput = {
-  firstName?: Maybe<Scalars['String']>;
-  lastName?: Maybe<Scalars['String']>;
-  email?: Maybe<Scalars['String']>;
-  emailConfirmed?: Maybe<Scalars['Boolean']>;
-  password?: Maybe<Scalars['String']>;
-  position?: Maybe<Position>;
-  isOnline?: Maybe<Scalars['Boolean']>;
-  journalClubs?: Maybe<JournalClubUpdateManyWithoutEvaluatorInput>;
-};
-
-export type UserUpdateWithoutJournalClubsDataInput = {
-  firstName?: Maybe<Scalars['String']>;
-  lastName?: Maybe<Scalars['String']>;
-  email?: Maybe<Scalars['String']>;
-  emailConfirmed?: Maybe<Scalars['Boolean']>;
-  password?: Maybe<Scalars['String']>;
-  position?: Maybe<Position>;
-  isOnline?: Maybe<Scalars['Boolean']>;
-  assignedJournalClubs?: Maybe<JournalClubUpdateManyWithoutPreceptorInput>;
-};
-
 export type UserUpsertNestedInput = {
   update: UserUpdateDataInput;
   create: UserCreateInput;
-};
-
-export type UserUpsertWithoutAssignedJournalClubsInput = {
-  update: UserUpdateWithoutAssignedJournalClubsDataInput;
-  create: UserCreateWithoutAssignedJournalClubsInput;
-};
-
-export type UserUpsertWithoutJournalClubsInput = {
-  update: UserUpdateWithoutJournalClubsDataInput;
-  create: UserCreateWithoutJournalClubsInput;
 };
 
 export type UserWhereInput = {
@@ -1173,6 +807,20 @@ export type UserWhereInput = {
   id_not_starts_with?: Maybe<Scalars['ID']>;
   id_ends_with?: Maybe<Scalars['ID']>;
   id_not_ends_with?: Maybe<Scalars['ID']>;
+  googleProviderId?: Maybe<Scalars['String']>;
+  googleProviderId_not?: Maybe<Scalars['String']>;
+  googleProviderId_in?: Maybe<Array<Scalars['String']>>;
+  googleProviderId_not_in?: Maybe<Array<Scalars['String']>>;
+  googleProviderId_lt?: Maybe<Scalars['String']>;
+  googleProviderId_lte?: Maybe<Scalars['String']>;
+  googleProviderId_gt?: Maybe<Scalars['String']>;
+  googleProviderId_gte?: Maybe<Scalars['String']>;
+  googleProviderId_contains?: Maybe<Scalars['String']>;
+  googleProviderId_not_contains?: Maybe<Scalars['String']>;
+  googleProviderId_starts_with?: Maybe<Scalars['String']>;
+  googleProviderId_not_starts_with?: Maybe<Scalars['String']>;
+  googleProviderId_ends_with?: Maybe<Scalars['String']>;
+  googleProviderId_not_ends_with?: Maybe<Scalars['String']>;
   firstName?: Maybe<Scalars['String']>;
   firstName_not?: Maybe<Scalars['String']>;
   firstName_in?: Maybe<Array<Scalars['String']>>;
@@ -1215,34 +863,10 @@ export type UserWhereInput = {
   email_not_starts_with?: Maybe<Scalars['String']>;
   email_ends_with?: Maybe<Scalars['String']>;
   email_not_ends_with?: Maybe<Scalars['String']>;
-  emailConfirmed?: Maybe<Scalars['Boolean']>;
-  emailConfirmed_not?: Maybe<Scalars['Boolean']>;
-  password?: Maybe<Scalars['String']>;
-  password_not?: Maybe<Scalars['String']>;
-  password_in?: Maybe<Array<Scalars['String']>>;
-  password_not_in?: Maybe<Array<Scalars['String']>>;
-  password_lt?: Maybe<Scalars['String']>;
-  password_lte?: Maybe<Scalars['String']>;
-  password_gt?: Maybe<Scalars['String']>;
-  password_gte?: Maybe<Scalars['String']>;
-  password_contains?: Maybe<Scalars['String']>;
-  password_not_contains?: Maybe<Scalars['String']>;
-  password_starts_with?: Maybe<Scalars['String']>;
-  password_not_starts_with?: Maybe<Scalars['String']>;
-  password_ends_with?: Maybe<Scalars['String']>;
-  password_not_ends_with?: Maybe<Scalars['String']>;
   position?: Maybe<Position>;
   position_not?: Maybe<Position>;
   position_in?: Maybe<Array<Position>>;
   position_not_in?: Maybe<Array<Position>>;
-  isOnline?: Maybe<Scalars['Boolean']>;
-  isOnline_not?: Maybe<Scalars['Boolean']>;
-  journalClubs_every?: Maybe<JournalClubWhereInput>;
-  journalClubs_some?: Maybe<JournalClubWhereInput>;
-  journalClubs_none?: Maybe<JournalClubWhereInput>;
-  assignedJournalClubs_every?: Maybe<JournalClubWhereInput>;
-  assignedJournalClubs_some?: Maybe<JournalClubWhereInput>;
-  assignedJournalClubs_none?: Maybe<JournalClubWhereInput>;
   createdAt?: Maybe<Scalars['DateTime']>;
   createdAt_not?: Maybe<Scalars['DateTime']>;
   createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
@@ -1266,8 +890,21 @@ export type UserWhereInput = {
 
 export type UserWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>;
+  googleProviderId?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
 };
+export type PreceptorsQueryVariables = {};
+
+export type PreceptorsQuery = { __typename?: 'Query' } & {
+  users: Array<{ __typename?: 'User' } & Pick<User, 'id' | 'fullName'>>;
+};
+
+export type ResidentsQueryVariables = {};
+
+export type ResidentsQuery = { __typename?: 'Query' } & {
+  users: Array<{ __typename?: 'User' } & Pick<User, 'id' | 'fullName'>>;
+};
+
 export type AllJournalClubsQueryVariables = {
   where?: Maybe<JournalClubWhereInput>;
 };
@@ -1285,30 +922,33 @@ export type JournalClubsQueryVariables = {
 };
 
 export type JournalClubsQuery = { __typename?: 'Query' } & {
-  journalClubs: Array<
-    { __typename?: 'JournalClub' } & Pick<
-      JournalClub,
-      'id' | 'article' | 'createdAt' | 'updatedAt'
-    > & {
-        resident: { __typename?: 'User' } & Pick<User, 'id' | 'fullName'>;
-        evaluator: { __typename?: 'User' } & Pick<User, 'id' | 'fullName'>;
-        preceptor: { __typename?: 'User' } & Pick<User, 'id' | 'fullName'>;
-        overall: { __typename?: 'OverallCompetency' } & OverallCompetencyFieldsFragment;
+  journalClubsConnection: { __typename?: 'JournalClubConnection' } & {
+    aggregate: { __typename?: 'AggregateJournalClub' } & Pick<AggregateJournalClub, 'count'>;
+    pageInfo: { __typename?: 'PageInfo' } & Pick<PageInfo, 'endCursor' | 'hasNextPage'>;
+    edges: Array<
+      { __typename?: 'JournalClubEdge' } & {
+        node: { __typename?: 'JournalClub' } & Pick<
+          JournalClub,
+          'id' | 'article' | 'createdAt' | 'updatedAt'
+        > & {
+            resident: { __typename?: 'User' } & Pick<User, 'id' | 'fullName'>;
+            evaluator: { __typename?: 'User' } & Pick<User, 'id' | 'fullName'>;
+            preceptor: { __typename?: 'User' } & Pick<User, 'id' | 'fullName'>;
+            overall: { __typename?: 'OverallCompetency' } & Pick<
+              OverallCompetency,
+              'comment' | 'competency'
+            >;
+          };
       }
-  >;
+    >;
+  };
 };
 
-export type JournalClubsCountQueryVariables = {
-  where: JournalClubWhereInput;
-};
-
-export type JournalClubsCountQuery = { __typename?: 'Query' } & Pick<Query, 'journalClubsCount'>;
-
-export type JournalClubEvaluationQueryVariables = {
+export type JournalClubQueryVariables = {
   where: JournalClubWhereUniqueInput;
 };
 
-export type JournalClubEvaluationQuery = { __typename?: 'Query' } & {
+export type JournalClubQuery = { __typename?: 'Query' } & {
   journalClub: Maybe<{ __typename?: 'JournalClub' } & JournalClubFieldsFragment>;
 };
 
@@ -1317,7 +957,8 @@ export type CreateJournalClubMutationVariables = {
 };
 
 export type CreateJournalClubMutation = { __typename?: 'Mutation' } & {
-  createJournalClub: { __typename?: 'JournalClub' } & JournalClubFieldsFragment;
+  createJournalClub: { __typename?: 'JournalClub' } & Pick<JournalClub, 'id'> &
+    JournalClubFieldsFragment;
 };
 
 export type UsersQueryVariables = {
@@ -1362,63 +1003,23 @@ export type OverallCompetencyFieldsFragment = { __typename?: 'OverallCompetency'
   'competency' | 'comment'
 >;
 
-export type ChangePasswordMutationVariables = {
-  data: UserChangePasswordInput;
-};
-
-export type ChangePasswordMutation = { __typename?: 'Mutation' } & {
-  changePassword: Maybe<{ __typename?: 'User' } & Pick<User, 'id'>>;
-};
-
-export type ConfirmUserMutationVariables = {
-  data: UserConfirmInput;
-};
-
-export type ConfirmUserMutation = { __typename?: 'Mutation' } & {
-  confirmUser: Maybe<
-    { __typename?: 'User' } & Pick<User, 'id' | 'fullName' | 'email' | 'emailConfirmed'>
-  >;
-};
-
-export type ForgotPasswordMutationVariables = {
-  data: UserForgotPasswordInput;
-};
-
-export type ForgotPasswordMutation = { __typename?: 'Mutation' } & Pick<Mutation, 'forgotPassword'>;
-
-export type LoginMutationVariables = {
-  data: UserLoginInput;
-};
-
-export type LoginMutation = { __typename?: 'Mutation' } & {
-  login: Maybe<
-    { __typename?: 'AuthPayload' } & Pick<AuthPayload, 'token'> & {
-        user: { __typename?: 'User' } & Pick<User, 'id' | 'fullName' | 'email' | 'position'>;
-      }
-  >;
-};
+export type UserFieldsFragment = { __typename?: 'User' } & Pick<
+  User,
+  'id' | 'fullName' | 'firstName' | 'lastName' | 'email' | 'position' | 'createdAt' | 'updatedAt'
+>;
 
 export type MeQueryVariables = {};
 
 export type MeQuery = { __typename?: 'Query' } & {
-  me: Maybe<
-    { __typename?: 'User' } & Pick<
-      User,
-      'id' | 'fullName' | 'email' | 'position' | 'createdAt' | 'updatedAt'
-    >
-  >;
+  me: Maybe<{ __typename?: 'User' } & UserFieldsFragment>;
 };
 
-export type RegisterMutationVariables = {
-  data: UserRegisterInput;
+export type SetUserPositionMutationVariables = {
+  data: SetUserPositionInput;
 };
 
-export type RegisterMutation = { __typename?: 'Mutation' } & {
-  register: Maybe<
-    { __typename?: 'AuthPayload' } & Pick<AuthPayload, 'token'> & {
-        user: { __typename?: 'User' } & Pick<User, 'id' | 'fullName' | 'email' | 'position'>;
-      }
-  >;
+export type SetUserPositionMutation = { __typename?: 'Mutation' } & {
+  setUserPosition: Maybe<{ __typename?: 'User' } & UserFieldsFragment>;
 };
 
 import gql from 'graphql-tag';
@@ -1499,6 +1100,102 @@ export const journalClubFieldsFragmentDoc = gql`
   ${coreCompetencyFieldsFragmentDoc}
   ${overallCompetencyFieldsFragmentDoc}
 `;
+export const userFieldsFragmentDoc = gql`
+  fragment userFields on User {
+    id
+    fullName
+    firstName
+    lastName
+    email
+    position
+    createdAt
+    updatedAt
+  }
+`;
+export const PreceptorsDocument = gql`
+  query Preceptors {
+    users(where: { position: PHARMACIST }, orderBy: lastName_ASC) {
+      id
+      fullName
+    }
+  }
+`;
+
+export class PreceptorsComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<PreceptorsQuery, PreceptorsQueryVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<PreceptorsQuery, PreceptorsQueryVariables>
+        query={PreceptorsDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type PreceptorsProps<TChildProps = {}> = Partial<
+  ReactApollo.DataProps<PreceptorsQuery, PreceptorsQueryVariables>
+> &
+  TChildProps;
+export function withPreceptors<TProps, TChildProps = {}>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        PreceptorsQuery,
+        PreceptorsQueryVariables,
+        PreceptorsProps<TChildProps>
+      >
+    | undefined,
+) {
+  return ReactApollo.withQuery<
+    TProps,
+    PreceptorsQuery,
+    PreceptorsQueryVariables,
+    PreceptorsProps<TChildProps>
+  >(PreceptorsDocument, operationOptions);
+}
+export const ResidentsDocument = gql`
+  query Residents {
+    users(where: { position: RESIDENT }, orderBy: lastName_ASC) {
+      id
+      fullName
+    }
+  }
+`;
+
+export class ResidentsComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<ResidentsQuery, ResidentsQueryVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<ResidentsQuery, ResidentsQueryVariables>
+        query={ResidentsDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type ResidentsProps<TChildProps = {}> = Partial<
+  ReactApollo.DataProps<ResidentsQuery, ResidentsQueryVariables>
+> &
+  TChildProps;
+export function withResidents<TProps, TChildProps = {}>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        ResidentsQuery,
+        ResidentsQueryVariables,
+        ResidentsProps<TChildProps>
+      >
+    | undefined,
+) {
+  return ReactApollo.withQuery<
+    TProps,
+    ResidentsQuery,
+    ResidentsQueryVariables,
+    ResidentsProps<TChildProps>
+  >(ResidentsDocument, operationOptions);
+}
 export const AllJournalClubsDocument = gql`
   query AllJournalClubs($where: JournalClubWhereInput) {
     journalClubs(where: $where) {
@@ -1549,29 +1246,46 @@ export const JournalClubsDocument = gql`
     $after: String
     $skip: Int
   ) {
-    journalClubs(where: $where, orderBy: $orderBy, first: $first, after: $after, skip: $skip) {
-      id
-      article
-      createdAt
-      updatedAt
-      resident {
-        id
-        fullName
+    journalClubsConnection(
+      where: $where
+      orderBy: $orderBy
+      first: $first
+      after: $after
+      skip: $skip
+    ) {
+      aggregate {
+        count
       }
-      evaluator {
-        id
-        fullName
+      pageInfo {
+        endCursor
+        hasNextPage
       }
-      preceptor {
-        id
-        fullName
-      }
-      overall {
-        ...overallCompetencyFields
+      edges {
+        node {
+          id
+          article
+          createdAt
+          updatedAt
+          resident {
+            id
+            fullName
+          }
+          evaluator {
+            id
+            fullName
+          }
+          preceptor {
+            id
+            fullName
+          }
+          overall {
+            comment
+            competency
+          }
+        }
       }
     }
   }
-  ${overallCompetencyFieldsFragmentDoc}
 `;
 
 export class JournalClubsComponent extends React.Component<
@@ -1607,47 +1321,8 @@ export function withJournalClubs<TProps, TChildProps = {}>(
     JournalClubsProps<TChildProps>
   >(JournalClubsDocument, operationOptions);
 }
-export const JournalClubsCountDocument = gql`
-  query JournalClubsCount($where: JournalClubWhereInput!) {
-    journalClubsCount(where: $where)
-  }
-`;
-
-export class JournalClubsCountComponent extends React.Component<
-  Partial<ReactApollo.QueryProps<JournalClubsCountQuery, JournalClubsCountQueryVariables>>
-> {
-  render() {
-    return (
-      <ReactApollo.Query<JournalClubsCountQuery, JournalClubsCountQueryVariables>
-        query={JournalClubsCountDocument}
-        {...(this as any)['props'] as any}
-      />
-    );
-  }
-}
-export type JournalClubsCountProps<TChildProps = {}> = Partial<
-  ReactApollo.DataProps<JournalClubsCountQuery, JournalClubsCountQueryVariables>
-> &
-  TChildProps;
-export function withJournalClubsCount<TProps, TChildProps = {}>(
-  operationOptions:
-    | ReactApollo.OperationOption<
-        TProps,
-        JournalClubsCountQuery,
-        JournalClubsCountQueryVariables,
-        JournalClubsCountProps<TChildProps>
-      >
-    | undefined,
-) {
-  return ReactApollo.withQuery<
-    TProps,
-    JournalClubsCountQuery,
-    JournalClubsCountQueryVariables,
-    JournalClubsCountProps<TChildProps>
-  >(JournalClubsCountDocument, operationOptions);
-}
-export const JournalClubEvaluationDocument = gql`
-  query JournalClubEvaluation($where: JournalClubWhereUniqueInput!) {
+export const JournalClubDocument = gql`
+  query JournalClub($where: JournalClubWhereUniqueInput!) {
     journalClub(where: $where) {
       ...journalClubFields
     }
@@ -1655,42 +1330,43 @@ export const JournalClubEvaluationDocument = gql`
   ${journalClubFieldsFragmentDoc}
 `;
 
-export class JournalClubEvaluationComponent extends React.Component<
-  Partial<ReactApollo.QueryProps<JournalClubEvaluationQuery, JournalClubEvaluationQueryVariables>>
+export class JournalClubComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<JournalClubQuery, JournalClubQueryVariables>>
 > {
   render() {
     return (
-      <ReactApollo.Query<JournalClubEvaluationQuery, JournalClubEvaluationQueryVariables>
-        query={JournalClubEvaluationDocument}
+      <ReactApollo.Query<JournalClubQuery, JournalClubQueryVariables>
+        query={JournalClubDocument}
         {...(this as any)['props'] as any}
       />
     );
   }
 }
-export type JournalClubEvaluationProps<TChildProps = {}> = Partial<
-  ReactApollo.DataProps<JournalClubEvaluationQuery, JournalClubEvaluationQueryVariables>
+export type JournalClubProps<TChildProps = {}> = Partial<
+  ReactApollo.DataProps<JournalClubQuery, JournalClubQueryVariables>
 > &
   TChildProps;
-export function withJournalClubEvaluation<TProps, TChildProps = {}>(
+export function withJournalClub<TProps, TChildProps = {}>(
   operationOptions:
     | ReactApollo.OperationOption<
         TProps,
-        JournalClubEvaluationQuery,
-        JournalClubEvaluationQueryVariables,
-        JournalClubEvaluationProps<TChildProps>
+        JournalClubQuery,
+        JournalClubQueryVariables,
+        JournalClubProps<TChildProps>
       >
     | undefined,
 ) {
   return ReactApollo.withQuery<
     TProps,
-    JournalClubEvaluationQuery,
-    JournalClubEvaluationQueryVariables,
-    JournalClubEvaluationProps<TChildProps>
-  >(JournalClubEvaluationDocument, operationOptions);
+    JournalClubQuery,
+    JournalClubQueryVariables,
+    JournalClubProps<TChildProps>
+  >(JournalClubDocument, operationOptions);
 }
 export const CreateJournalClubDocument = gql`
   mutation CreateJournalClub($data: JournalClubCreateInput!) {
     createJournalClub(data: $data) {
+      id
       ...journalClubFields
     }
   }
@@ -1769,201 +1445,13 @@ export function withUsers<TProps, TChildProps = {}>(
     operationOptions,
   );
 }
-export const ChangePasswordDocument = gql`
-  mutation ChangePassword($data: UserChangePasswordInput!) {
-    changePassword(data: $data) {
-      id
-    }
-  }
-`;
-
-export class ChangePasswordComponent extends React.Component<
-  Partial<ReactApollo.MutationProps<ChangePasswordMutation, ChangePasswordMutationVariables>>
-> {
-  render() {
-    return (
-      <ReactApollo.Mutation<ChangePasswordMutation, ChangePasswordMutationVariables>
-        mutation={ChangePasswordDocument}
-        {...(this as any)['props'] as any}
-      />
-    );
-  }
-}
-export type ChangePasswordProps<TChildProps = {}> = Partial<
-  ReactApollo.MutateProps<ChangePasswordMutation, ChangePasswordMutationVariables>
-> &
-  TChildProps;
-export type ChangePasswordMutationFn = ReactApollo.MutationFn<
-  ChangePasswordMutation,
-  ChangePasswordMutationVariables
->;
-export function withChangePassword<TProps, TChildProps = {}>(
-  operationOptions:
-    | ReactApollo.OperationOption<
-        TProps,
-        ChangePasswordMutation,
-        ChangePasswordMutationVariables,
-        ChangePasswordProps<TChildProps>
-      >
-    | undefined,
-) {
-  return ReactApollo.withMutation<
-    TProps,
-    ChangePasswordMutation,
-    ChangePasswordMutationVariables,
-    ChangePasswordProps<TChildProps>
-  >(ChangePasswordDocument, operationOptions);
-}
-export const ConfirmUserDocument = gql`
-  mutation ConfirmUser($data: UserConfirmInput!) {
-    confirmUser(data: $data) {
-      id
-      fullName
-      email
-      emailConfirmed
-    }
-  }
-`;
-
-export class ConfirmUserComponent extends React.Component<
-  Partial<ReactApollo.MutationProps<ConfirmUserMutation, ConfirmUserMutationVariables>>
-> {
-  render() {
-    return (
-      <ReactApollo.Mutation<ConfirmUserMutation, ConfirmUserMutationVariables>
-        mutation={ConfirmUserDocument}
-        {...(this as any)['props'] as any}
-      />
-    );
-  }
-}
-export type ConfirmUserProps<TChildProps = {}> = Partial<
-  ReactApollo.MutateProps<ConfirmUserMutation, ConfirmUserMutationVariables>
-> &
-  TChildProps;
-export type ConfirmUserMutationFn = ReactApollo.MutationFn<
-  ConfirmUserMutation,
-  ConfirmUserMutationVariables
->;
-export function withConfirmUser<TProps, TChildProps = {}>(
-  operationOptions:
-    | ReactApollo.OperationOption<
-        TProps,
-        ConfirmUserMutation,
-        ConfirmUserMutationVariables,
-        ConfirmUserProps<TChildProps>
-      >
-    | undefined,
-) {
-  return ReactApollo.withMutation<
-    TProps,
-    ConfirmUserMutation,
-    ConfirmUserMutationVariables,
-    ConfirmUserProps<TChildProps>
-  >(ConfirmUserDocument, operationOptions);
-}
-export const ForgotPasswordDocument = gql`
-  mutation ForgotPassword($data: UserForgotPasswordInput!) {
-    forgotPassword(data: $data)
-  }
-`;
-
-export class ForgotPasswordComponent extends React.Component<
-  Partial<ReactApollo.MutationProps<ForgotPasswordMutation, ForgotPasswordMutationVariables>>
-> {
-  render() {
-    return (
-      <ReactApollo.Mutation<ForgotPasswordMutation, ForgotPasswordMutationVariables>
-        mutation={ForgotPasswordDocument}
-        {...(this as any)['props'] as any}
-      />
-    );
-  }
-}
-export type ForgotPasswordProps<TChildProps = {}> = Partial<
-  ReactApollo.MutateProps<ForgotPasswordMutation, ForgotPasswordMutationVariables>
-> &
-  TChildProps;
-export type ForgotPasswordMutationFn = ReactApollo.MutationFn<
-  ForgotPasswordMutation,
-  ForgotPasswordMutationVariables
->;
-export function withForgotPassword<TProps, TChildProps = {}>(
-  operationOptions:
-    | ReactApollo.OperationOption<
-        TProps,
-        ForgotPasswordMutation,
-        ForgotPasswordMutationVariables,
-        ForgotPasswordProps<TChildProps>
-      >
-    | undefined,
-) {
-  return ReactApollo.withMutation<
-    TProps,
-    ForgotPasswordMutation,
-    ForgotPasswordMutationVariables,
-    ForgotPasswordProps<TChildProps>
-  >(ForgotPasswordDocument, operationOptions);
-}
-export const LoginDocument = gql`
-  mutation Login($data: UserLoginInput!) {
-    login(data: $data) {
-      user {
-        id
-        fullName
-        email
-        position
-      }
-      token
-    }
-  }
-`;
-
-export class LoginComponent extends React.Component<
-  Partial<ReactApollo.MutationProps<LoginMutation, LoginMutationVariables>>
-> {
-  render() {
-    return (
-      <ReactApollo.Mutation<LoginMutation, LoginMutationVariables>
-        mutation={LoginDocument}
-        {...(this as any)['props'] as any}
-      />
-    );
-  }
-}
-export type LoginProps<TChildProps = {}> = Partial<
-  ReactApollo.MutateProps<LoginMutation, LoginMutationVariables>
-> &
-  TChildProps;
-export type LoginMutationFn = ReactApollo.MutationFn<LoginMutation, LoginMutationVariables>;
-export function withLogin<TProps, TChildProps = {}>(
-  operationOptions:
-    | ReactApollo.OperationOption<
-        TProps,
-        LoginMutation,
-        LoginMutationVariables,
-        LoginProps<TChildProps>
-      >
-    | undefined,
-) {
-  return ReactApollo.withMutation<
-    TProps,
-    LoginMutation,
-    LoginMutationVariables,
-    LoginProps<TChildProps>
-  >(LoginDocument, operationOptions);
-}
 export const MeDocument = gql`
   query Me {
     me {
-      id
-      fullName
-      email
-      position
-      createdAt
-      updatedAt
+      ...userFields
     }
   }
+  ${userFieldsFragmentDoc}
 `;
 
 export class MeComponent extends React.Component<
@@ -1990,54 +1478,49 @@ export function withMe<TProps, TChildProps = {}>(
     operationOptions,
   );
 }
-export const RegisterDocument = gql`
-  mutation Register($data: UserRegisterInput!) {
-    register(data: $data) {
-      user {
-        id
-        fullName
-        email
-        position
-      }
-      token
+export const SetUserPositionDocument = gql`
+  mutation SetUserPosition($data: SetUserPositionInput!) {
+    setUserPosition(data: $data) {
+      ...userFields
     }
   }
+  ${userFieldsFragmentDoc}
 `;
 
-export class RegisterComponent extends React.Component<
-  Partial<ReactApollo.MutationProps<RegisterMutation, RegisterMutationVariables>>
+export class SetUserPositionComponent extends React.Component<
+  Partial<ReactApollo.MutationProps<SetUserPositionMutation, SetUserPositionMutationVariables>>
 > {
   render() {
     return (
-      <ReactApollo.Mutation<RegisterMutation, RegisterMutationVariables>
-        mutation={RegisterDocument}
+      <ReactApollo.Mutation<SetUserPositionMutation, SetUserPositionMutationVariables>
+        mutation={SetUserPositionDocument}
         {...(this as any)['props'] as any}
       />
     );
   }
 }
-export type RegisterProps<TChildProps = {}> = Partial<
-  ReactApollo.MutateProps<RegisterMutation, RegisterMutationVariables>
+export type SetUserPositionProps<TChildProps = {}> = Partial<
+  ReactApollo.MutateProps<SetUserPositionMutation, SetUserPositionMutationVariables>
 > &
   TChildProps;
-export type RegisterMutationFn = ReactApollo.MutationFn<
-  RegisterMutation,
-  RegisterMutationVariables
+export type SetUserPositionMutationFn = ReactApollo.MutationFn<
+  SetUserPositionMutation,
+  SetUserPositionMutationVariables
 >;
-export function withRegister<TProps, TChildProps = {}>(
+export function withSetUserPosition<TProps, TChildProps = {}>(
   operationOptions:
     | ReactApollo.OperationOption<
         TProps,
-        RegisterMutation,
-        RegisterMutationVariables,
-        RegisterProps<TChildProps>
+        SetUserPositionMutation,
+        SetUserPositionMutationVariables,
+        SetUserPositionProps<TChildProps>
       >
     | undefined,
 ) {
   return ReactApollo.withMutation<
     TProps,
-    RegisterMutation,
-    RegisterMutationVariables,
-    RegisterProps<TChildProps>
-  >(RegisterDocument, operationOptions);
+    SetUserPositionMutation,
+    SetUserPositionMutationVariables,
+    SetUserPositionProps<TChildProps>
+  >(SetUserPositionDocument, operationOptions);
 }

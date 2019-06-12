@@ -68,6 +68,7 @@ module.exports = {
     'no-console': 'off',
     'no-plusplus': 'off',
     'no-return-assign': 'off',
+    'no-underscore-dangle': 'off',
     'class-methods-use-this': 'off',
     'consistent-return': 'off',
     'jsx-a11y/anchor-is-valid': 'off',

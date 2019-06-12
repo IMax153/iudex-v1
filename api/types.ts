@@ -1,13 +1,9 @@
 import { Request, Response } from 'express';
 
-import { Prisma } from './generated/prisma-client';
+import { Prisma, User } from './generated/prisma-client';
 
-interface RequestWithUser extends Request {
-  user: {
-    id: string;
-    iat: string;
-    exp: string;
-  };
+export interface RequestWithUser extends Request {
+  user: User;
 }
 
 export interface Context {

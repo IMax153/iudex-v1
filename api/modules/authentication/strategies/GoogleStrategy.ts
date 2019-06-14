@@ -18,8 +18,20 @@ export const GoogleStrategy = new Strategy(
     try {
       const userExists = await prisma.$exists.user({ googleProviderId: googleProfile.getID() });
 
+      // user already registered
       if (userExists) {
         const user = await prisma.user({ googleProviderId: googleProfile.getID() });
+        return done(null, user);
+      }
+
+      const userWithEmailExists = await prisma.$exists.user({ email: googleProfile.getEmail() });
+
+      // user already registered but with different provider
+      if (userWithEmailExists) {
+        const user = await prisma.updateUser({
+          where: { email: googleProfile.getEmail() },
+          data: { googleProviderId: googleProfile.getID() },
+        });
         return done(null, user);
       }
 

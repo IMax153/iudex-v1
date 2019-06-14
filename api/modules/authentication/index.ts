@@ -1,6 +1,5 @@
 import { use, serializeUser, deserializeUser, Strategy } from 'passport';
-import { GoogleStrategy } from './strategies';
-import {} from 'passport-google-oauth2';
+import { FacebookStrategy, GoogleStrategy, TwitterStrategy } from './strategies';
 
 class Passport {
   private _strategies: Strategy[];
@@ -21,7 +20,9 @@ class Passport {
 }
 
 const passport = new Passport();
+passport.addStrategy(FacebookStrategy);
 passport.addStrategy(GoogleStrategy);
+passport.addStrategy(TwitterStrategy);
 
 export { passport };
 export * from './profiles';

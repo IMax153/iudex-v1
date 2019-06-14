@@ -1,6 +1,8 @@
 type User {
   id: ID! @id
+  facebookProviderId: String @unique
   googleProviderId: String @unique
+  twitterProviderId: String @unique
   firstName: String!
   lastName: String!
   email: String! @unique

@@ -21,8 +21,12 @@ declare global {
       REDIS_PASSWORD: string;
       REDIS_PORT: string;
       SESSION_SECRET: string;
+      FACEBOOK_OAUTH_CLIENT_ID: string;
+      FACEBOOK_OAUTH_CLIENT_SECRET: string;
       GOOGLE_OAUTH_CLIENT_ID: string;
       GOOGLE_OAUTH_CLIENT_SECRET: string;
+      TWITTER_OAUTH_CLIENT_ID: string;
+      TWITTER_OAUTH_CLIENT_SECRET: string;
       SENDGRID_API_KEY: string;
     }
   }

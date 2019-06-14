@@ -485,12 +485,14 @@ input SetUserPositionInput {
 type User {
   createdAt: DateTime!
   email: String!
+  facebookProviderId: String
   firstName: String!
   fullName: String!
   googleProviderId: String
   id: ID!
   lastName: String!
   position: Position
+  twitterProviderId: String
   updatedAt: DateTime!
 }
 
@@ -502,11 +504,13 @@ type UserConnection {
 
 input UserCreateInput {
   email: String!
+  facebookProviderId: String
   firstName: String!
   googleProviderId: String
   id: ID
   lastName: String!
   position: Position
+  twitterProviderId: String
 }
 
 input UserCreateOneInput {
@@ -524,6 +528,8 @@ enum UserOrderByInput {
   createdAt_DESC
   email_ASC
   email_DESC
+  facebookProviderId_ASC
+  facebookProviderId_DESC
   firstName_ASC
   firstName_DESC
   googleProviderId_ASC
@@ -534,32 +540,40 @@ enum UserOrderByInput {
   lastName_DESC
   position_ASC
   position_DESC
+  twitterProviderId_ASC
+  twitterProviderId_DESC
   updatedAt_ASC
   updatedAt_DESC
 }
 
 input UserUpdateDataInput {
   email: String
+  facebookProviderId: String
   firstName: String
   googleProviderId: String
   lastName: String
   position: Position
+  twitterProviderId: String
 }
 
 input UserUpdateInput {
   email: String
+  facebookProviderId: String
   firstName: String
   googleProviderId: String
   lastName: String
   position: Position
+  twitterProviderId: String
 }
 
 input UserUpdateManyMutationInput {
   email: String
+  facebookProviderId: String
   firstName: String
   googleProviderId: String
   lastName: String
   position: Position
+  twitterProviderId: String
 }
 
 input UserUpdateOneRequiredInput {
@@ -598,6 +612,20 @@ input UserWhereInput {
   email_not_in: [String!]
   email_not_starts_with: String
   email_starts_with: String
+  facebookProviderId: String
+  facebookProviderId_contains: String
+  facebookProviderId_ends_with: String
+  facebookProviderId_gt: String
+  facebookProviderId_gte: String
+  facebookProviderId_in: [String!]
+  facebookProviderId_lt: String
+  facebookProviderId_lte: String
+  facebookProviderId_not: String
+  facebookProviderId_not_contains: String
+  facebookProviderId_not_ends_with: String
+  facebookProviderId_not_in: [String!]
+  facebookProviderId_not_starts_with: String
+  facebookProviderId_starts_with: String
   firstName: String
   firstName_contains: String
   firstName_ends_with: String
@@ -660,6 +688,20 @@ input UserWhereInput {
   position_in: [Position!]
   position_not: Position
   position_not_in: [Position!]
+  twitterProviderId: String
+  twitterProviderId_contains: String
+  twitterProviderId_ends_with: String
+  twitterProviderId_gt: String
+  twitterProviderId_gte: String
+  twitterProviderId_in: [String!]
+  twitterProviderId_lt: String
+  twitterProviderId_lte: String
+  twitterProviderId_not: String
+  twitterProviderId_not_contains: String
+  twitterProviderId_not_ends_with: String
+  twitterProviderId_not_in: [String!]
+  twitterProviderId_not_starts_with: String
+  twitterProviderId_starts_with: String
   updatedAt: DateTime
   updatedAt_gt: DateTime
   updatedAt_gte: DateTime
@@ -672,6 +714,8 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   email: String
+  facebookProviderId: String
   googleProviderId: String
   id: ID
+  twitterProviderId: String
 }

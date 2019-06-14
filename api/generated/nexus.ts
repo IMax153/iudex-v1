@@ -271,11 +271,13 @@ export interface NexusGenInputs {
   }
   UserCreateInput: { // input type
     email: string; // String!
+    facebookProviderId?: string | null; // String
     firstName: string; // String!
     googleProviderId?: string | null; // String
     id?: string | null; // ID
     lastName: string; // String!
     position?: NexusGenEnums['Position'] | null; // Position
+    twitterProviderId?: string | null; // String
   }
   UserCreateOneInput: { // input type
     connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
@@ -283,24 +285,30 @@ export interface NexusGenInputs {
   }
   UserUpdateDataInput: { // input type
     email?: string | null; // String
+    facebookProviderId?: string | null; // String
     firstName?: string | null; // String
     googleProviderId?: string | null; // String
     lastName?: string | null; // String
     position?: NexusGenEnums['Position'] | null; // Position
+    twitterProviderId?: string | null; // String
   }
   UserUpdateInput: { // input type
     email?: string | null; // String
+    facebookProviderId?: string | null; // String
     firstName?: string | null; // String
     googleProviderId?: string | null; // String
     lastName?: string | null; // String
     position?: NexusGenEnums['Position'] | null; // Position
+    twitterProviderId?: string | null; // String
   }
   UserUpdateManyMutationInput: { // input type
     email?: string | null; // String
+    facebookProviderId?: string | null; // String
     firstName?: string | null; // String
     googleProviderId?: string | null; // String
     lastName?: string | null; // String
     position?: NexusGenEnums['Position'] | null; // Position
+    twitterProviderId?: string | null; // String
   }
   UserUpdateOneRequiredInput: { // input type
     connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
@@ -336,6 +344,20 @@ export interface NexusGenInputs {
     email_not_in?: string[] | null; // [String!]
     email_not_starts_with?: string | null; // String
     email_starts_with?: string | null; // String
+    facebookProviderId?: string | null; // String
+    facebookProviderId_contains?: string | null; // String
+    facebookProviderId_ends_with?: string | null; // String
+    facebookProviderId_gt?: string | null; // String
+    facebookProviderId_gte?: string | null; // String
+    facebookProviderId_in?: string[] | null; // [String!]
+    facebookProviderId_lt?: string | null; // String
+    facebookProviderId_lte?: string | null; // String
+    facebookProviderId_not?: string | null; // String
+    facebookProviderId_not_contains?: string | null; // String
+    facebookProviderId_not_ends_with?: string | null; // String
+    facebookProviderId_not_in?: string[] | null; // [String!]
+    facebookProviderId_not_starts_with?: string | null; // String
+    facebookProviderId_starts_with?: string | null; // String
     firstName?: string | null; // String
     firstName_contains?: string | null; // String
     firstName_ends_with?: string | null; // String
@@ -398,6 +420,20 @@ export interface NexusGenInputs {
     position_in?: NexusGenEnums['Position'][] | null; // [Position!]
     position_not?: NexusGenEnums['Position'] | null; // Position
     position_not_in?: NexusGenEnums['Position'][] | null; // [Position!]
+    twitterProviderId?: string | null; // String
+    twitterProviderId_contains?: string | null; // String
+    twitterProviderId_ends_with?: string | null; // String
+    twitterProviderId_gt?: string | null; // String
+    twitterProviderId_gte?: string | null; // String
+    twitterProviderId_in?: string[] | null; // [String!]
+    twitterProviderId_lt?: string | null; // String
+    twitterProviderId_lte?: string | null; // String
+    twitterProviderId_not?: string | null; // String
+    twitterProviderId_not_contains?: string | null; // String
+    twitterProviderId_not_ends_with?: string | null; // String
+    twitterProviderId_not_in?: string[] | null; // [String!]
+    twitterProviderId_not_starts_with?: string | null; // String
+    twitterProviderId_starts_with?: string | null; // String
     updatedAt?: any | null; // DateTime
     updatedAt_gt?: any | null; // DateTime
     updatedAt_gte?: any | null; // DateTime
@@ -409,8 +445,10 @@ export interface NexusGenInputs {
   }
   UserWhereUniqueInput: { // input type
     email?: string | null; // String
+    facebookProviderId?: string | null; // String
     googleProviderId?: string | null; // String
     id?: string | null; // ID
+    twitterProviderId?: string | null; // String
   }
 }
 
@@ -421,7 +459,7 @@ export interface NexusGenEnums {
   Overall: "DOES_NOT_MEET_EXPECTATIONS" | "MEETS_EXPECTATIONS"
   OverallCompetencyOrderByInput: "comment_ASC" | "comment_DESC" | "competency_ASC" | "competency_DESC" | "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
   Position: "PHARMACIST" | "RESIDENT"
-  UserOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "email_ASC" | "email_DESC" | "firstName_ASC" | "firstName_DESC" | "googleProviderId_ASC" | "googleProviderId_DESC" | "id_ASC" | "id_DESC" | "lastName_ASC" | "lastName_DESC" | "position_ASC" | "position_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
+  UserOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "email_ASC" | "email_DESC" | "facebookProviderId_ASC" | "facebookProviderId_DESC" | "firstName_ASC" | "firstName_DESC" | "googleProviderId_ASC" | "googleProviderId_DESC" | "id_ASC" | "id_DESC" | "lastName_ASC" | "lastName_DESC" | "position_ASC" | "position_DESC" | "twitterProviderId_ASC" | "twitterProviderId_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
 }
 
 export interface NexusGenRootTypes {
@@ -491,11 +529,13 @@ export interface NexusGenRootTypes {
   User: { // root type
     createdAt: any; // DateTime!
     email: string; // String!
+    facebookProviderId?: string | null; // String
     firstName: string; // String!
     googleProviderId?: string | null; // String
     id: string; // ID!
     lastName: string; // String!
     position?: NexusGenEnums['Position'] | null; // Position
+    twitterProviderId?: string | null; // String
     updatedAt: any; // DateTime!
   }
   UserConnection: { // root type
@@ -685,12 +725,14 @@ export interface NexusGenFieldTypes {
   User: { // field return type
     createdAt: any; // DateTime!
     email: string; // String!
+    facebookProviderId: string | null; // String
     firstName: string; // String!
     fullName: string; // String!
     googleProviderId: string | null; // String
     id: string; // ID!
     lastName: string; // String!
     position: NexusGenEnums['Position'] | null; // Position
+    twitterProviderId: string | null; // String
     updatedAt: any; // DateTime!
   }
   UserConnection: { // field return type

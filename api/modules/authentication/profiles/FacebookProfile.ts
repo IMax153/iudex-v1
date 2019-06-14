@@ -1,8 +1,8 @@
-import { Profile as OAuthProfile } from 'passport';
+import { Profile as OAuthProfile } from 'passport-facebook';
 
 import { Profile } from './Profile';
 
-export class GoogleProfile extends Profile<OAuthProfile> {
+export class FacebookProfile extends Profile<OAuthProfile> {
   public getID() {
     return this._profile.id;
   }
@@ -15,7 +15,7 @@ export class GoogleProfile extends Profile<OAuthProfile> {
 
   public create() {
     return {
-      googleProviderId: this.getID(),
+      facebookProviderId: this.getID(),
       firstName: this.getFirstName(),
       lastName: this.getLastName(),
       email: this.getEmail(),

@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { authenticate, AuthenticateOptions } from 'passport';
 import { URL } from 'url';
 
-type Strategy = 'google';
+type Strategy = 'google' | 'twitter' | 'facebook';
 
 export class LoginRoute {
   private _strategy: Strategy;

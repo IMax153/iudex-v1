@@ -569,7 +569,9 @@ type Subscription {
 
 type User {
   id: ID!
+  facebookProviderId: String
   googleProviderId: String
+  twitterProviderId: String
   firstName: String!
   lastName: String!
   email: String!
@@ -586,7 +588,9 @@ type UserConnection {
 
 input UserCreateInput {
   id: ID
+  facebookProviderId: String
   googleProviderId: String
+  twitterProviderId: String
   firstName: String!
   lastName: String!
   email: String!
@@ -606,8 +610,12 @@ type UserEdge {
 enum UserOrderByInput {
   id_ASC
   id_DESC
+  facebookProviderId_ASC
+  facebookProviderId_DESC
   googleProviderId_ASC
   googleProviderId_DESC
+  twitterProviderId_ASC
+  twitterProviderId_DESC
   firstName_ASC
   firstName_DESC
   lastName_ASC
@@ -624,7 +632,9 @@ enum UserOrderByInput {
 
 type UserPreviousValues {
   id: ID!
+  facebookProviderId: String
   googleProviderId: String
+  twitterProviderId: String
   firstName: String!
   lastName: String!
   email: String!
@@ -652,7 +662,9 @@ input UserSubscriptionWhereInput {
 }
 
 input UserUpdateDataInput {
+  facebookProviderId: String
   googleProviderId: String
+  twitterProviderId: String
   firstName: String
   lastName: String
   email: String
@@ -660,7 +672,9 @@ input UserUpdateDataInput {
 }
 
 input UserUpdateInput {
+  facebookProviderId: String
   googleProviderId: String
+  twitterProviderId: String
   firstName: String
   lastName: String
   email: String
@@ -668,7 +682,9 @@ input UserUpdateInput {
 }
 
 input UserUpdateManyMutationInput {
+  facebookProviderId: String
   googleProviderId: String
+  twitterProviderId: String
   firstName: String
   lastName: String
   email: String
@@ -702,6 +718,20 @@ input UserWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  facebookProviderId: String
+  facebookProviderId_not: String
+  facebookProviderId_in: [String!]
+  facebookProviderId_not_in: [String!]
+  facebookProviderId_lt: String
+  facebookProviderId_lte: String
+  facebookProviderId_gt: String
+  facebookProviderId_gte: String
+  facebookProviderId_contains: String
+  facebookProviderId_not_contains: String
+  facebookProviderId_starts_with: String
+  facebookProviderId_not_starts_with: String
+  facebookProviderId_ends_with: String
+  facebookProviderId_not_ends_with: String
   googleProviderId: String
   googleProviderId_not: String
   googleProviderId_in: [String!]
@@ -716,6 +746,20 @@ input UserWhereInput {
   googleProviderId_not_starts_with: String
   googleProviderId_ends_with: String
   googleProviderId_not_ends_with: String
+  twitterProviderId: String
+  twitterProviderId_not: String
+  twitterProviderId_in: [String!]
+  twitterProviderId_not_in: [String!]
+  twitterProviderId_lt: String
+  twitterProviderId_lte: String
+  twitterProviderId_gt: String
+  twitterProviderId_gte: String
+  twitterProviderId_contains: String
+  twitterProviderId_not_contains: String
+  twitterProviderId_starts_with: String
+  twitterProviderId_not_starts_with: String
+  twitterProviderId_ends_with: String
+  twitterProviderId_not_ends_with: String
   firstName: String
   firstName_not: String
   firstName_in: [String!]
@@ -785,7 +829,9 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   id: ID
+  facebookProviderId: String
   googleProviderId: String
+  twitterProviderId: String
   email: String
 }
 `

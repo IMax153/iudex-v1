@@ -312,8 +312,12 @@ export type OverallCompetencyOrderByInput =
 export type UserOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "facebookProviderId_ASC"
+  | "facebookProviderId_DESC"
   | "googleProviderId_ASC"
   | "googleProviderId_DESC"
+  | "twitterProviderId_ASC"
+  | "twitterProviderId_DESC"
   | "firstName_ASC"
   | "firstName_DESC"
   | "lastName_ASC"
@@ -457,6 +461,20 @@ export interface UserWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  facebookProviderId?: String;
+  facebookProviderId_not?: String;
+  facebookProviderId_in?: String[] | String;
+  facebookProviderId_not_in?: String[] | String;
+  facebookProviderId_lt?: String;
+  facebookProviderId_lte?: String;
+  facebookProviderId_gt?: String;
+  facebookProviderId_gte?: String;
+  facebookProviderId_contains?: String;
+  facebookProviderId_not_contains?: String;
+  facebookProviderId_starts_with?: String;
+  facebookProviderId_not_starts_with?: String;
+  facebookProviderId_ends_with?: String;
+  facebookProviderId_not_ends_with?: String;
   googleProviderId?: String;
   googleProviderId_not?: String;
   googleProviderId_in?: String[] | String;
@@ -471,6 +489,20 @@ export interface UserWhereInput {
   googleProviderId_not_starts_with?: String;
   googleProviderId_ends_with?: String;
   googleProviderId_not_ends_with?: String;
+  twitterProviderId?: String;
+  twitterProviderId_not?: String;
+  twitterProviderId_in?: String[] | String;
+  twitterProviderId_not_in?: String[] | String;
+  twitterProviderId_lt?: String;
+  twitterProviderId_lte?: String;
+  twitterProviderId_gt?: String;
+  twitterProviderId_gte?: String;
+  twitterProviderId_contains?: String;
+  twitterProviderId_not_contains?: String;
+  twitterProviderId_starts_with?: String;
+  twitterProviderId_not_starts_with?: String;
+  twitterProviderId_ends_with?: String;
+  twitterProviderId_not_ends_with?: String;
   firstName?: String;
   firstName_not?: String;
   firstName_in?: String[] | String;
@@ -582,7 +614,9 @@ export type OverallCompetencyWhereUniqueInput = AtLeastOne<{
 
 export type UserWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  facebookProviderId?: String;
   googleProviderId?: String;
+  twitterProviderId?: String;
   email?: String;
 }>;
 
@@ -631,7 +665,9 @@ export interface UserCreateOneInput {
 
 export interface UserCreateInput {
   id?: ID_Input;
+  facebookProviderId?: String;
   googleProviderId?: String;
+  twitterProviderId?: String;
   firstName: String;
   lastName: String;
   email: String;
@@ -683,7 +719,9 @@ export interface UserUpdateOneRequiredInput {
 }
 
 export interface UserUpdateDataInput {
+  facebookProviderId?: String;
   googleProviderId?: String;
+  twitterProviderId?: String;
   firstName?: String;
   lastName?: String;
   email?: String;
@@ -744,7 +782,9 @@ export interface OverallCompetencyUpdateManyMutationInput {
 }
 
 export interface UserUpdateInput {
+  facebookProviderId?: String;
   googleProviderId?: String;
+  twitterProviderId?: String;
   firstName?: String;
   lastName?: String;
   email?: String;
@@ -752,7 +792,9 @@ export interface UserUpdateInput {
 }
 
 export interface UserUpdateManyMutationInput {
+  facebookProviderId?: String;
   googleProviderId?: String;
+  twitterProviderId?: String;
   firstName?: String;
   lastName?: String;
   email?: String;
@@ -979,7 +1021,9 @@ export interface JournalClubSubscription
 
 export interface User {
   id: ID_Output;
+  facebookProviderId?: String;
   googleProviderId?: String;
+  twitterProviderId?: String;
   firstName: String;
   lastName: String;
   email: String;
@@ -990,7 +1034,9 @@ export interface User {
 
 export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
+  facebookProviderId: () => Promise<String>;
   googleProviderId: () => Promise<String>;
+  twitterProviderId: () => Promise<String>;
   firstName: () => Promise<String>;
   lastName: () => Promise<String>;
   email: () => Promise<String>;
@@ -1003,7 +1049,9 @@ export interface UserSubscription
   extends Promise<AsyncIterator<User>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  facebookProviderId: () => Promise<AsyncIterator<String>>;
   googleProviderId: () => Promise<AsyncIterator<String>>;
+  twitterProviderId: () => Promise<AsyncIterator<String>>;
   firstName: () => Promise<AsyncIterator<String>>;
   lastName: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
@@ -1387,7 +1435,9 @@ export interface UserSubscriptionPayloadSubscription
 
 export interface UserPreviousValues {
   id: ID_Output;
+  facebookProviderId?: String;
   googleProviderId?: String;
+  twitterProviderId?: String;
   firstName: String;
   lastName: String;
   email: String;
@@ -1400,7 +1450,9 @@ export interface UserPreviousValuesPromise
   extends Promise<UserPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  facebookProviderId: () => Promise<String>;
   googleProviderId: () => Promise<String>;
+  twitterProviderId: () => Promise<String>;
   firstName: () => Promise<String>;
   lastName: () => Promise<String>;
   email: () => Promise<String>;
@@ -1413,7 +1465,9 @@ export interface UserPreviousValuesSubscription
   extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  facebookProviderId: () => Promise<AsyncIterator<String>>;
   googleProviderId: () => Promise<AsyncIterator<String>>;
+  twitterProviderId: () => Promise<AsyncIterator<String>>;
   firstName: () => Promise<AsyncIterator<String>>;
   lastName: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;

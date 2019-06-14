@@ -399,7 +399,9 @@ export interface QueryFieldDetails {
 type UserObject =
   | UserFields
   | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'facebookProviderId', args?: [] | false, alias?: string  } 
   | { name: 'googleProviderId', args?: [] | false, alias?: string  } 
+  | { name: 'twitterProviderId', args?: [] | false, alias?: string  } 
   | { name: 'firstName', args?: [] | false, alias?: string  } 
   | { name: 'lastName', args?: [] | false, alias?: string  } 
   | { name: 'email', args?: [] | false, alias?: string  } 
@@ -409,7 +411,9 @@ type UserObject =
 
 type UserFields =
   | 'id'
+  | 'facebookProviderId'
   | 'googleProviderId'
+  | 'twitterProviderId'
   | 'firstName'
   | 'lastName'
   | 'email'
@@ -430,7 +434,23 @@ export interface UserFieldDetails {
     nullable: false
     resolve: undefined
   }
+  facebookProviderId: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
   googleProviderId: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+  twitterProviderId: {
     type: 'String'
     args: {}
     description: string
@@ -2079,7 +2099,9 @@ export interface UserSubscriptionPayloadFieldDetails {
 type UserPreviousValuesObject =
   | UserPreviousValuesFields
   | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'facebookProviderId', args?: [] | false, alias?: string  } 
   | { name: 'googleProviderId', args?: [] | false, alias?: string  } 
+  | { name: 'twitterProviderId', args?: [] | false, alias?: string  } 
   | { name: 'firstName', args?: [] | false, alias?: string  } 
   | { name: 'lastName', args?: [] | false, alias?: string  } 
   | { name: 'email', args?: [] | false, alias?: string  } 
@@ -2089,7 +2111,9 @@ type UserPreviousValuesObject =
 
 type UserPreviousValuesFields =
   | 'id'
+  | 'facebookProviderId'
   | 'googleProviderId'
+  | 'twitterProviderId'
   | 'firstName'
   | 'lastName'
   | 'email'
@@ -2110,7 +2134,23 @@ export interface UserPreviousValuesFieldDetails {
     nullable: false
     resolve: undefined
   }
+  facebookProviderId: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
   googleProviderId: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+  twitterProviderId: {
     type: 'String'
     args: {}
     description: string
@@ -2542,13 +2582,17 @@ export interface OverallCompetencyPreviousValuesFieldDetails {
 
 export interface UserWhereUniqueInput {
   id?: string | null
+  facebookProviderId?: string | null
   googleProviderId?: string | null
+  twitterProviderId?: string | null
   email?: string | null
 }
 export type UserWhereUniqueInputInputObject =
   | Extract<keyof UserWhereUniqueInput, string>
   | { name: 'id', alias?: string  } 
+  | { name: 'facebookProviderId', alias?: string  } 
   | { name: 'googleProviderId', alias?: string  } 
+  | { name: 'twitterProviderId', alias?: string  } 
   | { name: 'email', alias?: string  } 
   
 export interface UserWhereInput {
@@ -2566,6 +2610,20 @@ export interface UserWhereInput {
   id_not_starts_with?: string | null
   id_ends_with?: string | null
   id_not_ends_with?: string | null
+  facebookProviderId?: string | null
+  facebookProviderId_not?: string | null
+  facebookProviderId_in?: string[]
+  facebookProviderId_not_in?: string[]
+  facebookProviderId_lt?: string | null
+  facebookProviderId_lte?: string | null
+  facebookProviderId_gt?: string | null
+  facebookProviderId_gte?: string | null
+  facebookProviderId_contains?: string | null
+  facebookProviderId_not_contains?: string | null
+  facebookProviderId_starts_with?: string | null
+  facebookProviderId_not_starts_with?: string | null
+  facebookProviderId_ends_with?: string | null
+  facebookProviderId_not_ends_with?: string | null
   googleProviderId?: string | null
   googleProviderId_not?: string | null
   googleProviderId_in?: string[]
@@ -2580,6 +2638,20 @@ export interface UserWhereInput {
   googleProviderId_not_starts_with?: string | null
   googleProviderId_ends_with?: string | null
   googleProviderId_not_ends_with?: string | null
+  twitterProviderId?: string | null
+  twitterProviderId_not?: string | null
+  twitterProviderId_in?: string[]
+  twitterProviderId_not_in?: string[]
+  twitterProviderId_lt?: string | null
+  twitterProviderId_lte?: string | null
+  twitterProviderId_gt?: string | null
+  twitterProviderId_gte?: string | null
+  twitterProviderId_contains?: string | null
+  twitterProviderId_not_contains?: string | null
+  twitterProviderId_starts_with?: string | null
+  twitterProviderId_not_starts_with?: string | null
+  twitterProviderId_ends_with?: string | null
+  twitterProviderId_not_ends_with?: string | null
   firstName?: string | null
   firstName_not?: string | null
   firstName_in?: string[]
@@ -2662,6 +2734,20 @@ export type UserWhereInputInputObject =
   | { name: 'id_not_starts_with', alias?: string  } 
   | { name: 'id_ends_with', alias?: string  } 
   | { name: 'id_not_ends_with', alias?: string  } 
+  | { name: 'facebookProviderId', alias?: string  } 
+  | { name: 'facebookProviderId_not', alias?: string  } 
+  | { name: 'facebookProviderId_in', alias?: string  } 
+  | { name: 'facebookProviderId_not_in', alias?: string  } 
+  | { name: 'facebookProviderId_lt', alias?: string  } 
+  | { name: 'facebookProviderId_lte', alias?: string  } 
+  | { name: 'facebookProviderId_gt', alias?: string  } 
+  | { name: 'facebookProviderId_gte', alias?: string  } 
+  | { name: 'facebookProviderId_contains', alias?: string  } 
+  | { name: 'facebookProviderId_not_contains', alias?: string  } 
+  | { name: 'facebookProviderId_starts_with', alias?: string  } 
+  | { name: 'facebookProviderId_not_starts_with', alias?: string  } 
+  | { name: 'facebookProviderId_ends_with', alias?: string  } 
+  | { name: 'facebookProviderId_not_ends_with', alias?: string  } 
   | { name: 'googleProviderId', alias?: string  } 
   | { name: 'googleProviderId_not', alias?: string  } 
   | { name: 'googleProviderId_in', alias?: string  } 
@@ -2676,6 +2762,20 @@ export type UserWhereInputInputObject =
   | { name: 'googleProviderId_not_starts_with', alias?: string  } 
   | { name: 'googleProviderId_ends_with', alias?: string  } 
   | { name: 'googleProviderId_not_ends_with', alias?: string  } 
+  | { name: 'twitterProviderId', alias?: string  } 
+  | { name: 'twitterProviderId_not', alias?: string  } 
+  | { name: 'twitterProviderId_in', alias?: string  } 
+  | { name: 'twitterProviderId_not_in', alias?: string  } 
+  | { name: 'twitterProviderId_lt', alias?: string  } 
+  | { name: 'twitterProviderId_lte', alias?: string  } 
+  | { name: 'twitterProviderId_gt', alias?: string  } 
+  | { name: 'twitterProviderId_gte', alias?: string  } 
+  | { name: 'twitterProviderId_contains', alias?: string  } 
+  | { name: 'twitterProviderId_not_contains', alias?: string  } 
+  | { name: 'twitterProviderId_starts_with', alias?: string  } 
+  | { name: 'twitterProviderId_not_starts_with', alias?: string  } 
+  | { name: 'twitterProviderId_ends_with', alias?: string  } 
+  | { name: 'twitterProviderId_not_ends_with', alias?: string  } 
   | { name: 'firstName', alias?: string  } 
   | { name: 'firstName_not', alias?: string  } 
   | { name: 'firstName_in', alias?: string  } 
@@ -3048,7 +3148,9 @@ export type OverallCompetencyWhereUniqueInputInputObject =
   
 export interface UserCreateInput {
   id?: string | null
+  facebookProviderId?: string | null
   googleProviderId?: string | null
+  twitterProviderId?: string | null
   firstName?: string
   lastName?: string
   email?: string
@@ -3057,14 +3159,18 @@ export interface UserCreateInput {
 export type UserCreateInputInputObject =
   | Extract<keyof UserCreateInput, string>
   | { name: 'id', alias?: string  } 
+  | { name: 'facebookProviderId', alias?: string  } 
   | { name: 'googleProviderId', alias?: string  } 
+  | { name: 'twitterProviderId', alias?: string  } 
   | { name: 'firstName', alias?: string  } 
   | { name: 'lastName', alias?: string  } 
   | { name: 'email', alias?: string  } 
   | { name: 'position', alias?: string  } 
   
 export interface UserUpdateInput {
+  facebookProviderId?: string | null
   googleProviderId?: string | null
+  twitterProviderId?: string | null
   firstName?: string | null
   lastName?: string | null
   email?: string | null
@@ -3072,14 +3178,18 @@ export interface UserUpdateInput {
 }
 export type UserUpdateInputInputObject =
   | Extract<keyof UserUpdateInput, string>
+  | { name: 'facebookProviderId', alias?: string  } 
   | { name: 'googleProviderId', alias?: string  } 
+  | { name: 'twitterProviderId', alias?: string  } 
   | { name: 'firstName', alias?: string  } 
   | { name: 'lastName', alias?: string  } 
   | { name: 'email', alias?: string  } 
   | { name: 'position', alias?: string  } 
   
 export interface UserUpdateManyMutationInput {
+  facebookProviderId?: string | null
   googleProviderId?: string | null
+  twitterProviderId?: string | null
   firstName?: string | null
   lastName?: string | null
   email?: string | null
@@ -3087,7 +3197,9 @@ export interface UserUpdateManyMutationInput {
 }
 export type UserUpdateManyMutationInputInputObject =
   | Extract<keyof UserUpdateManyMutationInput, string>
+  | { name: 'facebookProviderId', alias?: string  } 
   | { name: 'googleProviderId', alias?: string  } 
+  | { name: 'twitterProviderId', alias?: string  } 
   | { name: 'firstName', alias?: string  } 
   | { name: 'lastName', alias?: string  } 
   | { name: 'email', alias?: string  } 
@@ -3240,7 +3352,9 @@ export type UserUpdateOneRequiredInputInputObject =
   | { name: 'connect', alias?: string  } 
   
 export interface UserUpdateDataInput {
+  facebookProviderId?: string | null
   googleProviderId?: string | null
+  twitterProviderId?: string | null
   firstName?: string | null
   lastName?: string | null
   email?: string | null
@@ -3248,7 +3362,9 @@ export interface UserUpdateDataInput {
 }
 export type UserUpdateDataInputInputObject =
   | Extract<keyof UserUpdateDataInput, string>
+  | { name: 'facebookProviderId', alias?: string  } 
   | { name: 'googleProviderId', alias?: string  } 
+  | { name: 'twitterProviderId', alias?: string  } 
   | { name: 'firstName', alias?: string  } 
   | { name: 'lastName', alias?: string  } 
   | { name: 'email', alias?: string  } 
@@ -3460,8 +3576,12 @@ export type PositionValues =
 export type UserOrderByInputValues =
   | 'id_ASC'
   | 'id_DESC'
+  | 'facebookProviderId_ASC'
+  | 'facebookProviderId_DESC'
   | 'googleProviderId_ASC'
   | 'googleProviderId_DESC'
+  | 'twitterProviderId_ASC'
+  | 'twitterProviderId_DESC'
   | 'firstName_ASC'
   | 'firstName_DESC'
   | 'lastName_ASC'

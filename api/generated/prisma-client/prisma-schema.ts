@@ -540,7 +540,7 @@ type PageInfo {
 }
 
 enum Position {
-  PHARMACIST
+  PRECEPTOR
   RESIDENT
 }
 

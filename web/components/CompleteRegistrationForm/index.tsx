@@ -95,7 +95,7 @@ export const CompleteRegistrationForm: React.FC<Props> = ({ title, subtitle, use
                       label={capitalize(user.position as string) || 'Select Position'}
                       prefix={<Icon icon="mortar-pestle" color="secondary" />}
                       options={[
-                        { label: 'Pharmacist', value: 'PHARMACIST' },
+                        { label: 'Preceptor', value: 'PRECEPTOR' },
                         { label: 'Resident', value: 'RESIDENT' },
                       ]}
                       onChange={value => setFieldValue('position', value)}

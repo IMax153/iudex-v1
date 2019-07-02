@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "dotenv -e .env.development -- ts-node-dev --no-notify --respawn --transpileOnly ./index.ts",
     "docker:up": "cd prisma && docker-compose up -d",
-    "docker:down": "cd prisma && docker-compose down",
+    "docker:down": "cd prisma && docker-compose down -v",
     "docker:start": "cd prisma && docker-compose start",
     "docker:stop": "cd prisma && docker-compose stop",
     "prisma:deploy:dev": "cd prisma && prisma deploy -e ../.env.development",

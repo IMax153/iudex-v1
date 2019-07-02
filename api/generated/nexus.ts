@@ -458,7 +458,7 @@ export interface NexusGenEnums {
   JournalClubOrderByInput: "article_ASC" | "article_DESC" | "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
   Overall: "DOES_NOT_MEET_EXPECTATIONS" | "MEETS_EXPECTATIONS"
   OverallCompetencyOrderByInput: "comment_ASC" | "comment_DESC" | "competency_ASC" | "competency_DESC" | "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
-  Position: "PHARMACIST" | "RESIDENT"
+  Position: "PRECEPTOR" | "RESIDENT"
   UserOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "email_ASC" | "email_DESC" | "facebookProviderId_ASC" | "facebookProviderId_DESC" | "firstName_ASC" | "firstName_DESC" | "googleProviderId_ASC" | "googleProviderId_DESC" | "id_ASC" | "id_DESC" | "lastName_ASC" | "lastName_DESC" | "position_ASC" | "position_DESC" | "twitterProviderId_ASC" | "twitterProviderId_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
 }
 

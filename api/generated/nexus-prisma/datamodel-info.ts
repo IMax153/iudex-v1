@@ -1130,7 +1130,7 @@ export default {
         "interfaces": null,
         "enumValues": [
           {
-            "name": "PHARMACIST",
+            "name": "PRECEPTOR",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null

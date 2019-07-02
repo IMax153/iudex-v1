@@ -580,7 +580,7 @@ export type PageInfo = {
 };
 
 export enum Position {
-  Pharmacist = 'PHARMACIST',
+  Preceptor = 'PRECEPTOR',
   Resident = 'RESIDENT',
 }
 
@@ -702,7 +702,9 @@ export type SetUserPositionInput = {
 
 export type User = {
   id: Scalars['ID'];
+  facebookProviderId?: Maybe<Scalars['String']>;
   googleProviderId?: Maybe<Scalars['String']>;
+  twitterProviderId?: Maybe<Scalars['String']>;
   firstName: Scalars['String'];
   lastName: Scalars['String'];
   email: Scalars['String'];
@@ -720,7 +722,9 @@ export type UserConnection = {
 
 export type UserCreateInput = {
   id?: Maybe<Scalars['ID']>;
+  facebookProviderId?: Maybe<Scalars['String']>;
   googleProviderId?: Maybe<Scalars['String']>;
+  twitterProviderId?: Maybe<Scalars['String']>;
   firstName: Scalars['String'];
   lastName: Scalars['String'];
   email: Scalars['String'];
@@ -740,8 +744,12 @@ export type UserEdge = {
 export enum UserOrderByInput {
   Id_Asc = 'id_ASC',
   Id_Desc = 'id_DESC',
+  FacebookProviderId_Asc = 'facebookProviderId_ASC',
+  FacebookProviderId_Desc = 'facebookProviderId_DESC',
   GoogleProviderId_Asc = 'googleProviderId_ASC',
   GoogleProviderId_Desc = 'googleProviderId_DESC',
+  TwitterProviderId_Asc = 'twitterProviderId_ASC',
+  TwitterProviderId_Desc = 'twitterProviderId_DESC',
   FirstName_Asc = 'firstName_ASC',
   FirstName_Desc = 'firstName_DESC',
   LastName_Asc = 'lastName_ASC',
@@ -757,7 +765,9 @@ export enum UserOrderByInput {
 }
 
 export type UserUpdateDataInput = {
+  facebookProviderId?: Maybe<Scalars['String']>;
   googleProviderId?: Maybe<Scalars['String']>;
+  twitterProviderId?: Maybe<Scalars['String']>;
   firstName?: Maybe<Scalars['String']>;
   lastName?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
@@ -765,7 +775,9 @@ export type UserUpdateDataInput = {
 };
 
 export type UserUpdateInput = {
+  facebookProviderId?: Maybe<Scalars['String']>;
   googleProviderId?: Maybe<Scalars['String']>;
+  twitterProviderId?: Maybe<Scalars['String']>;
   firstName?: Maybe<Scalars['String']>;
   lastName?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
@@ -773,7 +785,9 @@ export type UserUpdateInput = {
 };
 
 export type UserUpdateManyMutationInput = {
+  facebookProviderId?: Maybe<Scalars['String']>;
   googleProviderId?: Maybe<Scalars['String']>;
+  twitterProviderId?: Maybe<Scalars['String']>;
   firstName?: Maybe<Scalars['String']>;
   lastName?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
@@ -807,6 +821,20 @@ export type UserWhereInput = {
   id_not_starts_with?: Maybe<Scalars['ID']>;
   id_ends_with?: Maybe<Scalars['ID']>;
   id_not_ends_with?: Maybe<Scalars['ID']>;
+  facebookProviderId?: Maybe<Scalars['String']>;
+  facebookProviderId_not?: Maybe<Scalars['String']>;
+  facebookProviderId_in?: Maybe<Array<Scalars['String']>>;
+  facebookProviderId_not_in?: Maybe<Array<Scalars['String']>>;
+  facebookProviderId_lt?: Maybe<Scalars['String']>;
+  facebookProviderId_lte?: Maybe<Scalars['String']>;
+  facebookProviderId_gt?: Maybe<Scalars['String']>;
+  facebookProviderId_gte?: Maybe<Scalars['String']>;
+  facebookProviderId_contains?: Maybe<Scalars['String']>;
+  facebookProviderId_not_contains?: Maybe<Scalars['String']>;
+  facebookProviderId_starts_with?: Maybe<Scalars['String']>;
+  facebookProviderId_not_starts_with?: Maybe<Scalars['String']>;
+  facebookProviderId_ends_with?: Maybe<Scalars['String']>;
+  facebookProviderId_not_ends_with?: Maybe<Scalars['String']>;
   googleProviderId?: Maybe<Scalars['String']>;
   googleProviderId_not?: Maybe<Scalars['String']>;
   googleProviderId_in?: Maybe<Array<Scalars['String']>>;
@@ -821,6 +849,20 @@ export type UserWhereInput = {
   googleProviderId_not_starts_with?: Maybe<Scalars['String']>;
   googleProviderId_ends_with?: Maybe<Scalars['String']>;
   googleProviderId_not_ends_with?: Maybe<Scalars['String']>;
+  twitterProviderId?: Maybe<Scalars['String']>;
+  twitterProviderId_not?: Maybe<Scalars['String']>;
+  twitterProviderId_in?: Maybe<Array<Scalars['String']>>;
+  twitterProviderId_not_in?: Maybe<Array<Scalars['String']>>;
+  twitterProviderId_lt?: Maybe<Scalars['String']>;
+  twitterProviderId_lte?: Maybe<Scalars['String']>;
+  twitterProviderId_gt?: Maybe<Scalars['String']>;
+  twitterProviderId_gte?: Maybe<Scalars['String']>;
+  twitterProviderId_contains?: Maybe<Scalars['String']>;
+  twitterProviderId_not_contains?: Maybe<Scalars['String']>;
+  twitterProviderId_starts_with?: Maybe<Scalars['String']>;
+  twitterProviderId_not_starts_with?: Maybe<Scalars['String']>;
+  twitterProviderId_ends_with?: Maybe<Scalars['String']>;
+  twitterProviderId_not_ends_with?: Maybe<Scalars['String']>;
   firstName?: Maybe<Scalars['String']>;
   firstName_not?: Maybe<Scalars['String']>;
   firstName_in?: Maybe<Array<Scalars['String']>>;
@@ -890,7 +932,9 @@ export type UserWhereInput = {
 
 export type UserWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>;
+  facebookProviderId?: Maybe<Scalars['String']>;
   googleProviderId?: Maybe<Scalars['String']>;
+  twitterProviderId?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
 };
 export type PreceptorsQueryVariables = {};
@@ -1114,7 +1158,7 @@ export const userFieldsFragmentDoc = gql`
 `;
 export const PreceptorsDocument = gql`
   query Preceptors {
-    users(where: { position: PHARMACIST }, orderBy: lastName_ASC) {
+    users(where: { position: PRECEPTOR }, orderBy: lastName_ASC) {
       id
       fullName
     }

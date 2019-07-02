@@ -21,8 +21,12 @@
   ],
   "env": {
     "CLIENT_URL": "@iudex-client-url",
+    "FACEBOOK_OAUTH_CLIENT_ID": "@facebook-oauth-client-id",
+    "FACEBOOK_OAUTH_CLIENT_SECRET": "@facebook-oauth-client-secret",
     "GOOGLE_OAUTH_CLIENT_ID": "@google-oauth-client-id",
     "GOOGLE_OAUTH_CLIENT_SECRET": "@google-oauth-client-secret",
+    "TWITTER_OAUTH_CLIENT_ID": "@twitter-oauth-client-id",
+    "TWITTER_OAUTH_CLIENT_SECRET": "@twitter-oauth-client-secret",
     "PRISMA_ENDPOINT": "@iudex-prisma-endpoint",
     "PRISMA_MANAGEMENT_API_SECRET": "@iudex-prisma-management-api-secret",
     "REDIS_HOST": "@iudex-redis-host",

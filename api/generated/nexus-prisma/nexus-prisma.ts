@@ -3570,7 +3570,7 @@ export type OverallCompetencySubscriptionWhereInputInputObject =
   
 
 export type PositionValues =
-  | 'PHARMACIST'
+  | 'PRECEPTOR'
   | 'RESIDENT'
   
 export type UserOrderByInputValues =

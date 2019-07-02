@@ -283,7 +283,7 @@ export type CoreCompetencyOrderByInput =
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
-export type Position = "PHARMACIST" | "RESIDENT";
+export type Position = "PRECEPTOR" | "RESIDENT";
 
 export type Overall = "MEETS_EXPECTATIONS" | "DOES_NOT_MEET_EXPECTATIONS";
 

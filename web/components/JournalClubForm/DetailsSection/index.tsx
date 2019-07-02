@@ -18,7 +18,7 @@ interface Props {
 
 export const PreceptorsQuery = gql`
   query Preceptors {
-    users(where: { position: PHARMACIST }, orderBy: lastName_ASC) {
+    users(where: { position: PRECEPTOR }, orderBy: lastName_ASC) {
       id
       fullName
     }

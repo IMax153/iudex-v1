@@ -12,7 +12,7 @@ import {
   Overall,
 } from '../generated/prisma-client';
 
-const positions: Position[] = ['PHARMACIST', 'RESIDENT'];
+const positions: Position[] = ['PRECEPTOR', 'RESIDENT'];
 const core: Core[] = ['NEEDS_IMPROVEMENT', 'SATISFACTORY_PROGRESS', 'ACHIEVED', 'NOT_APPLICABLE'];
 const overall: Overall[] = ['MEETS_EXPECTATIONS', 'DOES_NOT_MEET_EXPECTATIONS'];
 

@@ -29,7 +29,7 @@
     "express-session": "^1.16.1",
     "faker": "^4.1.0",
     "graphql": "^14.1.1",
-    "graphql-shield": "^5.3.1",
+    "graphql-shield": "^6.0.6",
     "helmet": "^3.16.0",
     "hpp": "^0.2.2",
     "ioredis": "^4.9.5",

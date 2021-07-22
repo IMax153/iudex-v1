@@ -42,7 +42,7 @@
     "react-transition-group": "^4.1.0",
     "semantic-ui-react": "^0.86.0",
     "styled-components": "^4.2.0",
-    "xlsx": "^0.14.1",
+    "xlsx": "^0.17.0",
     "yup": "^0.27.0"
   },
   "devDependencies": {

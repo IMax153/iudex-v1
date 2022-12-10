@@ -25,7 +25,7 @@
     "apollo-server-express": "^2.4.8",
     "connect-redis": "^3.4.1",
     "cookie-parser": "^1.4.4",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-session": "^1.16.1",
     "faker": "^4.1.0",
     "graphql": "^14.1.1",
